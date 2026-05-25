@@ -2,6 +2,14 @@
   "name": "css-starter",
   "version": "1.0.0",
   "description": "Framework-agnostic CSS design system — tokens, reset, base element styles",
+  "main": "src/styles/index.css",
+  "exports": {
+    ".": "./src/styles/index.css",
+    "./*": "./src/styles/*"
+  },
+  "files": [
+    "src/styles"
+  ],
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
