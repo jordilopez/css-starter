@@ -99,20 +99,132 @@ Override any token in your own `:root`:
 
 ## Dark mode
 
-Theme is controlled via `data-theme="dark"` on the `<html>` element.
-Light values are the default; dark values live under `:root[data-theme='dark']`.
+Theme is controlled **exclusively** via `data-theme="dark"` on the `<html>`
+element. No `@media (prefers-color-scheme)` is used — this avoids the
+classic duplication problem where dark mode values live in two places.
 
-In **production**, sync with the system preference by adding this inline
-script before your CSS:
+| Values | Selector |
+|--------|----------|
+| Light (default) | `:root { ... }` |
+| Dark (override) | `:root[data-theme='dark'] { ... }` |
+
+Dark mode values are defined in `tokens/color.css` and `tokens/shadow.css`.
+Each value lives in **exactly one place**.
+
+---
+
+### Implementation in other projects
+
+When you import this CSS starter into a Vue, React, or plain HTML project,
+you need to sync `data-theme` with the user's system preference. There are
+two complementary approaches:
+
+#### 1. Script tag (required — sets initial theme)
+
+Place this **before** your CSS import in `<head>`. It reads the system
+preference instantly and sets `data-theme` before the first paint, so there's
+no flash of wrong theme.
 
 ```html
-<script>
-  if (matchMedia('(prefers-color-scheme: dark)').matches)
-    document.documentElement.setAttribute('data-theme', 'dark')
-</script>
+<head>
+  <script>
+    if (matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.setAttribute('data-theme', 'dark')
+  </script>
+  <link rel="stylesheet" href="path/to/index.css" />
+</head>
 ```
 
-Override dark values in your project:
+For frameworks that generate HTML (Astro, Next.js, Nuxt, etc.), inject this
+script inline in the `<head>` via the framework's head management API.
+
+#### 2. Toggle button (optional — lets user switch)
+
+For a manual toggle, add a button that flips `data-theme` and persists the
+choice:
+
+```js
+function toggleTheme() {
+  const html = document.documentElement
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+  html.setAttribute('data-theme', next)
+  localStorage.setItem('theme', next)
+}
+
+function initTheme() {
+  const saved = localStorage.getItem('theme')
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved)
+  }
+}
+```
+
+Call `initTheme()` on page load (after the inline script, so the saved
+preference overrides the system preference).
+
+#### Implementing in Astro
+
+```astro
+---
+// src/layouts/BaseLayout.astro
+---
+<!doctype html>
+<html lang="ca">
+  <head>
+    <script is:inline>
+      if (matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.setAttribute('data-theme', 'dark')
+    </script>
+    <link rel="stylesheet" href="/src/styles/index.css" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+```
+
+#### Implementing in Nuxt
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  app: {
+    head: {
+      script: [
+        {
+          innerHTML:
+            "if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark')",
+          type: 'text/javascript',
+        },
+      ],
+    },
+  },
+})
+```
+
+#### Implementing in Next.js
+
+```tsx
+// app/layout.tsx
+import Script from 'next/script'
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="ca">
+      <head>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`if (matchMedia('(prefers-color-scheme: dark)').matches)
+            document.documentElement.setAttribute('data-theme', 'dark')`}
+        </Script>
+        <link rel="stylesheet" href="/src/styles/index.css" />
+      </head>
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+### Overriding dark tokens in your project
 
 ```css
 :root[data-theme='dark'] {
