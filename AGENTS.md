@@ -78,9 +78,15 @@ Naming patterns:
 
 ### Dark mode
 
-Dark mode is handled via `@media (prefers-color-scheme: dark)` in
-`tokens/color.css` and `tokens/shadow.css`. All token files are
-self-contained — no cross-file dependencies.
+Dark mode is handled via **two mechanisms**:
+
+1. **`@media (prefers-color-scheme: dark)`** — follows the OS/browser
+   setting automatically. Used in production.
+2. **`:root[data-theme='dark']`** — allows manual toggle via a `data-theme`
+   attribute on `<html>`. Used in Storybook and JS-based toggles.
+
+Both are defined in `tokens/color.css` and `tokens/shadow.css` with
+the same values, so they stay in sync. If one changes, update both.
 
 ## Storybook
 

@@ -32,6 +32,7 @@
    Dark mode
    ========================================================================== */
 
+/* Follows system preference in production */
 @media (prefers-color-scheme: dark) {
   :root {
     --c-primary: #5cdba0;
@@ -53,4 +54,26 @@
 
     --c-focus-ring: rgba(92, 219, 160, 0.4);
   }
+}
+
+/* Allows manual toggle via data-attribute (Storybook, JS toggle, etc.) */
+:root[data-theme='dark'] {
+  --c-primary: #5cdba0;
+  --c-primary-hover: #46c98a;
+  --c-primary-active: #3bb37a;
+  --c-primary-subtle: rgba(92, 219, 160, 0.12);
+
+  --c-text: #e4e4e4;
+  --c-text-secondary: #a0a0a0;
+  --c-text-muted: #6b6b6b;
+  --c-text-inverse: #1a1a1a;
+
+  --c-bg: #1a1b1e;
+  --c-bg-subtle: #25262a;
+  --c-bg-muted: #2e2f34;
+
+  --c-border: #3a3b40;
+  --c-border-light: #333438;
+
+  --c-focus-ring: rgba(92, 219, 160, 0.4);
 }
