@@ -2,6 +2,23 @@
    Color tokens
    ========================================================================== */
 
+/*
+ * Theme is controlled via `data-theme="dark"` on the <html> element.
+ *
+ * - Light values are the default :root — no special selector needed.
+ * - Dark values are under :root[data-theme='dark'] — single source of truth.
+ *
+ * In production, sync with system preference via this inline script
+ * (place before the CSS import in your <head>):
+ *
+ *   <script>
+ *     if (matchMedia('(prefers-color-scheme: dark)').matches)
+ *       document.documentElement.setAttribute('data-theme', 'dark')
+ *   </script>
+ *
+ * In Storybook, the Theme toolbar toggle sets data-theme directly.
+ */
+
 :root {
   /* Brand */
   --c-primary: #42b883;
@@ -25,58 +42,6 @@
   --c-border-light: #e9ecef;
 
   /* Interactive */
-  --c-focus-ring: rgba(66, 184, 131, 0.35);
-}
-
-/* ==========================================================================
-   Dark mode
-   ========================================================================== */
-
-/* Follows system preference in production */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --c-primary: #5cdba0;
-    --c-primary-hover: #46c98a;
-    --c-primary-active: #3bb37a;
-    --c-primary-subtle: rgba(92, 219, 160, 0.12);
-
-    --c-text: #e4e4e4;
-    --c-text-secondary: #a0a0a0;
-    --c-text-muted: #6b6b6b;
-    --c-text-inverse: #1a1a1a;
-
-    --c-bg: #1a1b1e;
-    --c-bg-subtle: #25262a;
-    --c-bg-muted: #2e2f34;
-
-    --c-border: #3a3b40;
-    --c-border-light: #333438;
-
-    --c-focus-ring: rgba(92, 219, 160, 0.4);
-  }
-}
-
-/* Allows manual toggle via data-attribute (Storybook, JS toggle, etc.) */
-
-/* Explicit light — counters @media (prefers-color-scheme: dark) when dark OS + manual light toggle */
-:root[data-theme='light'] {
-  --c-primary: #42b883;
-  --c-primary-hover: #38a070;
-  --c-primary-active: #2e8c5e;
-  --c-primary-subtle: rgba(66, 184, 131, 0.08);
-
-  --c-text: #1a1a1a;
-  --c-text-secondary: #555;
-  --c-text-muted: #888;
-  --c-text-inverse: #fff;
-
-  --c-bg: #fff;
-  --c-bg-subtle: #f8f9fa;
-  --c-bg-muted: #e9ecef;
-
-  --c-border: #dee2e6;
-  --c-border-light: #e9ecef;
-
   --c-focus-ring: rgba(66, 184, 131, 0.35);
 }
 

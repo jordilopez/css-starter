@@ -78,15 +78,24 @@ Naming patterns:
 
 ### Dark mode
 
-Dark mode is handled via **two mechanisms**:
+Theme is controlled **exclusively** via `data-theme="dark"` on the `<html>`
+element. No `@media (prefers-color-scheme)` is used.
 
-1. **`@media (prefers-color-scheme: dark)`** — follows the OS/browser
-   setting automatically. Used in production.
-2. **`:root[data-theme='dark']`** — allows manual toggle via a `data-theme`
-   attribute on `<html>`. Used in Storybook and JS-based toggles.
+- **`:root`** holds light mode values (default)
+- **`:root[data-theme='dark']`** holds dark mode values (single source of truth)
+- **No duplication** — each value lives in exactly one place
 
-Both are defined in `tokens/color.css` and `tokens/shadow.css` with
-the same values, so they stay in sync. If one changes, update both.
+In **Storybook**, the Theme toolbar toggle sets `data-theme` directly.
+
+In **production**, sync with system preference via this inline script
+(place before your CSS `<link>` or `@import`):
+
+```html
+<script>
+  if (matchMedia('(prefers-color-scheme: dark)').matches)
+    document.documentElement.setAttribute('data-theme', 'dark')
+</script>
+```
 
 ## Storybook
 

@@ -97,15 +97,27 @@ Override any token in your own `:root`:
 }
 ```
 
-Colour tokens automatically adapt to the user's light/dark preference.
-Override dark values too:
+## Dark mode
+
+Theme is controlled via `data-theme="dark"` on the `<html>` element.
+Light values are the default; dark values live under `:root[data-theme='dark']`.
+
+In **production**, sync with the system preference by adding this inline
+script before your CSS:
+
+```html
+<script>
+  if (matchMedia('(prefers-color-scheme: dark)').matches)
+    document.documentElement.setAttribute('data-theme', 'dark')
+</script>
+```
+
+Override dark values in your project:
 
 ```css
-@media (prefers-color-scheme: dark) {
-  :root {
-    --c-primary: #818cf8;
-    --c-bg: #0f172a;
-  }
+:root[data-theme='dark'] {
+  --c-primary: #818cf8;
+  --c-bg: #0f172a;
 }
 ```
 
@@ -152,7 +164,7 @@ Use the toolbar toggle to switch between light and dark mode.
 - **`rem` for spacing and type** — respects user's font-size settings
 - **`px` for borders and shadows** — decorative properties don't scale
 - **All values reference tokens** — no hardcoded values in base styles
-- **Dark mode via `prefers-color-scheme` + `data-theme`** — system-aware, JS-toggleable
+- **Dark mode via `data-theme` attribute** — single source of truth, no duplication. System-aware via inline script in production
 - **`:where()` in base styles** — zero-specificity, easy for downstream to override
 - **No component variants** — this is the foundation, you build the house
 
