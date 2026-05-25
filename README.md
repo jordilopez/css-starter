@@ -1,29 +1,63 @@
 # CSS Starter
 
-A framework-agnostic CSS design system starter. Drop-in styles for any
-project — Vue, React, Astro, plain HTML, or anything else.
+A framework-agnostic CSS foundation. This is **not** a component library —
+it provides **design tokens** and **native element defaults** that
+downstream projects customise via token overrides.
+
+Use it as the base layer for any Vue, React, Astro, or plain HTML project.
+
+## What this IS
+
+| Layer | What |
+|-------|------|
+| **Tokens** | CSS custom properties for colours, type, spacing, borders, shadows, easing — the raw materials |
+| **Reset** | Josh Comeau's modern CSS reset, plus a few opinionated overrides |
+| **Base styles** | Sensible defaults for native HTML elements (`<h1>`, `<p>`, `<a>`, `<button>`, `<input>`, `<table>`, etc.) |
+
+## What this is NOT
+
+- ❌ **No component variants** — no `.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.card`, `.badge`, `.alert`
+- ❌ **No utility framework** — no `.m-4`, `.flex`, `.text-center` classes
+- ❌ **No JavaScript** — pure CSS, zero JS
+
+This project gives you the **ingredients**, not the **recipes**. You build
+the recipes in your own project by overriding tokens and adding your own
+component styles on top.
+
+## Why?
+
+When every project starts from scratch, you get inconsistent spacing,
+forgotten focus rings, and mismatched colours. When you vendor a
+full component library, you fight its opinionated API and struggle to
+make it look like *your* brand.
+
+This starter sits in the middle: a **shared foundation** that all your
+projects can import, but with **zero opinion on component variants**.
+Each project overrides tokens freely and builds the component system
+that fits its needs.
 
 ## What's inside
 
 ```
 src/styles/
-├── index.css              ← Import this and you're set
+├── index.css              ← Entry point (import this)
 ├── reset.css              ← Josh Comeau's Custom CSS Reset
-├── reset-overrides.css    ← Opinionated additions on top of reset
-├── utility.css            ← .sr-only helper
-├── tokens/                ← Design tokens as CSS custom properties
-│   ├── color.css          ← Colours + dark mode support
-│   ├── type.css           ← Fonts, sizes, weights, line-heights
-│   ├── spacing.css        ← Spacing scale
+├── reset-overrides.css    ← Additional resets on top
+├── utility.css            ← .sr-only class only
+├── tokens/
+│   ├── color.css          ← Colours + dark mode
+│   ├── type.css           ← Font families, sizes, weights, line-heights
+│   ├── spacing.css        ← Spacing scale (0.25rem → 4rem)
 │   ├── border.css         ← Border radii
 │   ├── shadow.css         ← Box shadows (light & dark)
 │   ├── easing.css         ← Transition durations
-│   └── layout.css         ← Max-width constraints
-└── base/                  ← Sensible defaults for native elements
+│   ├── layout.css         ← Max-width constraints
+│   └── button.css         ← Button-specific tokens
+└── base/                  ← Native element defaults
     ├── body.css
     ├── typography.css
     ├── link.css
-    ├── button.css
+    ├── button.css         ← ⚠️ Just baseline styles, no variants
     ├── code.css
     ├── form.css
     └── table.css
@@ -35,16 +69,15 @@ src/styles/
 npm install
 ```
 
-Then import the styles in your project's entry point:
+Import the styles in your project's entry point:
 
 ```css
 @import 'css-starter/src/styles/index.css';
 ```
 
-Or, if you only need certain parts:
+Or cherry-pick only what you need:
 
 ```css
-/* Just tokens + reset */
 @import 'css-starter/src/styles/tokens/color.css';
 @import 'css-starter/src/styles/reset.css';
 ```
@@ -58,12 +91,14 @@ Override any token in your own `:root`:
   --c-primary: #6366f1;
   --c-primary-hover: #4f46e5;
   --ff-sans: 'Inter', system-ui, sans-serif;
-  --max-width-wide: 1280px;
+  --btn-bg: var(--c-primary);
+  --btn-color: #fff;
+  --btn-radius: 9999px;
 }
 ```
 
 Colour tokens automatically adapt to the user's light/dark preference.
-You can override the dark values too:
+Override dark values too:
 
 ```css
 @media (prefers-color-scheme: dark) {
@@ -73,6 +108,32 @@ You can override the dark values too:
   }
 }
 ```
+
+## Building your own button variants
+
+This starter styles `<button>` with a neutral, subtle look. If you want
+primary / secondary / ghost variants, add them in your own project:
+
+```css
+/* Your project's component styles */
+.btn-primary {
+  --btn-bg: var(--c-primary);
+  --btn-bg-hover: var(--c-primary-hover);
+  --btn-bg-active: var(--c-primary-active);
+  --btn-border: var(--c-primary);
+  --btn-color: var(--c-text-inverse);
+}
+
+.btn-ghost {
+  --btn-bg: transparent;
+  --btn-bg-hover: var(--c-primary-subtle);
+  --btn-border: transparent;
+  --btn-color: var(--c-primary);
+}
+```
+
+Base styles use `:where()` so any class you write will naturally override
+them without specificity battles.
 
 ## Storybook
 
@@ -84,14 +145,16 @@ npm run storybook
 
 Opens at [http://localhost:6006](http://localhost:6006) with stories for
 typography, links, buttons, forms, tables, code, and a kitchen-sink page.
+Use the toolbar toggle to switch between light and dark mode.
 
 ## Design principles
 
 - **`rem` for spacing and type** — respects user's font-size settings
 - **`px` for borders and shadows** — decorative properties don't scale
 - **All values reference tokens** — no hardcoded values in base styles
-- **Dark mode via `prefers-color-scheme`** — no classes, no JavaScript
-- **Flat selectors** — native elements styled directly, no nesting needed
+- **Dark mode via `prefers-color-scheme` + `data-theme`** — system-aware, JS-toggleable
+- **`:where()` in base styles** — zero-specificity, easy for downstream to override
+- **No component variants** — this is the foundation, you build the house
 
 ## Projects using this
 
