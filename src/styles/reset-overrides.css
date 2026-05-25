@@ -21,13 +21,6 @@ body {
   min-height: 100vh;
 }
 
-/* Remove default button styles */
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
 /* Remove default list styles */
 ul,
 ol {

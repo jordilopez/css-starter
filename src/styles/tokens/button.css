@@ -12,8 +12,22 @@
   --btn-font-weight: var(--fw-medium);
   --btn-line-height: var(--lh-tight);
 
+  /* Colours — neutral default */
+  --btn-bg: var(--c-bg-subtle);
+  --btn-bg-hover: var(--c-bg-muted);
+  --btn-bg-active: var(--c-border-light);
+  --btn-border: var(--c-border);
+  --btn-border-hover: var(--c-text-muted);
+  --btn-border-active: var(--c-text-secondary);
+  --btn-color: var(--c-text);
+  --btn-color-hover: var(--c-text);
+  --btn-color-active: var(--c-text);
+
   /* Disabled */
   --btn-disabled-opacity: 0.5;
+
+  /* Focus */
+  --btn-focus-ring: var(--c-focus-ring);
 
   /* Transition */
   --btn-transition: var(--transition-base);

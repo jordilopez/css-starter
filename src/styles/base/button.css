@@ -13,9 +13,11 @@
   line-height: var(--btn-line-height);
   font-weight: var(--btn-font-weight);
 
-  /* Reset user-agent defaults */
-  border: none;
-  background: none;
+  /* Token-driven colours */
+  background-color: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  color: var(--btn-color);
+
   cursor: pointer;
 
   /* Smooth interactions */
@@ -23,7 +25,24 @@
   transition-property: background-color, border-color, color, box-shadow, opacity;
 }
 
-:where(button):disabled {
+:where(button:hover) {
+  background-color: var(--btn-bg-hover);
+  border-color: var(--btn-border-hover);
+  color: var(--btn-color-hover);
+}
+
+:where(button:active) {
+  background-color: var(--btn-bg-active);
+  border-color: var(--btn-border-active);
+  color: var(--btn-color-active);
+}
+
+:where(button:focus-visible) {
+  outline: 2px solid var(--btn-focus-ring);
+  outline-offset: 2px;
+}
+
+:where(button:disabled) {
   cursor: not-allowed;
   opacity: var(--btn-disabled-opacity);
 }
