@@ -1,13 +1,23 @@
 {
   "name": "css-starter",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Framework-agnostic CSS design system — tokens, reset, base element styles",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "lint-staged": {
+    "*.{ts,css,json,md}": "npx prettier --write"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "module",
+  "devDependencies": {
+    "@chromatic-com/storybook": "^5.2.1",
+    "@storybook/addon-a11y": "^10.4.1",
+    "@storybook/addon-docs": "^10.4.1",
+    "@storybook/html-vite": "^10.4.1",
+    "storybook": "^10.4.1"
+  }
 }

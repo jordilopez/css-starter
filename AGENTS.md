@@ -82,6 +82,33 @@ Dark mode is handled via `@media (prefers-color-scheme: dark)` in
 `tokens/color.css` and `tokens/shadow.css`. All token files are
 self-contained — no cross-file dependencies.
 
+## Storybook
+
+Storybook is used to preview all native element styles in isolation.
+
+```
+npm run storybook          # Dev server on port 6006
+npm run build-storybook    # Static build to storybook-static/
+```
+
+### Stories structure
+
+```
+src/stories/
+├── Typography.stories.ts   ← Headings, paragraphs, lists, quotes, hr
+├── Link.stories.ts         ← Anchor elements
+├── Button.stories.ts       ← Button element (default + disabled)
+├── Form.stories.ts         ← Inputs, textarea, select
+├── Table.stories.ts        ← Table with thead/tbody
+├── Code.stories.ts         ← Inline code, pre blocks, kbd
+├── AllStyles.stories.ts    ← Kitchen-sink overview page
+└── Tokens.mdx              ← Design token reference tables
+```
+
+All stories are pure HTML — no framework, no JSX. They render native
+elements and apply the design system styles through the global import
+of `src/styles/index.css` in `.storybook/preview.ts`.
+
 ## Customising in a downstream project
 
 ```css

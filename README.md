@@ -74,6 +74,17 @@ You can override the dark values too:
 }
 ```
 
+## Storybook
+
+Preview all styled native elements in a component explorer:
+
+```bash
+npm run storybook
+```
+
+Opens at [http://localhost:6006](http://localhost:6006) with stories for
+typography, links, buttons, forms, tables, code, and a kitchen-sink page.
+
 ## Design principles
 
 - **`rem` for spacing and type** — respects user's font-size settings
