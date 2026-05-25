@@ -15,6 +15,7 @@
 /* --- reset --- */
 
 @import './reset.css';
+@import './reset-overrides.css';
 
 /* --- base element styles --- */
 
