@@ -13,7 +13,7 @@ import type { StorybookConfig } from '@storybook/html-vite'
  * - `@storybook/addon-themes` — light/dark theme toggle (paintbrush icon)
  */
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@chromatic-com/storybook',
     '@storybook/addon-a11y',
