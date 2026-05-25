@@ -57,6 +57,29 @@
 }
 
 /* Allows manual toggle via data-attribute (Storybook, JS toggle, etc.) */
+
+/* Explicit light — counters @media (prefers-color-scheme: dark) when dark OS + manual light toggle */
+:root[data-theme='light'] {
+  --c-primary: #42b883;
+  --c-primary-hover: #38a070;
+  --c-primary-active: #2e8c5e;
+  --c-primary-subtle: rgba(66, 184, 131, 0.08);
+
+  --c-text: #1a1a1a;
+  --c-text-secondary: #555;
+  --c-text-muted: #888;
+  --c-text-inverse: #fff;
+
+  --c-bg: #fff;
+  --c-bg-subtle: #f8f9fa;
+  --c-bg-muted: #e9ecef;
+
+  --c-border: #dee2e6;
+  --c-border-light: #e9ecef;
+
+  --c-focus-ring: rgba(66, 184, 131, 0.35);
+}
+
 :root[data-theme='dark'] {
   --c-primary: #5cdba0;
   --c-primary-hover: #46c98a;
