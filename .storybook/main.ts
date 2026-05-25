@@ -10,6 +10,7 @@ import type { StorybookConfig } from '@storybook/html-vite'
  * - `@chromatic-com/storybook` — visual regression reviews
  * - `@storybook/addon-a11y` — accessibility audits per story
  * - `@storybook/addon-docs` — auto-generated documentation
+ * - `@storybook/addon-themes` — light/dark theme toggle (paintbrush icon)
  */
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
