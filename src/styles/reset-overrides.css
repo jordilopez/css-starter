@@ -4,7 +4,7 @@
    ========================================================================== */
 
 /* Remove padding from all elements */
-*:not(dialog) {
+:where(*:not(dialog)) {
   padding: 0;
 }
 
