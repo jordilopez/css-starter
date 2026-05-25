@@ -1,0 +1,20 @@
+/* ==========================================================================
+   Button tokens
+   ========================================================================== */
+
+:root {
+  /* Dimensions */
+  --btn-padding-x: var(--sp-4);
+  --btn-padding-y: var(--sp-2);
+  --btn-radius: var(--radius-md);
+
+  /* Typography */
+  --btn-font-weight: var(--fw-medium);
+  --btn-line-height: var(--lh-tight);
+
+  /* Disabled */
+  --btn-disabled-opacity: 0.5;
+
+  /* Transition */
+  --btn-transition: var(--transition-base);
+}

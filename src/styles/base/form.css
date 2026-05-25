@@ -2,15 +2,13 @@
    Form elements — labels, inputs, textareas, selects
    ========================================================================== */
 
-label {
+:where(label) {
   display: block;
   font-weight: var(--fw-medium);
   margin-bottom: var(--sp-1);
 }
 
-input,
-textarea,
-select {
+:where(input, textarea, select) {
   padding: var(--sp-2) var(--sp-3);
   font-family: inherit;
   font-size: var(--fs-base);
@@ -21,19 +19,17 @@ select {
   transition: border-color var(--transition-fast);
 }
 
-input:focus,
-textarea:focus,
-select:focus {
+:where(input:focus, textarea:focus, select:focus) {
   border-color: var(--c-primary);
   outline: none;
   box-shadow: 0 0 0 3px var(--c-focus-ring);
 }
 
-textarea {
+:where(textarea) {
   resize: vertical;
   min-height: 6ex;
 }
 
-select {
+:where(select) {
   cursor: pointer;
 }

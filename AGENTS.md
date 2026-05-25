@@ -143,3 +143,10 @@ of `src/styles/index.css` in `.storybook/preview.ts`.
 | `--shadow-`  | Box shadow     | `--shadow-sm`, `--shadow-lg` |
 | `--transition-` | Transition | `--transition-fast`          |
 | `--max-width-`  | Layout     | `--max-width-wide`           |
+| `--btn-`       | Button     | `--btn-padding-x`, `--btn-disabled-opacity` |
+
+### Base styles use `:where()` for low specificity
+
+All `base/*` rules use `:where()` wrappers (e.g. `:where(button)`, `:where(a)`)
+so specificity is always `(0,0,0)`. This makes it trivial for downstream
+component styles to override without fighting the cascade.

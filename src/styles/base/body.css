@@ -2,7 +2,7 @@
    Body defaults
    ========================================================================== */
 
-body {
+:where(body) {
   font-family: var(--ff-sans);
   font-size: var(--fs-base);
   font-weight: var(--fw-normal);

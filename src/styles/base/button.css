@@ -2,20 +2,28 @@
    Buttons
    ========================================================================== */
 
-button {
+:where(button) {
+  /* Inherit type from the cascade */
   font-family: inherit;
   font-size: inherit;
-  line-height: 1;
+
+  /* Token-driven dimensions */
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  border-radius: var(--btn-radius);
+  line-height: var(--btn-line-height);
+  font-weight: var(--btn-font-weight);
+
+  /* Reset user-agent defaults */
   border: none;
   background: none;
   cursor: pointer;
-  transition:
-    background-color var(--transition-base),
-    border-color var(--transition-base),
-    color var(--transition-base);
+
+  /* Smooth interactions */
+  transition: var(--btn-transition);
+  transition-property: background-color, border-color, color, box-shadow, opacity;
 }
 
-button:disabled {
+:where(button):disabled {
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: var(--btn-disabled-opacity);
 }

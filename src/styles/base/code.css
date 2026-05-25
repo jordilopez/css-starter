@@ -2,21 +2,18 @@
    Code, pre, kbd
    ========================================================================== */
 
-code,
-kbd,
-samp,
-pre {
+:where(code, kbd, samp, pre) {
   font-family: var(--ff-mono);
   font-size: 0.9em;
 }
 
-code {
+:where(code) {
   padding: 0.15em 0.3em;
   background-color: var(--c-bg-subtle);
   border-radius: var(--radius-sm);
 }
 
-pre {
+:where(pre) {
   padding: var(--sp-4);
   overflow-x: auto;
   background-color: var(--c-bg-subtle);
@@ -24,12 +21,12 @@ pre {
   line-height: var(--lh-tight);
 }
 
-pre code {
+:where(pre code) {
   padding: 0;
   background: none;
 }
 
-kbd {
+:where(kbd) {
   padding: 0.1em 0.35em;
   font-size: 0.85em;
   background-color: var(--c-bg-muted);

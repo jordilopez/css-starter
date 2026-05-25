@@ -2,17 +2,17 @@
    Links
    ========================================================================== */
 
-a {
+:where(a) {
   color: var(--c-primary);
   text-decoration: underline;
   text-underline-offset: 2px;
   transition: color var(--transition-fast);
 }
 
-a:hover {
+:where(a:hover) {
   color: var(--c-primary-hover);
 }
 
-a:active {
+:where(a:active) {
   color: var(--c-primary-active);
 }
