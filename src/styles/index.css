@@ -1,0 +1,31 @@
+/* ==========================================================================
+   Global styles — import order matters
+   ========================================================================== */
+
+/* --- tokens / custom properties --- */
+
+@import './tokens/color.css';
+@import './tokens/type.css';
+@import './tokens/spacing.css';
+@import './tokens/border.css';
+@import './tokens/shadow.css';
+@import './tokens/easing.css';
+@import './tokens/layout.css';
+
+/* --- reset --- */
+
+@import './reset.css';
+
+/* --- base element styles --- */
+
+@import './base/body.css';
+@import './base/typography.css';
+@import './base/link.css';
+@import './base/button.css';
+@import './base/code.css';
+@import './base/form.css';
+@import './base/table.css';
+
+/* --- utilities --- */
+
+@import './utility.css';

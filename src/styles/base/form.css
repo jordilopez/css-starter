@@ -1,0 +1,39 @@
+/* ==========================================================================
+   Form elements — labels, inputs, textareas, selects
+   ========================================================================== */
+
+label {
+  display: block;
+  font-weight: var(--fw-medium);
+  margin-bottom: var(--sp-1);
+}
+
+input,
+textarea,
+select {
+  padding: var(--sp-2) var(--sp-3);
+  font-family: inherit;
+  font-size: var(--fs-base);
+  color: var(--c-text);
+  background-color: var(--c-bg);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--c-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--c-focus-ring);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 6ex;
+}
+
+select {
+  cursor: pointer;
+}

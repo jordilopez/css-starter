@@ -1,0 +1,20 @@
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: var(--sp-2) var(--sp-3);
+  text-align: left;
+  border-bottom: 1px solid var(--c-border-light);
+}
+
+th {
+  font-weight: var(--fw-semibold);
+  background-color: var(--c-bg-subtle);
+}

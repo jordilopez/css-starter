@@ -1,0 +1,12 @@
+/* ==========================================================================
+   Body defaults
+   ========================================================================== */
+
+body {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-normal);
+  line-height: var(--lh-base);
+  color: var(--c-text);
+  background-color: var(--c-bg);
+}

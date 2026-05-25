@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Color tokens
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --c-primary: #42b883;
+  --c-primary-hover: #38a070;
+  --c-primary-active: #2e8c5e;
+  --c-primary-subtle: rgba(66, 184, 131, 0.08);
+
+  /* Text */
+  --c-text: #1a1a1a;
+  --c-text-secondary: #555;
+  --c-text-muted: #888;
+  --c-text-inverse: #fff;
+
+  /* Background */
+  --c-bg: #fff;
+  --c-bg-subtle: #f8f9fa;
+  --c-bg-muted: #e9ecef;
+
+  /* Border */
+  --c-border: #dee2e6;
+  --c-border-light: #e9ecef;
+
+  /* Interactive */
+  --c-focus-ring: rgba(66, 184, 131, 0.35);
+}
+
+/* ==========================================================================
+   Dark mode
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-primary: #5cdba0;
+    --c-primary-hover: #46c98a;
+    --c-primary-active: #3bb37a;
+    --c-primary-subtle: rgba(92, 219, 160, 0.12);
+
+    --c-text: #e4e4e4;
+    --c-text-secondary: #a0a0a0;
+    --c-text-muted: #6b6b6b;
+    --c-text-inverse: #1a1a1a;
+
+    --c-bg: #1a1b1e;
+    --c-bg-subtle: #25262a;
+    --c-bg-muted: #2e2f34;
+
+    --c-border: #3a3b40;
+    --c-border-light: #333438;
+
+    --c-focus-ring: rgba(92, 219, 160, 0.4);
+  }
+}
