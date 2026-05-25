@@ -1,6 +1,6 @@
 {
   "name": "css-starter",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Framework-agnostic CSS design system — tokens, reset, base element styles",
   "main": "src/styles/index.css",
   "exports": {
