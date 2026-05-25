@@ -144,6 +144,20 @@ export const Overview: StoryObj = {
           ['--max-width-wide', '1200px'],
         ]
       )}
+
+      ${heading('Breakpoints (—mq-*)')}
+      ${paragraph('Custom media queries defined in tokens/breakpoints.css and compiled via PostCSS. Use them in any CSS file with <code>@media (--mq-*) { ... }</code>.')}
+      ${table(
+        ['Query', 'Compiles to', 'Target'],
+        [
+          ['--mq-sm', '@media (width ≥ 640px)', 'Small viewports (≥640px)'],
+          ['--mq-md', '@media (width ≥ 768px)', 'Medium viewports (≥768px)'],
+          ['--mq-lg', '@media (width ≥ 1024px)', 'Large viewports (≥1024px)'],
+          ['--mq-xl', '@media (width ≥ 1280px)', 'Extra large (≥1280px)'],
+          ['--mq-2xl', '@media (width ≥ 1536px)', '2X extra large (≥1536px)'],
+        ]
+      )}
+      ${paragraph('Resize the browser to see when each breakpoint activates.')}
     </div>
   `,
 }

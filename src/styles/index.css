@@ -12,6 +12,7 @@
 @import './tokens/easing.css';
 @import './tokens/layout.css';
 @import './tokens/button.css';
+@import './tokens/breakpoints.css';
 
 /* --- reset --- */
 

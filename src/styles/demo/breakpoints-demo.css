@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Breakpoints visual demo styles
+   Used by Breakpoints.stories.ts to show responsive behaviour.
+   ========================================================================== */
+
+@import '../tokens/breakpoints.css';
+
+.bp-demo {
+  font-family: var(--ff-sans);
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: var(--sp-6);
+}
+
+.bp-demo__indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-6);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--c-bg-subtle);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--c-border);
+  font-size: var(--fs-sm);
+}
+
+.bp-demo__current {
+  font-weight: var(--fw-bold);
+  font-family: var(--ff-mono);
+  color: var(--c-primary);
+}
+
+.bp-demo__width {
+  margin-left: auto;
+  font-family: var(--ff-mono);
+  color: var(--c-text-secondary);
+  font-size: var(--fs-xs);
+}
+
+/* --- breakpoint banners --- */
+
+.bp-demo__banner {
+  display: none;
+  padding: var(--sp-6) var(--sp-5);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  margin-bottom: var(--sp-6);
+}
+
+.bp-demo__banner.is-active {
+  display: block;
+}
+
+.bp-demo__banner-title {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  margin: 0 0 var(--sp-2);
+}
+
+.bp-demo__banner-desc {
+  margin: 0;
+  font-size: var(--fs-sm);
+  opacity: 0.85;
+}
+
+.bp-demo__banner-query {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  margin-top: var(--sp-3);
+  padding: var(--sp-1) var(--sp-2);
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+/* --- banner colours --- */
+
+.bp-demo__banner--default {
+  display: block; /* always visible below sm */
+  background: #e9ecef;
+  color: #495057;
+}
+
+.bp-demo__banner--sm {
+  background: #d3f0df;
+  color: #1a7a42;
+}
+
+.bp-demo__banner--md {
+  background: #d0e8f7;
+  color: #1a6fa0;
+}
+
+.bp-demo__banner--lg {
+  background: #fce6c9;
+  color: #b45a1c;
+}
+
+.bp-demo__banner--xl {
+  background: #e8d9f5;
+  color: #6b3fa0;
+}
+
+.bp-demo__banner--2xl {
+  background: #fcd3d3;
+  color: #a03333;
+}
+
+/* --- responsive: activate banners ---
+   Mobile-first — default state is for the smallest viewport (< 640px).
+   Each @media (--mq-*) adds progressive enhancement.
+*/
+
+@media (--mq-sm) {
+  .bp-demo__banner--default { display: none; }
+  .bp-demo__banner--sm      { display: block; }
+}
+
+@media (--mq-md) {
+  .bp-demo__banner--sm { display: none; }
+  .bp-demo__banner--md { display: block; }
+}
+
+@media (--mq-lg) {
+  .bp-demo__banner--md { display: none; }
+  .bp-demo__banner--lg { display: block; }
+}
+
+@media (--mq-xl) {
+  .bp-demo__banner--lg { display: none; }
+  .bp-demo__banner--xl { display: block; }
+}
+
+@media (--mq-2xl) {
+  .bp-demo__banner--xl  { display: none; }
+  .bp-demo__banner--2xl { display: block; }
+}
+
+/* --- scale ruler --- */
+
+.bp-demo__ruler {
+  display: flex;
+  gap: var(--sp-1);
+  margin-top: var(--sp-6);
+}
+
+.bp-demo__ruler-segment {
+  flex: 1;
+  height: 8px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  opacity: 0.3;
+}
+
+.bp-demo__ruler-segment.is-active {
+  opacity: 1;
+  transform: scaleY(1.5);
+}
+
+.bp-demo__ruler-segment--default { background: #adb5bd; }
+.bp-demo__ruler-segment--sm      { background: #38a070; }
+.bp-demo__ruler-segment--md      { background: #3b8fc2; }
+.bp-demo__ruler-segment--lg      { background: #e68a2e; }
+.bp-demo__ruler-segment--xl      { background: #8b5cf6; }
+.bp-demo__ruler-segment--2xl     { background: #e04848; }

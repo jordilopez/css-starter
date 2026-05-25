@@ -154,6 +154,27 @@ of `src/styles/index.css` in `.storybook/preview.ts`.
 | `--max-width-`  | Layout     | `--max-width-wide`           |
 | `--btn-`       | Button     | `--btn-padding-x`, `--btn-disabled-opacity` |
 
+### Responsive — mobile-first
+
+All responsive styles follow a **mobile-first** approach:
+
+- **Base styles are for mobile** (smallest viewport). No `@media` wrapper needed.
+- **Progressive enhancement** via `@media (--mq-*)` with `min-width` only.
+- **Never use `max-width`** in viewport media queries.
+
+```css
+/* ✅ Mobile-first — correct */
+:where(.sidebar) { display: none; }                        /* mobile: hidden */
+@media (--mq-lg) { :where(.sidebar) { display: block; } }  /* ≥1024px: visible */
+
+/* ❌ Desktop-first — avoid */
+@media (max-width: 1023px) { :where(.sidebar) { display: none; } }
+```
+
+Breakpoints are defined centrally in `tokens/breakpoints.css` via
+`@custom-media` and compiled by PostCSS. See the [Breakpoints story]
+for a visual demo.
+
 ### Base styles use `:where()` for low specificity
 
 All `base/*` rules use `:where()` wrappers (e.g. `:where(button)`, `:where(a)`)

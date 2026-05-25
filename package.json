@@ -19,6 +19,8 @@
     "@storybook/addon-docs": "^10.4.1",
     "@storybook/addon-themes": "^10.4.1",
     "@storybook/html-vite": "^10.4.1",
+    "postcss": "^8.5.15",
+    "postcss-custom-media": "^12.0.1",
     "storybook": "^10.4.1"
   }
 }

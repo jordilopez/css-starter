@@ -1,0 +1,13 @@
+/* ==========================================================================
+   Viewport breakpoints — used via @media (--mq-*) in any CSS file.
+   Centralised here so all responsive breakpoints are defined in one place.
+
+   Mobile-first — all values use min-width. Base styles target the smallest
+   viewport; each breakpoint adds or overrides progressively.
+   ========================================================================== */
+
+@custom-media --mq-sm (min-width: 640px);
+@custom-media --mq-md (min-width: 768px);
+@custom-media --mq-lg (min-width: 1024px);
+@custom-media --mq-xl (min-width: 1280px);
+@custom-media --mq-2xl (min-width: 1536px);
