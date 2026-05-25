@@ -33,3 +33,144 @@
 :where(select) {
   cursor: pointer;
 }
+
+/* ========================================================================
+   Checkboxes & radios — custom-styled native inputs
+   ======================================================================== */
+
+:where(input[type='checkbox'], input[type='radio']) {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  color: var(--c-text);
+  background-color: var(--c-bg);
+  border: 1px solid var(--c-border);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+  flex-shrink: 0;
+}
+
+:where(input[type='checkbox']:focus-visible, input[type='radio']:focus-visible) {
+  border-color: var(--c-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--c-focus-ring);
+}
+
+/* ── Checkbox ──────────────────────────────────────────────────────────── */
+
+:where(input[type='checkbox']) {
+  border-radius: var(--radius-sm);
+}
+
+:where(input[type='checkbox']:checked) {
+  background-color: var(--c-primary);
+  border-color: var(--c-primary);
+}
+
+:where(input[type='checkbox']:checked)::after {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 9px;
+  border: solid var(--c-text-inverse);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translateY(-1px);
+}
+
+:where(input[type='checkbox']:indeterminate) {
+  background-color: var(--c-primary);
+  border-color: var(--c-primary);
+}
+
+:where(input[type='checkbox']:indeterminate)::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 2px;
+  background-color: var(--c-text-inverse);
+  border-radius: 1px;
+}
+
+/* ── Radio ─────────────────────────────────────────────────────────────── */
+
+:where(input[type='radio']) {
+  border-radius: var(--radius-full);
+}
+
+:where(input[type='radio']:checked) {
+  border-color: var(--c-primary);
+}
+
+:where(input[type='radio']:checked)::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--c-primary);
+  border-radius: var(--radius-full);
+}
+
+/* ── Disabled ──────────────────────────────────────────────────────────── */
+
+:where(input[type='checkbox']:disabled, input[type='radio']:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:where(input[type='checkbox']:disabled:checked, input[type='radio']:disabled:checked) {
+  background-color: var(--c-border);
+  border-color: var(--c-border);
+}
+
+:where(input[type='checkbox']:disabled:checked)::after {
+  border-color: var(--c-text-muted);
+}
+
+:where(input[type='radio']:disabled:checked)::after {
+  background-color: var(--c-text-muted);
+}
+
+:where(input[type='checkbox']:disabled:indeterminate) {
+  background-color: var(--c-border);
+  border-color: var(--c-border);
+}
+
+:where(input[type='checkbox']:disabled:indeterminate)::after {
+  background-color: var(--c-text-muted);
+}
+
+/* ── Inline label (for checkbox/radio groups) ──────────────────────────── */
+
+:where(label:has(input[type='checkbox'], input[type='radio'])) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-weight: var(--fw-normal);
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+/* ── Fieldset / Legend ─────────────────────────────────────────────────── */
+
+:where(fieldset) {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+  margin: 0;
+}
+
+:where(legend) {
+  font-weight: var(--fw-medium);
+  padding: 0 var(--sp-2);
+  color: var(--c-text);
+}
