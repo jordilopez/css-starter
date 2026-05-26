@@ -45,7 +45,7 @@ export const Overview: StoryObj = {
   render: () => `
     <div style="max-width:var(--max-width-wide);margin:0 auto;padding:var(--sp-6)">
       ${heading('Color (—c-*)')}
-      ${paragraph('All colour tokens adapt in dark mode via prefers-color-scheme and data-theme attribute.')}
+      ${paragraph('All colour tokens adapt in dark mode via <code>@media (prefers-color-scheme: dark)</code>. No <code>data-theme</code> attribute needed — the browser honours the user\'s OS setting automatically.')}
       ${table(
         ['Token', 'Purpose', 'Light default'],
         [

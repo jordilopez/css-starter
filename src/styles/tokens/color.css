@@ -3,20 +3,13 @@
    ========================================================================== */
 
 /*
- * Theme is controlled via `data-theme="dark"` on the <html> element.
+ * Dark mode is driven entirely by the user's system preference via
+ * `@media (prefers-color-scheme: dark)`.
  *
  * - Light values are the default :root — no special selector needed.
- * - Dark values are under :root[data-theme='dark'] — single source of truth.
+ * - Dark values live under a single @media rule — no duplication.
  *
- * In production, sync with system preference via this inline script
- * (place before the CSS import in your <head>):
- *
- *   <script>
- *     if (matchMedia('(prefers-color-scheme: dark)').matches)
- *       document.documentElement.setAttribute('data-theme', 'dark')
- *   </script>
- *
- * In Storybook, the Theme toolbar toggle sets data-theme directly.
+ * No data-theme attribute is needed. The browser handles it automatically.
  */
 
 :root {
@@ -45,23 +38,25 @@
   --c-focus-ring: rgba(66, 184, 131, 0.35);
 }
 
-:root[data-theme='dark'] {
-  --c-primary: #5cdba0;
-  --c-primary-hover: #46c98a;
-  --c-primary-active: #3bb37a;
-  --c-primary-subtle: rgba(92, 219, 160, 0.12);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-primary: #5cdba0;
+    --c-primary-hover: #46c98a;
+    --c-primary-active: #3bb37a;
+    --c-primary-subtle: rgba(92, 219, 160, 0.12);
 
-  --c-text: #e4e4e4;
-  --c-text-secondary: #a0a0a0;
-  --c-text-muted: #6b6b6b;
-  --c-text-inverse: #1a1a1a;
+    --c-text: #e4e4e4;
+    --c-text-secondary: #a0a0a0;
+    --c-text-muted: #6b6b6b;
+    --c-text-inverse: #1a1a1a;
 
-  --c-bg: #1a1b1e;
-  --c-bg-subtle: #25262a;
-  --c-bg-muted: #2e2f34;
+    --c-bg: #1a1b1e;
+    --c-bg-subtle: #25262a;
+    --c-bg-muted: #2e2f34;
 
-  --c-border: #3a3b40;
-  --c-border-light: #333438;
+    --c-border: #3a3b40;
+    --c-border-light: #333438;
 
-  --c-focus-ring: rgba(92, 219, 160, 0.4);
+    --c-focus-ring: rgba(92, 219, 160, 0.4);
+  }
 }

@@ -1,18 +1,15 @@
 import type { Preview } from '@storybook/html'
-import { withThemeByDataAttribute } from '@storybook/addon-themes'
 import '../src/styles/index.css'
 
 /**
  * Global Storybook preview configuration.
  *
- * `withThemeByDataAttribute` adds a `data-theme` attribute to `<html>`,
- * toggling between "light" and "dark". The design system's `color.css`
- * responds to `[data-theme="dark"]` on `:root` for Storybook previews,
- * while production sites still use `@media (prefers-color-scheme)`.
+ * Dark mode is controlled by the user's OS preference via
+ * `@media (prefers-color-scheme: dark)` in the CSS tokens.
+ * No theme toggle is needed — the browser handles it automatically.
  *
- * The built-in backgrounds toolbar is disabled — use the **Theme** toggle
- * (paintbrush icon) in the toolbar instead. It switches both the background
- * colour and all design tokens between light and dark mode.
+ * The build-in backgrounds toolbar is disabled to avoid confusion
+ * with the design system's own dark mode.
  */
 const preview: Preview = {
   parameters: {
@@ -29,16 +26,6 @@ const preview: Preview = {
       disable: true,
     },
   },
-  decorators: [
-    withThemeByDataAttribute({
-      themes: {
-        light: 'light',
-        dark: 'dark',
-      },
-      defaultTheme: 'light',
-      attributeName: 'data-theme',
-    }),
-  ],
 }
 
 export default preview
