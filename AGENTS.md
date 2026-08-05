@@ -108,8 +108,9 @@ src/stories/
 ├── Form.stories.ts         ← Inputs, textarea, select
 ├── Table.stories.ts        ← Table with thead/tbody
 ├── Code.stories.ts         ← Inline code, pre blocks, kbd
+├── Breakpoints.stories.ts  ← Responsive breakpoint visualisations
 ├── AllStyles.stories.ts    ← Kitchen-sink overview page
-└── Tokens.mdx              ← Design token reference tables
+└── Tokens.stories.ts       ← Design token reference tables
 ```
 
 All stories are pure HTML — no framework, no JSX. They render native
