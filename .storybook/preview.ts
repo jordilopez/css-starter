@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/html'
 import '../src/styles/index.css'
+import './docs.css'
 
 /**
  * Global Storybook preview configuration.
