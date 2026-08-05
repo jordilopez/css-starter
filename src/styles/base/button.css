@@ -2,6 +2,9 @@
    Buttons
    ========================================================================== */
 
+/* Target the native element — consumers render plain <button> and inherit
+   the design system's token-driven look without extra classes. */
+
 :where(button) {
   /* Inherit type from the cascade */
   font-family: inherit;
@@ -25,24 +28,24 @@
   transition-property: background-color, border-color, color, box-shadow, opacity;
 }
 
-:where(button:hover) {
+:where(button):hover {
   background-color: var(--btn-bg-hover);
   border-color: var(--btn-border-hover);
   color: var(--btn-color-hover);
 }
 
-:where(button:active) {
+:where(button):active {
   background-color: var(--btn-bg-active);
   border-color: var(--btn-border-active);
   color: var(--btn-color-active);
 }
 
-:where(button:focus-visible) {
+:where(button):focus-visible {
   outline: 2px solid var(--btn-focus-ring);
   outline-offset: 2px;
 }
 
-:where(button:disabled) {
+:where(button):disabled {
   cursor: not-allowed;
   opacity: var(--btn-disabled-opacity);
 }
