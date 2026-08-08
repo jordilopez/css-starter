@@ -30,3 +30,11 @@ export const InNavigation: StoryObj = {
        </ul>
      </nav>`,
 }
+
+export const Disabled: StoryObj = {
+  render: () =>
+    `<p>css-starter styles disabled links via <code>:where(a)[aria-disabled='true']</code>: muted
+       colour, no underline, <code>not-allowed</code> cursor. Consumer Link components additionally
+       drop the <code>href</code> and swallow clicks when disabled.</p>
+     <p><a href="#" aria-disabled="true">Disabled link</a></p>`,
+}

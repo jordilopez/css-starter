@@ -16,3 +16,15 @@
 :where(a:active) {
   color: var(--c-primary-active);
 }
+
+/* Disabled links — keyed off aria-disabled="true" so consumers emit the
+   attribute and inherit the disabled look; no per-framework CSS needed. */
+
+:where(a)[aria-disabled='true'],
+:where(a)[aria-disabled='true']:hover,
+:where(a)[aria-disabled='true']:active {
+  color: var(--c-text-muted);
+  text-decoration: none;
+  cursor: not-allowed;
+  opacity: var(--btn-disabled-opacity);
+}
