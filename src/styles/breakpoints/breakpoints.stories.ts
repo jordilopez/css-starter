@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/html'
-import '../styles/demo/breakpoints-demo.css'
+import './breakpoints-demo.css'
 
 /**
  * Visual demo of viewport breakpoints.
@@ -7,7 +7,7 @@ import '../styles/demo/breakpoints-demo.css'
  * Resize the browser to see each breakpoint activate.
  * The coloured banner and ruler segment change at each threshold.
  *
- * Breakpoints are defined in `tokens/breakpoints.css` via `@custom-media`
+ * Breakpoints are defined in `breakpoints.tokens.css` via `@custom-media`
  * and compiled by PostCSS (`postcss-custom-media`).
  */
 const meta: Meta = {

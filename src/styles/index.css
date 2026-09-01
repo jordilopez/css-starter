@@ -26,7 +26,7 @@
 
 @layer css-starter.reset, css-starter.reset-overrides, css-starter.base, css-starter.tokens, css-starter.utilities;
 
-/* --- tokens / custom properties --- */
+/* --- shared tokens / custom properties --- */
 
 @import './tokens/color.css' layer(css-starter.tokens);
 @import './tokens/type.css' layer(css-starter.tokens);
@@ -35,23 +35,26 @@
 @import './tokens/shadow.css' layer(css-starter.tokens);
 @import './tokens/easing.css' layer(css-starter.tokens);
 @import './tokens/layout.css' layer(css-starter.tokens);
-@import './tokens/button.css' layer(css-starter.tokens);
-@import './tokens/breakpoints.css' layer(css-starter.tokens);
+
+/* --- feature tokens --- */
+
+@import './button/button.tokens.css' layer(css-starter.tokens);
+@import './breakpoints/breakpoints.tokens.css' layer(css-starter.tokens);
 
 /* --- reset --- */
 
 @import './reset.css' layer(css-starter.reset);
 @import './reset-overrides.css' layer(css-starter.reset-overrides);
 
-/* --- base element styles --- */
+/* --- feature styles --- */
 
-@import './base/body.css' layer(css-starter.base);
-@import './base/typography.css' layer(css-starter.base);
-@import './base/link.css' layer(css-starter.base);
-@import './base/button.css' layer(css-starter.base);
-@import './base/code.css' layer(css-starter.base);
-@import './base/form.css' layer(css-starter.base);
-@import './base/table.css' layer(css-starter.base);
+@import './body/body.styles.css' layer(css-starter.base);
+@import './typography/typography.styles.css' layer(css-starter.base);
+@import './link/link.styles.css' layer(css-starter.base);
+@import './button/button.styles.css' layer(css-starter.base);
+@import './code/code.styles.css' layer(css-starter.base);
+@import './form/form.styles.css' layer(css-starter.base);
+@import './table/table.styles.css' layer(css-starter.base);
 
 /* --- utilities --- */
 

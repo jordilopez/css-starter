@@ -146,7 +146,7 @@ export const Overview: StoryObj = {
       )}
 
       ${heading('Breakpoints (—mq-*)')}
-      ${paragraph('Custom media queries defined in tokens/breakpoints.css and compiled via PostCSS. Use them in any CSS file with <code>@media (--mq-*) { ... }</code>.')}
+      ${paragraph('Custom media queries defined in breakpoints/breakpoints.tokens.css and compiled via PostCSS. Use them in any CSS file with <code>@media (--mq-*) { ... }</code>.')}
       ${table(
         ['Query', 'Compiles to', 'Target'],
         [

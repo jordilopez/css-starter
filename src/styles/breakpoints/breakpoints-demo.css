@@ -3,7 +3,7 @@
    Used by Breakpoints.stories.ts to show responsive behaviour.
    ========================================================================== */
 
-@import '../tokens/breakpoints.css';
+@import './breakpoints.tokens.css';
 
 .bp-demo {
   font-family: var(--ff-sans);
