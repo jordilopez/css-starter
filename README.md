@@ -38,30 +38,55 @@ that fits its needs.
 
 ## What's inside
 
+Styles are organised as **feature folders** — each feature keeps its
+styles, tokens, and Storybook story together in one place:
+
 ```
-src/styles/
-├── index.css              ← Entry point (import this)
-├── reset.css              ← Josh Comeau's Custom CSS Reset
-├── reset-overrides.css    ← Additional resets on top
-├── utility.css            ← .sr-only class only
-├── tokens/
-│   ├── color.css          ← Colours + dark mode
-│   ├── type.css           ← Font families, sizes, weights, line-heights
-│   ├── spacing.css        ← Spacing scale (0.25rem → 4rem)
-│   ├── border.css         ← Border radii
-│   ├── shadow.css         ← Box shadows (light & dark)
-│   ├── easing.css         ← Transition durations
-│   ├── layout.css         ← Max-width constraints
-│   └── button.css         ← Button-specific tokens
-└── base/                  ← Native element defaults
-    ├── body.css
-    ├── typography.css
-    ├── link.css
-    ├── button.css         ← ⚠️ Just baseline styles, no variants
-    ├── code.css
-    ├── form.css
-    └── table.css
+src/
+├── styles/
+│   ├── index.css                          ← Entry point (import this)
+│   ├── reset.css                          ← Josh Comeau's Custom CSS Reset
+│   ├── reset-overrides.css                ← Additional resets on top
+│   ├── utility.css                        ← .sr-only class only
+│   ├── tokens/                            ← Shared, cross-cutting scale tokens
+│   │   ├── color.css                      ← Colours + dark mode
+│   │   ├── type.css                       ← Font families, sizes, weights, line-heights
+│   │   ├── spacing.css                    ← Spacing scale (0.25rem → 4rem)
+│   │   ├── border.css                     ← Border radii
+│   │   ├── shadow.css                     ← Box shadows (light & dark)
+│   │   ├── easing.css                     ← Transition durations
+│   │   └── layout.css                     ← Max-width constraints
+│   ├── body/                              ← Body defaults
+│   ├── typography/                        ← Headings, paragraphs, lists, quotes + story
+│   ├── link/                              ← Anchor styles + story
+│   ├── button/                            ← Button tokens + styles + story
+│   │   ├── button.tokens.css              ← Button-specific tokens (--btn-*)
+│   │   ├── button.styles.css              ← ⚠️ Just baseline styles, no variants
+│   │   └── button.stories.ts
+│   ├── code/                              ← Code, pre, kbd + story
+│   ├── form/                              ← Inputs, labels, selects + story
+│   ├── table/                             ← Table styling + story
+│   └── breakpoints/                       ← @custom-media breakpoints + demo story
+└── stories/
+    ├── AllStyles.stories.ts               ← Kitchen-sink overview page
+    └── Tokens.stories.ts                  ← Design token reference tables
 ```
+
+### Folder convention
+
+Every feature lives in its own folder under `src/styles/`, with files named
+`<feature>.<kind>.css`:
+
+- `<feature>/<feature>.tokens.css` — optional; only when the feature owns
+  tokens that aren't shared scales (e.g. `button.tokens.css`)
+- `<feature>/<feature>.styles.css` — the feature's styles; omitted for
+  tokens-only features (e.g. `breakpoints/`)
+- `<feature>/<feature>.stories.ts` — Storybook story, colocated with the
+  feature it previews
+
+A folder contains only the files it needs — not every feature has all
+three. Shared scales (colour, type, spacing, …) live once in `tokens/` and
+are referenced directly by every feature.
 
 ## Usage
 
@@ -72,10 +97,11 @@ npm install
 Import the styles in your project's entry point:
 
 ```css
-@import 'css-starter/src/styles/index.css';
+@import 'css-starter';
 ```
 
-Or cherry-pick only what you need:
+Or cherry-pick only what you need (deep imports follow the folder structure
+above):
 
 ```css
 @import 'css-starter/src/styles/tokens/color.css';
@@ -109,7 +135,6 @@ Dark mode is driven **entirely** by the user's system preference via
 
 Dark mode values are defined in `tokens/color.css` and `tokens/shadow.css`.
 Each value lives in **exactly one place** — no duplication.
-
 The browser handles everything automatically: set your OS preference to
 dark/light and the design system follows suit.
 
@@ -160,7 +185,10 @@ npm run storybook
 
 Opens at [http://localhost:6006](http://localhost:6006) with stories for
 typography, links, buttons, forms, tables, code, and a kitchen-sink page.
-Dark mode follows your system preference automatically.
+Feature stories are colocated with their styles (e.g.
+`src/styles/button/button.stories.ts`); the kitchen-sink and token
+reference pages live in `src/stories/`. Dark mode follows your system
+preference automatically.
 
 ## Design principles
 
@@ -168,7 +196,8 @@ Dark mode follows your system preference automatically.
 - **`px` for borders and shadows** — decorative properties don't scale
 - **All values reference tokens** — no hardcoded values in base styles
 - **Dark mode via `@media (prefers-color-scheme: dark)`** — single source of truth, no duplication. Follows the user's OS preference automatically
-- **`:where()` in base styles** — zero-specificity, easy for downstream to override
+- **`:where()` in styles** — zero-specificity, easy for downstream to override
+- **Feature folders** — each feature keeps its styles, tokens, and story together
 - **No component variants** — this is the foundation, you build the house
 
 ## Projects using this
