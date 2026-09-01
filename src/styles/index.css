@@ -1,34 +1,58 @@
 /* ==========================================================================
    Global styles — import order matters
+   ==========================================================================
+
+   Cascade layers (namespaced under `css-starter.*`):
+
+   The @layer statement below fixes the layer order once, up front.
+   Later layer statements would only append, so keep this as the single
+   source of truth for precedence.
+
+   Layer order (lowest → highest precedence for normal declarations):
+
+     css-starter.reset
+     < css-starter.reset-overrides
+     < css-starter.base
+     < css-starter.tokens
+     < css-starter.utilities
+
+   Any unlayered CSS (e.g. a consumer's own component styles) always wins
+   over every css-starter.* layer, regardless of specificity — this is
+   intentional and makes the design system trivially overrideable.
+
+   Note: @layer statement order does not replace the source import order
+   below; both must be maintained.
    ========================================================================== */
+
+@layer css-starter.reset, css-starter.reset-overrides, css-starter.base, css-starter.tokens, css-starter.utilities;
 
 /* --- tokens / custom properties --- */
 
-@import './tokens/color.css';
-@import './tokens/type.css';
-@import './tokens/spacing.css';
-@import './tokens/border.css';
-@import './tokens/shadow.css';
-@import './tokens/easing.css';
-@import './tokens/layout.css';
-@import './tokens/button.css';
-@import './tokens/breakpoints.css';
+@import './tokens/color.css' layer(css-starter.tokens);
+@import './tokens/type.css' layer(css-starter.tokens);
+@import './tokens/spacing.css' layer(css-starter.tokens);
+@import './tokens/border.css' layer(css-starter.tokens);
+@import './tokens/shadow.css' layer(css-starter.tokens);
+@import './tokens/easing.css' layer(css-starter.tokens);
+@import './tokens/layout.css' layer(css-starter.tokens);
+@import './tokens/button.css' layer(css-starter.tokens);
+@import './tokens/breakpoints.css' layer(css-starter.tokens);
 
 /* --- reset --- */
 
-@import './reset.css';
-@import './reset-overrides.css';
+@import './reset.css' layer(css-starter.reset);
+@import './reset-overrides.css' layer(css-starter.reset-overrides);
 
 /* --- base element styles --- */
 
-@import './base/body.css';
-@import './base/typography.css';
-@import './base/link.css';
-@import './base/button.css';
-@import './base/code.css';
-@import './base/form.css';
-@import './base/table.css';
+@import './base/body.css' layer(css-starter.base);
+@import './base/typography.css' layer(css-starter.base);
+@import './base/link.css' layer(css-starter.base);
+@import './base/button.css' layer(css-starter.base);
+@import './base/code.css' layer(css-starter.base);
+@import './base/form.css' layer(css-starter.base);
+@import './base/table.css' layer(css-starter.base);
 
 /* --- utilities --- */
 
-@import './utility.css';
+@import './utility.css' layer(css-starter.utilities);

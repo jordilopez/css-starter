@@ -11,7 +11,7 @@ customised per-project via token overrides.
 
 ```
 src/styles/
-├── index.css              ← Entry point (import order matters)
+├── index.css              ← Entry point (import order + @layer statement)
 ├── reset.css              ← Josh Comeau's Custom CSS Reset (verbatim)
 ├── reset-overrides.css    ← Project-specific reset additions
 ├── utility.css            ← Utility classes (.sr-only)
@@ -37,6 +37,62 @@ src/styles/
 
 ```
 tokens/*  →  reset.css  →  reset-overrides.css  →  base/*  →  utility.css
+```
+
+## Cascade layers (namespaced)
+
+All design-system CSS is placed into namespaced cascade layers via
+`@import ... layer(...)` in `src/styles/index.css`. The layer order is
+fixed once by a single `@layer` statement at the top of the entry point:
+
+```
+@layer css-starter.reset, css-starter.reset-overrides, css-starter.base, css-starter.tokens, css-starter.utilities;
+```
+
+Layer precedence for **normal** declarations (lowest → highest):
+
+```
+css-starter.reset  <  css-starter.reset-overrides  <  css-starter.base  <  css-starter.tokens  <  css-starter.utilities
+```
+
+Key implications:
+
+- **Unlayered consumer CSS beats every `css-starter.*` layer** for normal
+  declarations, regardless of specificity. Any rule a consumer writes
+  outside a layer wins — this is intentional and makes the design system
+  trivially overrideable without specificity wars.
+- **Consumer `:root` token overrides remain valid**: `:root { --c-primary: … }`
+  in an unlayered consumer stylesheet overrides `--c-*` values declared in
+  `css-starter.tokens`.
+- **`reset-overrides.css` stays in its own layer** (`css-starter.reset-overrides`),
+  separate from `css-starter.reset`, so it can override the reset without
+  specificity tricks.
+- **The `:where()` convention is still required.** Layers rank above
+  specificity, but within a layer, specificity still applies — keep using
+  `:where()` wrappers in `base/*` so rule order (not specificity) decides.
+- **Utilities are intentionally overrideable**: `css-starter.utilities` is
+  the highest-priority design-system layer, but any unlayered consumer CSS
+  still beats it.
+- The source **import order is independent of layer order** and must still
+  be maintained (see section above). The `@layer` statement only appears
+  once, at the top of `index.css` — later `@layer` statements would only
+  append to the order.
+
+### No `!important` — policy
+
+**The design system must contain zero `!important` declarations.**
+
+Important declarations **reverse** cascade-layer precedence (a lower layer
+with `!important` beats a higher layer's normal declaration), which would
+break the layer architecture above. Conflicts must be resolved via layer
+placement, `:where()` selector design, or tokens — never `!important` and
+never specificity escalation.
+
+Audit locally before committing changes under `src/styles/`:
+
+```bash
+rg -n '!important' src/styles/   # must output no matches
+npm run lint:css                 # scripted guardrail (CI-able, exits non-zero)
 ```
 
 ## CSS conventions
