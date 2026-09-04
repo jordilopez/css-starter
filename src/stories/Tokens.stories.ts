@@ -63,6 +63,10 @@ export const Overview: StoryObj = {
           ['--c-border', 'Borders', '#dee2e6'],
           ['--c-border-light', 'Lighter borders', '#e9ecef'],
           ['--c-focus-ring', 'Focus indicator', 'rgba(66,184,131,0.35)'],
+          ['--c-info', 'Informational status', '#2563eb'],
+          ['--c-success', 'Success / positive status', '#15803d'],
+          ['--c-warning', 'Warning / cautionary status', '#b45309'],
+          ['--c-error', 'Error / danger status', '#dc2626'],
         ]
       )}
 

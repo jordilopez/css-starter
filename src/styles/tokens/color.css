@@ -36,6 +36,12 @@
 
   /* Interactive */
   --c-focus-ring: rgba(66, 184, 131, 0.35);
+
+  /* State / Status */
+  --c-info: #2563eb;
+  --c-success: #15803d;
+  --c-warning: #b45309;
+  --c-error: #dc2626;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,5 +64,10 @@
     --c-border-light: #333438;
 
     --c-focus-ring: rgba(92, 219, 160, 0.4);
+
+    --c-info: #60a5fa;
+    --c-success: #4ade80;
+    --c-warning: #fbbf24;
+    --c-error: #f87171;
   }
 }
