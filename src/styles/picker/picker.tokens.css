@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Picker tokens
+   ========================================================================== */
+
+:root {
+  /* Group */
+  --picker-gap: var(--sp-2);
+
+  /* Option pill — dimensions & type */
+  --picker-option-padding-x: var(--sp-3);
+  --picker-option-padding-y: var(--sp-1);
+  --picker-radius: var(--radius-full);
+  --picker-font-size: var(--fs-sm);
+  --picker-font-weight: var(--fw-medium);
+
+  /* Colours — idle */
+  --picker-bg: var(--c-bg);
+  --picker-border: var(--c-border);
+  --picker-color: var(--c-text-secondary);
+
+  /* Colours — hover */
+  --picker-border-hover: var(--c-primary);
+  --picker-color-hover: var(--c-text);
+
+  /* Colours — checked */
+  --picker-bg-checked: var(--c-primary);
+  --picker-border-checked: var(--c-primary);
+  --picker-color-checked: var(--c-text-inverse);
+
+  /* Disabled */
+  --picker-disabled-opacity: 0.5;
+
+  /* Focus */
+  --picker-focus-ring: var(--c-focus-ring);
+
+  /* Transition */
+  --picker-transition: var(--transition-fast);
+}

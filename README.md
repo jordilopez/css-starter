@@ -8,15 +8,15 @@ Use it as the base layer for any Vue, React, Astro, or plain HTML project.
 
 ## What this IS
 
-| Layer | What |
-|-------|------|
-| **Tokens** | CSS custom properties for colours, type, spacing, borders, shadows, easing — the raw materials |
-| **Reset** | Josh Comeau's modern CSS reset, plus a few opinionated overrides |
+| Layer           | What                                                                                                      |
+| --------------- | --------------------------------------------------------------------------------------------------------- |
+| **Tokens**      | CSS custom properties for colours, type, spacing, borders, shadows, easing — the raw materials            |
+| **Reset**       | Josh Comeau's modern CSS reset, plus a few opinionated overrides                                          |
 | **Base styles** | Sensible defaults for native HTML elements (`<h1>`, `<p>`, `<a>`, `<button>`, `<input>`, `<table>`, etc.) |
 
 ## What this is NOT
 
-- ❌ **No component variants** — no `.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.card`, `.badge`, `.alert`
+- ❌ **No component variants** — no `.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.badge`, `.alert`. The only class-based structural patterns are `.card` (generic surface) and `.picker` (segmented radio control) — token-driven and themeable, no variants
 - ❌ **No utility framework** — no `.m-4`, `.flex`, `.text-center` classes
 - ❌ **No JavaScript** — pure CSS, zero JS
 
@@ -29,7 +29,7 @@ component styles on top.
 When every project starts from scratch, you get inconsistent spacing,
 forgotten focus rings, and mismatched colours. When you vendor a
 full component library, you fight its opinionated API and struggle to
-make it look like *your* brand.
+make it look like _your_ brand.
 
 This starter sits in the middle: a **shared foundation** that all your
 projects can import, but with **zero opinion on component variants**.
@@ -97,15 +97,15 @@ npm install
 Import the styles in your project's entry point:
 
 ```css
-@import 'css-starter';
+@import "css-starter";
 ```
 
 Or cherry-pick only what you need (deep imports follow the folder structure
 above):
 
 ```css
-@import 'css-starter/src/styles/tokens/color.css';
-@import 'css-starter/src/styles/reset.css';
+@import "css-starter/src/styles/tokens/color.css";
+@import "css-starter/src/styles/reset.css";
 ```
 
 ## Customising tokens
@@ -116,7 +116,7 @@ Override any token in your own `:root`:
 :root {
   --c-primary: #6366f1;
   --c-primary-hover: #4f46e5;
-  --ff-sans: 'Inter', system-ui, sans-serif;
+  --ff-sans: "Inter", system-ui, sans-serif;
   --btn-bg: var(--c-primary);
   --btn-color: #fff;
   --btn-radius: 9999px;
@@ -128,9 +128,9 @@ Override any token in your own `:root`:
 Dark mode is driven **entirely** by the user's system preference via
 `@media (prefers-color-scheme: dark)`. No `data-theme` attribute is needed.
 
-| Values | Selector |
-|--------|----------|
-| Light (default) | `:root { ... }` |
+| Values          | Selector                                                |
+| --------------- | ------------------------------------------------------- |
+| Light (default) | `:root { ... }`                                         |
 | Dark (override) | `@media (prefers-color-scheme: dark) { :root { ... } }` |
 
 Dark mode values are defined in `tokens/color.css` and `tokens/shadow.css`.

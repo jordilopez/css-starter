@@ -1,0 +1,35 @@
+/* ==========================================================================
+   Card
+   ========================================================================== */
+
+/* A generic surface component: bordered, rounded box with optional media
+   and a caption. Class-based (no native element equivalent), so consumers
+   opt in with `.card`. Renders well on <figure>/<article>/<li>. */
+
+:where(.card) {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  margin: 0;
+
+  /* Keep the card intact in multi-column / masonry-style layouts */
+  break-inside: avoid;
+}
+
+/* Direct media children fill the card width edge-to-edge */
+
+:where(.card) > :where(img, video) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Caption row (e.g. <figcaption>) */
+
+:where(.card__caption) {
+  padding: var(--card-caption-padding);
+  font-size: var(--card-caption-font-size);
+  color: var(--card-caption-color);
+}

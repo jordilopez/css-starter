@@ -40,6 +40,14 @@ src/
 │   │   ├── button.tokens.css              ← Button-specific tokens (--btn-*)
 │   │   ├── button.styles.css              ← Button reset/base
 │   │   └── button.stories.ts
+│   ├── card/
+│   │   ├── card.tokens.css                ← Card tokens (--card-*)
+│   │   ├── card.styles.css                ← .card surface component
+│   │   └── card.stories.ts
+│   ├── picker/
+│   │   ├── picker.tokens.css              ← Picker tokens (--picker-*)
+│   │   ├── picker.styles.css              ← .picker segmented radio control
+│   │   └── picker.stories.ts
 │   ├── code/
 │   │   ├── code.styles.css                ← Code, pre, kbd
 │   │   └── code.stories.ts
@@ -68,11 +76,11 @@ possible** — only truly global or cross-cutting files stay at the root
 
 Inside a feature folder, files are named `<feature>.<kind>.css`:
 
-| File | Required? | Purpose |
-|------|-----------|---------|
-| `<feature>/<feature>.tokens.css` | Optional | Feature-specific design tokens (e.g. `button.tokens.css` defines `--btn-*`). Only when the feature owns tokens that aren't shared scales. |
-| `<feature>/<feature>.styles.css` | For styling features | The feature's element/component styles. Features that are tokens-only (e.g. `breakpoints/`) omit this. |
-| `<feature>/<feature>.stories.ts` | When previewable | Storybook story colocated with the feature. Discovered automatically by the recursive glob in `.storybook/main.ts`. |
+| File                             | Required?            | Purpose                                                                                                                                   |
+| -------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `<feature>/<feature>.tokens.css` | Optional             | Feature-specific design tokens (e.g. `button.tokens.css` defines `--btn-*`). Only when the feature owns tokens that aren't shared scales. |
+| `<feature>/<feature>.styles.css` | For styling features | The feature's element/component styles. Features that are tokens-only (e.g. `breakpoints/`) omit this.                                    |
+| `<feature>/<feature>.stories.ts` | When previewable     | Storybook story colocated with the feature. Discovered automatically by the recursive glob in `.storybook/main.ts`.                       |
 
 Rules:
 
@@ -170,13 +178,13 @@ projects may use nesting in their own component styles.
 
 ### Units
 
-| Unit | Where used | Why |
-|------|-----------|-----|
-| `rem` | Spacing tokens (`--sp-*`), font-size tokens (`--fs-*`), layout tokens | Respects user's browser font-size setting; scales proportionally |
-| `em` | `code/code.styles.css` only (font-size, padding on code/kbd) | Scales relative to parent font, keeps code proportionally correct in any context |
-| `px` | Border radii (`--radius-*`), shadow offsets, `outline`, single-pixel borders, `text-underline-offset` | Decorative/visual properties that shouldn't scale |
-| `vh` | `body { min-height: 100vh }` (in reset-overrides) | Fills viewport vertically |
-| `ex` | `textarea { min-height: 6ex }` | Scales with font's x-height |
+| Unit  | Where used                                                                                            | Why                                                                              |
+| ----- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `rem` | Spacing tokens (`--sp-*`), font-size tokens (`--fs-*`), layout tokens                                 | Respects user's browser font-size setting; scales proportionally                 |
+| `em`  | `code/code.styles.css` only (font-size, padding on code/kbd)                                          | Scales relative to parent font, keeps code proportionally correct in any context |
+| `px`  | Border radii (`--radius-*`), shadow offsets, `outline`, single-pixel borders, `text-underline-offset` | Decorative/visual properties that shouldn't scale                                |
+| `vh`  | `body { min-height: 100vh }` (in reset-overrides)                                                     | Fills viewport vertically                                                        |
+| `ex`  | `textarea { min-height: 6ex }`                                                                        | Scales with font's x-height                                                      |
 
 ### Design tokens
 
@@ -185,6 +193,7 @@ All design decisions go through CSS custom properties — shared scales in
 value used in feature styles references a token — never hardcoded values.
 
 Naming patterns:
+
 - `--c-*` — colours (e.g. `--c-primary`, `--c-text`, `--c-bg`)
 - `--ff-*` — font families (`--ff-sans`, `--ff-mono`)
 - `--fs-*` — font sizes (`--fs-base`, `--fs-xl`)
@@ -242,12 +251,12 @@ of `src/styles/index.css` in `.storybook/preview.ts`.
 
 ```css
 /* In the project's global entry point: */
-@import 'css-starter';
+@import "css-starter";
 
 /* Override any token: */
 :root {
   --c-primary: #your-color;
-  --ff-sans: 'Your Font', sans-serif;
+  --ff-sans: "Your Font", sans-serif;
   --sp-4: 1.25rem;
 }
 ```
@@ -256,25 +265,25 @@ Cherry-picking individual files is also possible via deep imports
 (path-sensitive — follows the folder structure above):
 
 ```css
-@import 'css-starter/src/styles/tokens/color.css';
-@import 'css-starter/src/styles/button/button.styles.css';
+@import "css-starter/src/styles/tokens/color.css";
+@import "css-starter/src/styles/button/button.styles.css";
 ```
 
 ## Naming
 
-| Token prefix | Category       | Examples                     |
-| ------------ | -------------- | ---------------------------- |
-| `--c-`       | Colour         | `--c-primary`, `--c-bg`      |
-| `--ff-`      | Font family    | `--ff-sans`, `--ff-mono`     |
-| `--fs-`      | Font size      | `--fs-base`, `--fs-xl`       |
-| `--fw-`      | Font weight    | `--fw-normal`, `--fw-bold`   |
-| `--lh-`      | Line height    | `--lh-tight`, `--lh-base`    |
-| `--sp-`      | Spacing        | `--sp-2`, `--sp-4`           |
-| `--radius-`  | Border radius  | `--radius-sm`, `--radius-lg` |
-| `--shadow-`  | Box shadow     | `--shadow-sm`, `--shadow-lg` |
-| `--transition-` | Transition | `--transition-fast`          |
-| `--max-width-`  | Layout     | `--max-width-wide`           |
-| `--btn-`       | Button     | `--btn-padding-x`, `--btn-disabled-opacity` |
+| Token prefix    | Category      | Examples                                    |
+| --------------- | ------------- | ------------------------------------------- |
+| `--c-`          | Colour        | `--c-primary`, `--c-bg`                     |
+| `--ff-`         | Font family   | `--ff-sans`, `--ff-mono`                    |
+| `--fs-`         | Font size     | `--fs-base`, `--fs-xl`                      |
+| `--fw-`         | Font weight   | `--fw-normal`, `--fw-bold`                  |
+| `--lh-`         | Line height   | `--lh-tight`, `--lh-base`                   |
+| `--sp-`         | Spacing       | `--sp-2`, `--sp-4`                          |
+| `--radius-`     | Border radius | `--radius-sm`, `--radius-lg`                |
+| `--shadow-`     | Box shadow    | `--shadow-sm`, `--shadow-lg`                |
+| `--transition-` | Transition    | `--transition-fast`                         |
+| `--max-width-`  | Layout        | `--max-width-wide`                          |
+| `--btn-`        | Button        | `--btn-padding-x`, `--btn-disabled-opacity` |
 
 ### Responsive — mobile-first
 
@@ -286,11 +295,21 @@ All responsive styles follow a **mobile-first** approach:
 
 ```css
 /* ✅ Mobile-first — correct */
-:where(.sidebar) { display: none; }                        /* mobile: hidden */
-@media (--mq-lg) { :where(.sidebar) { display: block; } }  /* ≥1024px: visible */
+:where(.sidebar) {
+  display: none;
+} /* mobile: hidden */
+@media (--mq-lg) {
+  :where(.sidebar) {
+    display: block;
+  }
+} /* ≥1024px: visible */
 
 /* ❌ Desktop-first — avoid */
-@media (max-width: 1023px) { :where(.sidebar) { display: none; } }
+@media (max-width: 1023px) {
+  :where(.sidebar) {
+    display: none;
+  }
+}
 ```
 
 Breakpoints are defined in `breakpoints/breakpoints.tokens.css` via

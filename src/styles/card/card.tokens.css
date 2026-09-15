@@ -1,0 +1,16 @@
+/* ==========================================================================
+   Card tokens
+   ========================================================================== */
+
+:root {
+  /* Shape & surface */
+  --card-bg: var(--c-bg);
+  --card-border: var(--c-border);
+  --card-radius: var(--radius-lg);
+  --card-shadow: var(--shadow-sm);
+
+  /* Caption */
+  --card-caption-color: var(--c-text-secondary);
+  --card-caption-font-size: var(--fs-sm);
+  --card-caption-padding: var(--sp-2) var(--sp-3);
+}
