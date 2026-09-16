@@ -16,20 +16,18 @@
 
   /* Keep the card intact in multi-column / masonry-style layouts */
   break-inside: avoid;
-}
 
-/* Direct media children fill the card width edge-to-edge */
+  /* Direct media children fill the card width edge-to-edge */
+  & > :where(img, video) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 
-:where(.card) > :where(img, video) {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Caption row (e.g. <figcaption>) */
-
-:where(.card__caption) {
-  padding: var(--card-caption-padding);
-  font-size: var(--card-caption-font-size);
-  color: var(--card-caption-color);
+  /* Caption row (e.g. <figcaption>) */
+  & > :where(.card__caption) {
+    padding: var(--card-caption-padding);
+    font-size: var(--card-caption-font-size);
+    color: var(--card-caption-color);
+  }
 }

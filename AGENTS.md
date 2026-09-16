@@ -169,12 +169,22 @@ npm run lint:css                 # scripted guardrail (CI-able, exits non-zero)
 
 ## CSS conventions
 
-### No nesting
+### Nesting — parent with nested children only
 
-All CSS files use **flat, top-level selectors** — no native CSS nesting.
-This is intentional: all base styles target native elements directly
-(`body`, `h1`, `p`, `a`, etc.), so there's nothing to nest. Downstream
-projects may use nesting in their own component styles.
+Nest selectors **where a rule has a parent selector with nested child
+selectors** (e.g. `.card` with its `> img` / `.card__caption` children, or
+`.picker__option` with its `> input` / `> span` children). This keeps
+component CSS readable without repeating the parent selector.
+
+Do **not** nest purely for grouping — base styles that target a single
+native element directly (`body`, `h1`, `p`, `a`, `button`, …) stay flat.
+
+Preserve the `:where()` low-specificity convention inside nests: write
+`:where(.parent) { & > :where(.child) { … } }` (and `&:where(:hover)` /
+`&:where(:has(…))` for stateful children) so specificity stays `(0,0,0)` and
+downstream overrides still win trivially. Native CSS nesting is supported in
+all current browsers, and the design system ships raw CSS consumed via
+`@import`, so no PostCSS nesting transform is required.
 
 ### Units
 
@@ -321,3 +331,8 @@ Breakpoints are defined in `breakpoints/breakpoints.tokens.css` via
 All feature style rules use `:where()` wrappers (e.g. `:where(button)`,
 `:where(a)`) so specificity is always `(0,0,0)`. This makes it trivial for
 downstream component styles to override without fighting the cascade.
+
+When nesting (see [Nesting — parent with nested children only](#nesting--parent-with-nested-children-only)),
+wrap the parent reference **and** any pseudo-classes in `:where()` too — e.g.
+`&:where(:hover)` / `&:where(:has(input:checked))` — so the nested rule keeps
+`(0,0,0)` instead of inheriting `:hover` / `:has` specificity.
