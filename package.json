@@ -13,7 +13,8 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "lint:css": "node scripts/lint-css.mjs"
+    "lint:css": "node scripts/lint-css.mjs",
+    "check:tokens": "node scripts/check-token-docs.mjs"
   },
   "lint-staged": {
     "*.{ts,css,json,md}": "npx prettier --write"

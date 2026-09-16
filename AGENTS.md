@@ -193,6 +193,7 @@ Audit locally before committing changes under `src/styles/`:
 ```bash
 rg -n '!important' src/styles/   # must output no matches
 npm run lint:css                 # scripted guardrail (CI-able, exits non-zero)
+npm run check:tokens             # verifies Tokens README values match color.css
 ```
 
 ## CSS conventions
