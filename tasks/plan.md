@@ -46,36 +46,36 @@ together per the feature-folder convention).
 
 ### Phase 1: Basics
 
-- [ ] Task 1: Move `body`, `typography`, `link` into `basics/` and rewire
-- [ ] Task 2: Move `button`, `code`, `form`, `table` into `basics/` and rewire
+- [x] Task 1: Move `body`, `typography`, `link` into `basics/` and rewire
+- [x] Task 2: Move `button`, `code`, `form`, `table` into `basics/` and rewire
 
 ### Checkpoint: Basics
-- [ ] `npm run build-storybook` succeeds
-- [ ] All affected docs pages render their README token table (CDP check)
-- [ ] `git status` clean after commit
+- [x] `npm run build-storybook` succeeds
+- [x] All affected docs pages render their README token table (CDP check)
+- [x] `git status` clean after commit
 
 ### Phase 2: Components
 
-- [ ] Task 3: Move `card`, `picker` into `components/` and rewire
+- [x] Task 3: Move `card`, `picker` into `components/` and rewire
 
 ### Checkpoint: Components
-- [ ] Build + docs render checks pass
-- [ ] Review with human before proceeding
+- [x] Build + docs render checks pass
+- [x] Review with human before proceeding
 
 ### Phase 3: Breakpoints (pending open question A)
 
-- [ ] Task 4: Move `breakpoints/` → `tokens/breakpoints/` and rewire
+- [x] Task 4: Move `breakpoints/` → `tokens/breakpoints/` and rewire
   *(skip entirely if decision A = "leave as-is")*
 
 ### Phase 4: Docs, titles, verification
 
-- [ ] Task 5: Update `AGENTS.md` + root `README.md` (trees, conventions, deep-import examples)
-- [ ] Task 6: Group Storybook titles (`Basics/Button`, `Components/Card`, …)
-- [ ] Task 7: Full verification sweep
+- [x] Task 5: Update `AGENTS.md` + root `README.md` (trees, conventions, deep-import examples)
+- [x] Task 6: Group Storybook titles (`Basics/Button`, `Components/Card`, …)
+- [x] Task 7: Full verification sweep
 
 ### Checkpoint: Complete
-- [ ] All acceptance criteria met
-- [ ] Ready for review / commit-series handoff
+- [x] All acceptance criteria met
+- [x] Ready for review / commit-series handoff
 
 ## Risks and Mitigations
 

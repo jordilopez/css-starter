@@ -8,17 +8,17 @@ Plan: `tasks/plan.md` · Branch: `basics-components-split` (pending open questio
 - [x] Task 2: Move `button`, `code`, `form`, `table` into `basics/` and rewire
 
 ## Checkpoint: Basics
-- [ ] `npm run build-storybook` succeeds
-- [ ] CDP: docs pages for the 7 basics render their token tables
-- [ ] `git status` clean after commit
+- [x] `npm run build-storybook` succeeds
+- [x] CDP: docs pages for the 7 basics render their token tables
+- [x] `git status` clean after commit
 
 ## Phase 2: Components
 
 - [x] Task 3: Move `card`, `picker` into `components/` and rewire
 
 ## Checkpoint: Components
-- [ ] Build + CDP docs render checks pass
-- [ ] Review with human before proceeding
+- [x] Build + CDP docs render checks pass
+- [x] Review with human before proceeding
 
 ## Phase 3: Breakpoints (open question A)
 
