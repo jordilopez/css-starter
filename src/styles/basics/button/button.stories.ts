@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html'
 import readme from './README.md?raw'
-import { componentDocs } from '../../stories/readmeDocs'
+import { componentDocs } from '../../../stories/readmeDocs'
 
 /**
  * Buttons — the native &lt;button&gt; element styled via base/button.css.

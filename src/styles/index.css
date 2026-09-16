@@ -38,7 +38,7 @@
 
 /* --- feature tokens --- */
 
-@import "./button/button.tokens.css" layer(css-starter.tokens);
+@import "./basics/button/button.tokens.css" layer(css-starter.tokens);
 @import "./card/card.tokens.css" layer(css-starter.tokens);
 @import "./picker/picker.tokens.css" layer(css-starter.tokens);
 @import "./breakpoints/breakpoints.tokens.css" layer(css-starter.tokens);
@@ -53,10 +53,10 @@
 @import "./basics/body/body.styles.css" layer(css-starter.base);
 @import "./basics/typography/typography.styles.css" layer(css-starter.base);
 @import "./basics/link/link.styles.css" layer(css-starter.base);
-@import "./button/button.styles.css" layer(css-starter.base);
-@import "./code/code.styles.css" layer(css-starter.base);
-@import "./form/form.styles.css" layer(css-starter.base);
-@import "./table/table.styles.css" layer(css-starter.base);
+@import "./basics/button/button.styles.css" layer(css-starter.base);
+@import "./basics/code/code.styles.css" layer(css-starter.base);
+@import "./basics/form/form.styles.css" layer(css-starter.base);
+@import "./basics/table/table.styles.css" layer(css-starter.base);
 @import "./card/card.styles.css" layer(css-starter.base);
 @import "./picker/picker.styles.css" layer(css-starter.base);
 

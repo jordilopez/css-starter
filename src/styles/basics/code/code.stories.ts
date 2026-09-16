@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html'
 import readme from './README.md?raw'
-import { componentDocs } from '../../stories/readmeDocs'
+import { componentDocs } from '../../../stories/readmeDocs'
 
 /**
  * Code — &lt;code&gt;, &lt;pre&gt;, and &lt;kbd&gt; elements styled via base/code.css.
