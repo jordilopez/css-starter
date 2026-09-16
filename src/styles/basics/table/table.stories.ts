@@ -9,7 +9,7 @@ import { componentDocs } from '../../../stories/readmeDocs'
  * Borders use `--c-border-light`.
  */
 const meta: Meta = {
-  title: 'Table',
+  title: 'Basics/Table',
   tags: ['autodocs'],
   parameters: {
     docs: { description: { component: componentDocs(readme) } },

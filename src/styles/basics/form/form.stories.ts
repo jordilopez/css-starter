@@ -13,7 +13,7 @@ import { componentDocs } from '../../../stories/readmeDocs'
  * pseudo-elements for the checked / indeterminate states.
  */
 const meta: Meta = {
-  title: 'Form',
+  title: 'Basics/Form',
   tags: ['autodocs'],
   parameters: {
     docs: { description: { component: componentDocs(readme) } },

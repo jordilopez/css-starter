@@ -9,7 +9,7 @@ import { componentDocs } from '../../../stories/readmeDocs'
  * while code blocks (pre) get padding and overflow-x scroll support.
  */
 const meta: Meta = {
-  title: 'Code',
+  title: 'Basics/Code',
   tags: ['autodocs'],
   parameters: {
     docs: { description: { component: componentDocs(readme) } },

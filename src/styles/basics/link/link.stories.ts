@@ -9,7 +9,7 @@ import { componentDocs } from '../../../stories/readmeDocs'
  * Transition uses `--transition-fast`.
  */
 const meta: Meta = {
-  title: 'Link',
+  title: 'Basics/Link',
   tags: ['autodocs'],
   parameters: {
     docs: { description: { component: componentDocs(readme) } },

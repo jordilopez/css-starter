@@ -7,7 +7,7 @@ import { componentDocs } from "../../../stories/readmeDocs";
  * `.card__caption`. Token-driven via `--card-*` (see card.tokens.css).
  */
 const meta: Meta = {
-  title: "Card",
+  title: "Components/Card",
   tags: ["autodocs"],
   parameters: {
     docs: { description: { component: componentDocs(readme) } },

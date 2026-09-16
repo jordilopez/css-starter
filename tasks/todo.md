@@ -26,10 +26,10 @@ Plan: `tasks/plan.md` · Branch: `basics-components-split` (pending open questio
 
 ## Phase 4: Docs, titles, verification
 
-- [ ] Task 5: Update `AGENTS.md` + `README.md` (trees, conventions, deep-import examples)
-- [ ] Task 6: Group Storybook titles (`Basics/…`, `Components/…`)
-- [ ] Task 7: Full verification sweep
+- [x] Task 5: Update `AGENTS.md` + `README.md` (trees, conventions, deep-import examples)
+- [x] Task 6: Group Storybook titles (`Basics/…`, `Components/…`)
+- [x] Task 7: Full verification sweep
 
 ## Checkpoint: Complete
-- [ ] All acceptance criteria met
-- [ ] Ready for review
+- [x] All acceptance criteria met
+- [x] Ready for review

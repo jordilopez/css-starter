@@ -8,7 +8,7 @@ import { componentDocs } from "../../../stories/readmeDocs";
  * :has(). Token-driven via `--picker-*` (see picker.tokens.css).
  */
 const meta: Meta = {
-  title: "Picker",
+  title: "Components/Picker",
   tags: ["autodocs"],
   parameters: {
     docs: { description: { component: componentDocs(readme) } },

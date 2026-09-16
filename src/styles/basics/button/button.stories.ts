@@ -9,7 +9,7 @@ import { componentDocs } from '../../../stories/readmeDocs'
  * Interactive transitions use `--transition-base`.
  */
 const meta: Meta = {
-  title: 'Button',
+  title: 'Basics/Button',
   tags: ['autodocs'],
   parameters: {
     docs: { description: { component: componentDocs(readme) } },

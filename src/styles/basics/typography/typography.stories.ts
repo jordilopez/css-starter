@@ -7,7 +7,7 @@ import { componentDocs } from '../../../stories/readmeDocs'
  * All sizes reference `--fs-*` and `--lh-*` tokens.
  */
 const meta: Meta = {
-  title: 'Typography',
+  title: 'Basics/Typography',
   tags: ['autodocs'],
   parameters: {
     docs: { description: { component: componentDocs(readme) } },
