@@ -63,7 +63,9 @@ src/
 │       └── breakpoints.stories.ts
 └── stories/
     ├── AllStyles.stories.ts               ← Kitchen-sink overview (global, not feature-owned)
-    └── Tokens.stories.ts                  ← Design token reference tables (global)
+    ├── Tokens.stories.ts                  ← Docs-only entry; tables live in stories/README.md
+    ├── README.md                          ← Design-token reference tables (global)
+    └── readmeDocs.ts                      ← Helper: strips README H1 for autodocs
 ```
 
 ## Feature folders — naming convention
@@ -74,19 +76,29 @@ possible** — only truly global or cross-cutting files stay at the root
 (`index.css`, `reset.css`, `reset-overrides.css`, `utility.css`) or in
 `tokens/` (shared scales used by many features).
 
-Inside a feature folder, files are named `<feature>.<kind>.css`:
+Inside a feature folder, CSS files are named `<feature>.<kind>.css` and may
+be accompanied by a `README.md`:
 
 | File                             | Required?            | Purpose                                                                                                                                   |
 | -------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `<feature>/<feature>.tokens.css` | Optional             | Feature-specific design tokens (e.g. `button.tokens.css` defines `--btn-*`). Only when the feature owns tokens that aren't shared scales. |
 | `<feature>/<feature>.styles.css` | For styling features | The feature's element/component styles. Features that are tokens-only (e.g. `breakpoints/`) omit this.                                    |
 | `<feature>/<feature>.stories.ts` | When previewable     | Storybook story colocated with the feature. Discovered automatically by the recursive glob in `.storybook/main.ts`.                       |
+| `<feature>/README.md`            | When previewable     | Feature docs, including a token table of the feature's **own** `--<feature>-*` tokens (defined in `<feature>.tokens.css`); omit shared scales. The story imports it with Vite's `?raw` suffix and renders it on the autodocs page via `parameters.docs.description.component` (using the `componentDocs` helper in `src/stories/readmeDocs.ts`, which strips the leading H1). |
 
 Rules:
 
-- **A folder does not need all three file kinds** — pick the subset that
-  applies (`button/` has tokens + styles + story; `body/` has styles only;
-  `breakpoints/` has tokens + demo + story but no styles).
+- **A folder does not need every file kind** — pick the subset that
+  applies (`button/` has tokens + styles + story + README; `body/` has
+  styles only; `breakpoints/` has tokens + demo + story + README but no
+  styles).
+- **README is the single source of truth for token documentation** — the
+  markdown table in `<feature>/README.md` is the same table shown on the
+  component's Storybook docs page. Edit the README, not the story, to
+  update it. List only the feature's own tokens (those defined in
+  `<feature>.tokens.css`); shared scales live in `tokens/` and are
+  documented once in the global **Tokens** story — which follows the same
+  pattern via `src/stories/README.md` (docs-only, `!dev`-tagged).
 - **Shared scale tokens stay in `tokens/`** — colour, type, spacing, border,
   shadow, easing, and layout tokens are consumed by many features, so they
   live once in `src/styles/tokens/`. Only tokens owned by a single feature

@@ -69,13 +69,14 @@ src/
 │   └── breakpoints/                       ← @custom-media breakpoints + demo story
 └── stories/
     ├── AllStyles.stories.ts               ← Kitchen-sink overview page
-    └── Tokens.stories.ts                  ← Design token reference tables
+    ├── Tokens.stories.ts                  ← Docs-only entry; tables live in stories/README.md
+    └── README.md                          ← Design token reference tables
 ```
 
 ### Folder convention
 
-Every feature lives in its own folder under `src/styles/`, with files named
-`<feature>.<kind>.css`:
+Every feature lives in its own folder under `src/styles/`, with CSS files
+named `<feature>.<kind>.css` (plus an optional README):
 
 - `<feature>/<feature>.tokens.css` — optional; only when the feature owns
   tokens that aren't shared scales (e.g. `button.tokens.css`)
@@ -83,9 +84,13 @@ Every feature lives in its own folder under `src/styles/`, with files named
   tokens-only features (e.g. `breakpoints/`)
 - `<feature>/<feature>.stories.ts` — Storybook story, colocated with the
   feature it previews
+- `<feature>/README.md` — feature docs including a table of the feature's
+  own `--<feature>-*` tokens (shared scales are omitted). The story imports
+  it (Vite `?raw`) and renders it on the autodocs page, so the README is the
+  single source of truth for the documented tokens.
 
-A folder contains only the files it needs — not every feature has all
-three. Shared scales (colour, type, spacing, …) live once in `tokens/` and
+A folder contains only the files it needs — not every feature has all of
+them. Shared scales (colour, type, spacing, …) live once in `tokens/` and
 are referenced directly by every feature.
 
 ## Usage
