@@ -27,40 +27,42 @@ src/
 │   │   ├── border.css                     ← Border radii
 │   │   ├── shadow.css                     ← Box shadows (light + dark variants)
 │   │   ├── easing.css                     ← Transition durations
-│   │   └── layout.css                     ← Max-width constraints
-│   ├── body/
-│   │   └── body.styles.css                ← Body defaults
-│   ├── typography/
-│   │   ├── typography.styles.css          ← Headings, paragraphs, quotes, lists, hr
-│   │   └── typography.stories.ts          ← Storybook story (colocated)
-│   ├── link/
-│   │   ├── link.styles.css                ← Anchor styles
-│   │   └── link.stories.ts
-│   ├── button/
-│   │   ├── button.tokens.css              ← Button-specific tokens (--btn-*)
-│   │   ├── button.styles.css              ← Button reset/base
-│   │   └── button.stories.ts
-│   ├── card/
-│   │   ├── card.tokens.css                ← Card tokens (--card-*)
-│   │   ├── card.styles.css                ← .card surface component
-│   │   └── card.stories.ts
-│   ├── picker/
-│   │   ├── picker.tokens.css              ← Picker tokens (--picker-*)
-│   │   ├── picker.styles.css              ← .picker segmented radio control
-│   │   └── picker.stories.ts
-│   ├── code/
-│   │   ├── code.styles.css                ← Code, pre, kbd
-│   │   └── code.stories.ts
-│   ├── form/
-│   │   ├── form.styles.css                ← Labels, inputs, textareas, selects
-│   │   └── form.stories.ts
-│   ├── table/
-│   │   ├── table.styles.css               ← Table styling
-│   │   └── table.stories.ts
-│   └── breakpoints/
-│       ├── breakpoints.tokens.css         ← @custom-media --mq-* definitions
-│       ├── breakpoints-demo.css           ← Demo-only stylesheet for the story
-│       └── breakpoints.stories.ts
+│   │   ├── layout.css                     ← Max-width constraints
+│   │   └── breakpoints/                   ← @custom-media --mq-* (tokens-only feature)
+│   │       ├── breakpoints.tokens.css     ← --mq-* definitions
+│   │       ├── breakpoints-demo.css       ← Demo-only stylesheet for the story
+│   │       └── breakpoints.stories.ts
+│   ├── basics/                            ← Native element styles
+│   │   ├── body/
+│   │   │   └── body.styles.css            ← Body defaults
+│   │   ├── typography/
+│   │   │   ├── typography.styles.css      ← Headings, paragraphs, quotes, lists, hr
+│   │   │   └── typography.stories.ts      ← Storybook story (colocated)
+│   │   ├── link/
+│   │   │   ├── link.styles.css            ← Anchor styles
+│   │   │   └── link.stories.ts
+│   │   ├── button/
+│   │   │   ├── button.tokens.css          ← Button-specific tokens (--btn-*)
+│   │   │   ├── button.styles.css          ← Button reset/base
+│   │   │   └── button.stories.ts
+│   │   ├── code/
+│   │   │   ├── code.styles.css            ← Code, pre, kbd
+│   │   │   └── code.stories.ts
+│   │   ├── form/
+│   │   │   ├── form.styles.css            ← Labels, inputs, textareas, selects
+│   │   │   └── form.stories.ts
+│   │   └── table/
+│   │       ├── table.styles.css           ← Table styling
+│   │       └── table.stories.ts
+│   └── components/                        ← Custom-selector components
+│       ├── card/
+│       │   ├── card.tokens.css            ← Card tokens (--card-*)
+│       │   ├── card.styles.css            ← .card surface component
+│       │   └── card.stories.ts
+│       └── picker/
+│           ├── picker.tokens.css          ← Picker tokens (--picker-*)
+│           ├── picker.styles.css          ← .picker segmented radio control
+│           └── picker.stories.ts
 └── stories/
     ├── AllStyles.stories.ts               ← Kitchen-sink overview (global, not feature-owned)
     ├── Tokens.stories.ts                  ← Docs-only entry; tables live in stories/README.md
@@ -71,13 +73,26 @@ src/
 ## Feature folders — naming convention
 
 Every feature (element, concern, or group of related styles) lives in its
-own dedicated folder under `src/styles/`. **Use a dedicated folder whenever
-possible** — only truly global or cross-cutting files stay at the root
-(`index.css`, `reset.css`, `reset-overrides.css`, `utility.css`) or in
-`tokens/` (shared scales used by many features).
+own dedicated folder under `src/styles/`, inside one of two categories:
+
+- **`basics/`** — styles for **native HTML elements** (`body`, `typography`,
+  `link`, `button`, `code`, `form`, `table`). Rules target elements only,
+  via `:where(<element>)` — no custom classes.
+- **`components/`** — styles bound to a **custom class selector**
+  (`card` → `.card`, `picker` → `.picker`). Anything a consumer opts into
+  with a class belongs here.
+
+Tokens-only features that define cross-cutting scales (e.g. `breakpoints/`)
+also live under `tokens/`.
+
+**Use a dedicated folder whenever possible** — only truly global or
+cross-cutting files stay at the root (`index.css`, `reset.css`,
+`reset-overrides.css`, `utility.css`) or in `tokens/` (shared scales used
+by many features).
 
 Inside a feature folder, CSS files are named `<feature>.<kind>.css` and may
-be accompanied by a `README.md`:
+be accompanied by a `README.md` (paths shown relative to the category
+directory, e.g. `basics/button/…`):
 
 | File                             | Required?            | Purpose                                                                                                                                   |
 | -------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -89,9 +104,9 @@ be accompanied by a `README.md`:
 Rules:
 
 - **A folder does not need every file kind** — pick the subset that
-  applies (`button/` has tokens + styles + story + README; `body/` has
-  styles only; `breakpoints/` has tokens + demo + story + README but no
-  styles).
+  applies (`basics/button/` has tokens + styles + story + README;
+  `basics/body/` has styles only; `tokens/breakpoints/` has tokens + demo
+  + story + README but no styles).
 - **README is the single source of truth for token documentation** — the
   markdown table in `<feature>/README.md` is the same table shown on the
   component's Storybook docs page. Edit the README, not the story, to
@@ -109,7 +124,8 @@ Rules:
 - **Global overview stories stay in `src/stories/`** — cross-feature pages
   (kitchen-sink, token reference) are not owned by any single feature.
 - **Feature-owned demo assets colocate too** — e.g.
-  `breakpoints/breakpoints-demo.css` sits next to the story that imports it.
+  `tokens/breakpoints/breakpoints-demo.css` sits next to the story that
+  imports it.
 
 ## Import order (must be maintained)
 
@@ -252,7 +268,7 @@ npm run build-storybook    # Static build to storybook-static/
 ### Stories structure
 
 Feature stories are **colocated with their feature folder**
-(`src/styles/button/button.stories.ts`, `src/styles/form/form.stories.ts`,
+(`src/styles/basics/button/button.stories.ts`, `src/styles/basics/form/form.stories.ts`,
 etc. — see the tree in [Style architecture](#style-architecture)). The
 glob in `.storybook/main.ts` (`../src/**/*.stories.*`) is recursive, so
 no configuration change is needed when adding a colocated story.
@@ -287,8 +303,8 @@ Cherry-picking individual files is also possible via deep imports
 (path-sensitive — follows the folder structure above):
 
 ```css
-@import "css-starter/src/styles/tokens/color.css";
-@import "css-starter/src/styles/button/button.styles.css";
+@import "css-starter/tokens/color.css";
+@import "css-starter/basics/button/button.styles.css";
 ```
 
 ## Naming
@@ -336,7 +352,7 @@ All responsive styles follow a **mobile-first** approach:
 
 Breakpoints are defined in `breakpoints/breakpoints.tokens.css` via
 `@custom-media` and compiled by PostCSS. See the Breakpoints story
-(`src/styles/breakpoints/breakpoints.stories.ts`) for a visual demo.
+(`src/styles/tokens/breakpoints/breakpoints.stories.ts`) for a visual demo.
 
 ### Feature styles use `:where()` for low specificity
 

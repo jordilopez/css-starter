@@ -55,18 +55,22 @@ src/
 │   │   ├── border.css                     ← Border radii
 │   │   ├── shadow.css                     ← Box shadows (light & dark)
 │   │   ├── easing.css                     ← Transition durations
-│   │   └── layout.css                     ← Max-width constraints
-│   ├── body/                              ← Body defaults
-│   ├── typography/                        ← Headings, paragraphs, lists, quotes + story
-│   ├── link/                              ← Anchor styles + story
-│   ├── button/                            ← Button tokens + styles + story
-│   │   ├── button.tokens.css              ← Button-specific tokens (--btn-*)
-│   │   ├── button.styles.css              ← ⚠️ Just baseline styles, no variants
-│   │   └── button.stories.ts
-│   ├── code/                              ← Code, pre, kbd + story
-│   ├── form/                              ← Inputs, labels, selects + story
-│   ├── table/                             ← Table styling + story
-│   └── breakpoints/                       ← @custom-media breakpoints + demo story
+│   │   ├── layout.css                     ← Max-width constraints
+│   │   └── breakpoints/                   ← @custom-media breakpoints + demo story
+│   ├── basics/                            ← Native element styles
+│   │   ├── body/                          ← Body defaults
+│   │   ├── typography/                    ← Headings, paragraphs, lists, quotes + story
+│   │   ├── link/                          ← Anchor styles + story
+│   │   ├── button/                        ← Button tokens + styles + story
+│   │   │   ├── button.tokens.css          ← Button-specific tokens (--btn-*)
+│   │   │   ├── button.styles.css          ← ⚠️ Just baseline styles, no variants
+│   │   │   └── button.stories.ts
+│   │   ├── code/                          ← Code, pre, kbd + story
+│   │   ├── form/                          ← Inputs, labels, selects + story
+│   │   └── table/                         ← Table styling + story
+│   └── components/                        ← Custom-selector components
+│       ├── card/                          ← .card surface + story
+│       └── picker/                        ← .picker segmented control + story
 └── stories/
     ├── AllStyles.stories.ts               ← Kitchen-sink overview page
     ├── Tokens.stories.ts                  ← Docs-only entry; tables live in stories/README.md
@@ -75,13 +79,14 @@ src/
 
 ### Folder convention
 
-Every feature lives in its own folder under `src/styles/`, with CSS files
-named `<feature>.<kind>.css` (plus an optional README):
+Every feature lives in its own folder under `src/styles/basics/` (native
+element styles) or `src/styles/components/` (custom-selector components),
+with CSS files named `<feature>.<kind>.css` (plus an optional README):
 
 - `<feature>/<feature>.tokens.css` — optional; only when the feature owns
-  tokens that aren't shared scales (e.g. `button.tokens.css`)
+  tokens that aren't shared scales (e.g. `basics/button/button.tokens.css`)
 - `<feature>/<feature>.styles.css` — the feature's styles; omitted for
-  tokens-only features (e.g. `breakpoints/`)
+  tokens-only features (e.g. `tokens/breakpoints/`)
 - `<feature>/<feature>.stories.ts` — Storybook story, colocated with the
   feature it previews
 - `<feature>/README.md` — feature docs including a table of the feature's
@@ -109,8 +114,8 @@ Or cherry-pick only what you need (deep imports follow the folder structure
 above):
 
 ```css
-@import "css-starter/src/styles/tokens/color.css";
-@import "css-starter/src/styles/reset.css";
+@import "css-starter/tokens/color.css";
+@import "css-starter/reset.css";
 ```
 
 ## Customising tokens
@@ -191,7 +196,7 @@ npm run storybook
 Opens at [http://localhost:6006](http://localhost:6006) with stories for
 typography, links, buttons, forms, tables, code, and a kitchen-sink page.
 Feature stories are colocated with their styles (e.g.
-`src/styles/button/button.stories.ts`); the kitchen-sink and token
+`src/styles/basics/button/button.stories.ts`); the kitchen-sink and token
 reference pages live in `src/stories/`. Dark mode follows your system
 preference automatically.
 
