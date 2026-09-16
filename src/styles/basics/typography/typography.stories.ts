@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html'
 import readme from './README.md?raw'
-import { componentDocs } from '../../stories/readmeDocs'
+import { componentDocs } from '../../../stories/readmeDocs'
 
 /**
  * Typography — headings, paragraphs, inline text, blockquotes, lists, and rules.

@@ -50,9 +50,9 @@
 
 /* --- feature styles --- */
 
-@import "./body/body.styles.css" layer(css-starter.base);
-@import "./typography/typography.styles.css" layer(css-starter.base);
-@import "./link/link.styles.css" layer(css-starter.base);
+@import "./basics/body/body.styles.css" layer(css-starter.base);
+@import "./basics/typography/typography.styles.css" layer(css-starter.base);
+@import "./basics/link/link.styles.css" layer(css-starter.base);
 @import "./button/button.styles.css" layer(css-starter.base);
 @import "./code/code.styles.css" layer(css-starter.base);
 @import "./form/form.styles.css" layer(css-starter.base);

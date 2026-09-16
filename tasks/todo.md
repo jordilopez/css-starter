@@ -4,7 +4,7 @@ Plan: `tasks/plan.md` · Branch: `basics-components-split` (pending open questio
 
 ## Phase 1: Basics
 
-- [ ] Task 1: Move `body`, `typography`, `link` into `basics/` and rewire
+- [x] Task 1: Move `body`, `typography`, `link` into `basics/` and rewire
 - [ ] Task 2: Move `button`, `code`, `form`, `table` into `basics/` and rewire
 
 ## Checkpoint: Basics
