@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
+import readme from "./README.md?raw";
+import { componentDocs } from "../../stories/readmeDocs";
 
 /**
  * Card — a generic `.card` surface component with optional media and
@@ -7,6 +9,9 @@ import type { Meta, StoryObj } from "@storybook/html";
 const meta: Meta = {
   title: "Card",
   tags: ["autodocs"],
+  parameters: {
+    docs: { description: { component: componentDocs(readme) } },
+  },
 };
 
 export default meta;

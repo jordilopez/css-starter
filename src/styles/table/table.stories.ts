@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html'
+import readme from './README.md?raw'
+import { componentDocs } from '../../stories/readmeDocs'
 
 /**
  * Tables — &lt;table&gt;, &lt;th&gt;, and &lt;td&gt; styled via base/table.css.
@@ -9,6 +11,9 @@ import type { Meta, StoryObj } from '@storybook/html'
 const meta: Meta = {
   title: 'Table',
   tags: ['autodocs'],
+  parameters: {
+    docs: { description: { component: componentDocs(readme) } },
+  },
 }
 
 export default meta

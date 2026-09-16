@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
+import readme from "./README.md?raw";
+import { componentDocs } from "../../stories/readmeDocs";
 
 /**
  * Picker — a segmented control of native radios (`.picker` +
@@ -8,6 +10,9 @@ import type { Meta, StoryObj } from "@storybook/html";
 const meta: Meta = {
   title: "Picker",
   tags: ["autodocs"],
+  parameters: {
+    docs: { description: { component: componentDocs(readme) } },
+  },
 };
 
 export default meta;

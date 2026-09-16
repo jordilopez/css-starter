@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/html'
 import './breakpoints-demo.css'
+import readme from './README.md?raw'
+import { componentDocs } from '../../stories/readmeDocs'
 
 /**
  * Visual demo of viewport breakpoints.
@@ -13,6 +15,9 @@ import './breakpoints-demo.css'
 const meta: Meta = {
   title: 'Breakpoints',
   tags: ['autodocs'],
+  parameters: {
+    docs: { description: { component: componentDocs(readme) } },
+  },
 }
 
 export default meta

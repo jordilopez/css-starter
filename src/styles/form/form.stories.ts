@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html'
+import readme from './README.md?raw'
+import { componentDocs } from '../../stories/readmeDocs'
 
 /**
  * Forms — labels, inputs, textareas, selects, checkboxes, and radios
@@ -13,6 +15,9 @@ import type { Meta, StoryObj } from '@storybook/html'
 const meta: Meta = {
   title: 'Form',
   tags: ['autodocs'],
+  parameters: {
+    docs: { description: { component: componentDocs(readme) } },
+  },
 }
 
 export default meta
