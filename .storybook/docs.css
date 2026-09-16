@@ -10,8 +10,9 @@
  * Result: in dark mode the docs page stays white while the story content
  * renders with dark-mode styles — elements look "dark on light".
  *
- * Fix: in dark mode, override the docs wrapper and its typography to use
- * the design system tokens, which flip automatically with the OS.
+ * Fix: in dark mode, override the docs wrapper, its typography, and its
+ * markdown tables to use the design system tokens, which flip automatically
+ * with the OS.
  */
 
 @media (prefers-color-scheme: dark) {
@@ -24,7 +25,7 @@
     color: var(--c-text);
   }
 
-  body .sbdocs :is(h1, h2, h3, h4, h5, h6, p, li, ul, ol, blockquote, td, th, caption, figcaption) {
+  body .sbdocs :is(h1, h2, h3, h4, h5, h6, p, li, ul, ol, blockquote, caption, figcaption) {
     color: var(--c-text);
   }
 
@@ -36,12 +37,27 @@
     color: var(--c-primary);
   }
 
+  /* Use a different surface for inline code / code blocks than the table
+     stripe below, so chips stay visible on striped rows. */
   body .sbdocs :is(code, pre) {
     color: var(--c-text);
-    background-color: var(--c-bg-subtle);
+    background-color: var(--c-bg-muted);
   }
 
-  body .sbdocs table {
+  /*
+   * Storybook's markdown docs hardcode the light-theme table stripe
+   * (rgb(246,249,252)), cell text (rgb(46,51,56)), and cell border
+   * (bluish rgba) via runtime-hashed classes. These selectors outrank its
+   * `.css-xxxx :where(table) …` rules so the design-system tokens win.
+   * Scoped to markdown tables only — Storybook's own ArgsTable
+   * (`.sb-argstableBlock`) keeps its built-in theming.
+   */
+  body .sbdocs table:not(.sb-argstableBlock, .sb-argstableBlock *) :is(td, th) {
+    color: var(--c-text);
     border-color: var(--c-border);
+  }
+
+  body .sbdocs table:not(.sb-argstableBlock) tr:nth-of-type(2n) {
+    background-color: var(--c-bg-subtle);
   }
 }

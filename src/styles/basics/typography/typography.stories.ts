@@ -1,12 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/html'
+import readme from './README.md?raw'
+import { componentDocs } from '../../../stories/readmeDocs'
 
 /**
  * Typography — headings, paragraphs, inline text, blockquotes, lists, and rules.
  * All sizes reference `--fs-*` and `--lh-*` tokens.
  */
 const meta: Meta = {
-  title: 'Typography',
+  title: 'Basics/Typography',
   tags: ['autodocs'],
+  parameters: {
+    docs: { description: { component: componentDocs(readme) } },
+  },
 }
 
 export default meta

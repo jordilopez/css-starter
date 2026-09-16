@@ -27,58 +27,93 @@ src/
 │   │   ├── border.css                     ← Border radii
 │   │   ├── shadow.css                     ← Box shadows (light + dark variants)
 │   │   ├── easing.css                     ← Transition durations
-│   │   └── layout.css                     ← Max-width constraints
-│   ├── body/
-│   │   └── body.styles.css                ← Body defaults
-│   ├── typography/
-│   │   ├── typography.styles.css          ← Headings, paragraphs, quotes, lists, hr
-│   │   └── typography.stories.ts          ← Storybook story (colocated)
-│   ├── link/
-│   │   ├── link.styles.css                ← Anchor styles
-│   │   └── link.stories.ts
-│   ├── button/
-│   │   ├── button.tokens.css              ← Button-specific tokens (--btn-*)
-│   │   ├── button.styles.css              ← Button reset/base
-│   │   └── button.stories.ts
-│   ├── code/
-│   │   ├── code.styles.css                ← Code, pre, kbd
-│   │   └── code.stories.ts
-│   ├── form/
-│   │   ├── form.styles.css                ← Labels, inputs, textareas, selects
-│   │   └── form.stories.ts
-│   ├── table/
-│   │   ├── table.styles.css               ← Table styling
-│   │   └── table.stories.ts
-│   └── breakpoints/
-│       ├── breakpoints.tokens.css         ← @custom-media --mq-* definitions
-│       ├── breakpoints-demo.css           ← Demo-only stylesheet for the story
-│       └── breakpoints.stories.ts
+│   │   ├── layout.css                     ← Max-width constraints
+│   │   └── breakpoints/                   ← @custom-media --mq-* (tokens-only feature)
+│   │       ├── breakpoints.tokens.css     ← --mq-* definitions
+│   │       ├── breakpoints-demo.css       ← Demo-only stylesheet for the story
+│   │       └── breakpoints.stories.ts
+│   ├── basics/                            ← Native element styles
+│   │   ├── body/
+│   │   │   └── body.styles.css            ← Body defaults
+│   │   ├── typography/
+│   │   │   ├── typography.styles.css      ← Headings, paragraphs, quotes, lists, hr
+│   │   │   └── typography.stories.ts      ← Storybook story (colocated)
+│   │   ├── link/
+│   │   │   ├── link.styles.css            ← Anchor styles
+│   │   │   └── link.stories.ts
+│   │   ├── button/
+│   │   │   ├── button.tokens.css          ← Button-specific tokens (--btn-*)
+│   │   │   ├── button.styles.css          ← Button reset/base
+│   │   │   └── button.stories.ts
+│   │   ├── code/
+│   │   │   ├── code.styles.css            ← Code, pre, kbd
+│   │   │   └── code.stories.ts
+│   │   ├── form/
+│   │   │   ├── form.styles.css            ← Labels, inputs, textareas, selects
+│   │   │   └── form.stories.ts
+│   │   └── table/
+│   │       ├── table.styles.css           ← Table styling
+│   │       └── table.stories.ts
+│   └── components/                        ← Custom-selector components
+│       ├── card/
+│       │   ├── card.tokens.css            ← Card tokens (--card-*)
+│       │   ├── card.styles.css            ← .card surface component
+│       │   └── card.stories.ts
+│       └── picker/
+│           ├── picker.tokens.css          ← Picker tokens (--picker-*)
+│           ├── picker.styles.css          ← .picker segmented radio control
+│           └── picker.stories.ts
 └── stories/
     ├── AllStyles.stories.ts               ← Kitchen-sink overview (global, not feature-owned)
-    └── Tokens.stories.ts                  ← Design token reference tables (global)
+    ├── Tokens.stories.ts                  ← Docs-only entry; tables live in stories/README.md
+    ├── README.md                          ← Design-token reference tables (global)
+    └── readmeDocs.ts                      ← Helper: strips README H1 for autodocs
 ```
 
 ## Feature folders — naming convention
 
 Every feature (element, concern, or group of related styles) lives in its
-own dedicated folder under `src/styles/`. **Use a dedicated folder whenever
-possible** — only truly global or cross-cutting files stay at the root
-(`index.css`, `reset.css`, `reset-overrides.css`, `utility.css`) or in
-`tokens/` (shared scales used by many features).
+own dedicated folder under `src/styles/`, inside one of two categories:
 
-Inside a feature folder, files are named `<feature>.<kind>.css`:
+- **`basics/`** — styles for **native HTML elements** (`body`, `typography`,
+  `link`, `button`, `code`, `form`, `table`). Rules target elements only,
+  via `:where(<element>)` — no custom classes.
+- **`components/`** — styles bound to a **custom class selector**
+  (`card` → `.card`, `picker` → `.picker`). Anything a consumer opts into
+  with a class belongs here.
 
-| File | Required? | Purpose |
-|------|-----------|---------|
-| `<feature>/<feature>.tokens.css` | Optional | Feature-specific design tokens (e.g. `button.tokens.css` defines `--btn-*`). Only when the feature owns tokens that aren't shared scales. |
-| `<feature>/<feature>.styles.css` | For styling features | The feature's element/component styles. Features that are tokens-only (e.g. `breakpoints/`) omit this. |
-| `<feature>/<feature>.stories.ts` | When previewable | Storybook story colocated with the feature. Discovered automatically by the recursive glob in `.storybook/main.ts`. |
+Tokens-only features that define cross-cutting scales (e.g. `breakpoints/`)
+also live under `tokens/`.
+
+**Use a dedicated folder whenever possible** — only truly global or
+cross-cutting files stay at the root (`index.css`, `reset.css`,
+`reset-overrides.css`, `utility.css`) or in `tokens/` (shared scales used
+by many features).
+
+Inside a feature folder, CSS files are named `<feature>.<kind>.css` and may
+be accompanied by a `README.md` (paths shown relative to the category
+directory, e.g. `basics/button/…`):
+
+| File                             | Required?            | Purpose                                                                                                                                   |
+| -------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `<feature>/<feature>.tokens.css` | Optional             | Feature-specific design tokens (e.g. `button.tokens.css` defines `--btn-*`). Only when the feature owns tokens that aren't shared scales. |
+| `<feature>/<feature>.styles.css` | For styling features | The feature's element/component styles. Features that are tokens-only (e.g. `breakpoints/`) omit this.                                    |
+| `<feature>/<feature>.stories.ts` | When previewable     | Storybook story colocated with the feature. Discovered automatically by the recursive glob in `.storybook/main.ts`.                       |
+| `<feature>/README.md`            | When previewable     | Feature docs, including a token table of the feature's **own** `--<feature>-*` tokens (defined in `<feature>.tokens.css`); omit shared scales. The story imports it with Vite's `?raw` suffix and renders it on the autodocs page via `parameters.docs.description.component` (using the `componentDocs` helper in `src/stories/readmeDocs.ts`, which strips the leading H1). |
 
 Rules:
 
-- **A folder does not need all three file kinds** — pick the subset that
-  applies (`button/` has tokens + styles + story; `body/` has styles only;
-  `breakpoints/` has tokens + demo + story but no styles).
+- **A folder does not need every file kind** — pick the subset that
+  applies (`basics/button/` has tokens + styles + story + README;
+  `basics/body/` has styles only; `tokens/breakpoints/` has tokens + demo
+  + story + README but no styles).
+- **README is the single source of truth for token documentation** — the
+  markdown table in `<feature>/README.md` is the same table shown on the
+  component's Storybook docs page. Edit the README, not the story, to
+  update it. List only the feature's own tokens (those defined in
+  `<feature>.tokens.css`); shared scales live in `tokens/` and are
+  documented once in the global **Tokens** story — which follows the same
+  pattern via `src/stories/README.md` (docs-only, `!dev`-tagged).
 - **Shared scale tokens stay in `tokens/`** — colour, type, spacing, border,
   shadow, easing, and layout tokens are consumed by many features, so they
   live once in `src/styles/tokens/`. Only tokens owned by a single feature
@@ -89,7 +124,8 @@ Rules:
 - **Global overview stories stay in `src/stories/`** — cross-feature pages
   (kitchen-sink, token reference) are not owned by any single feature.
 - **Feature-owned demo assets colocate too** — e.g.
-  `breakpoints/breakpoints-demo.css` sits next to the story that imports it.
+  `tokens/breakpoints/breakpoints-demo.css` sits next to the story that
+  imports it.
 
 ## Import order (must be maintained)
 
@@ -157,26 +193,37 @@ Audit locally before committing changes under `src/styles/`:
 ```bash
 rg -n '!important' src/styles/   # must output no matches
 npm run lint:css                 # scripted guardrail (CI-able, exits non-zero)
+npm run check:tokens             # verifies Tokens README values match color.css
 ```
 
 ## CSS conventions
 
-### No nesting
+### Nesting — parent with nested children only
 
-All CSS files use **flat, top-level selectors** — no native CSS nesting.
-This is intentional: all base styles target native elements directly
-(`body`, `h1`, `p`, `a`, etc.), so there's nothing to nest. Downstream
-projects may use nesting in their own component styles.
+Nest selectors **where a rule has a parent selector with nested child
+selectors** (e.g. `.card` with its `> img` / `.card__caption` children, or
+`.picker__option` with its `> input` / `> span` children). This keeps
+component CSS readable without repeating the parent selector.
+
+Do **not** nest purely for grouping — base styles that target a single
+native element directly (`body`, `h1`, `p`, `a`, `button`, …) stay flat.
+
+Preserve the `:where()` low-specificity convention inside nests: write
+`:where(.parent) { & > :where(.child) { … } }` (and `&:where(:hover)` /
+`&:where(:has(…))` for stateful children) so specificity stays `(0,0,0)` and
+downstream overrides still win trivially. Native CSS nesting is supported in
+all current browsers, and the design system ships raw CSS consumed via
+`@import`, so no PostCSS nesting transform is required.
 
 ### Units
 
-| Unit | Where used | Why |
-|------|-----------|-----|
-| `rem` | Spacing tokens (`--sp-*`), font-size tokens (`--fs-*`), layout tokens | Respects user's browser font-size setting; scales proportionally |
-| `em` | `code/code.styles.css` only (font-size, padding on code/kbd) | Scales relative to parent font, keeps code proportionally correct in any context |
-| `px` | Border radii (`--radius-*`), shadow offsets, `outline`, single-pixel borders, `text-underline-offset` | Decorative/visual properties that shouldn't scale |
-| `vh` | `body { min-height: 100vh }` (in reset-overrides) | Fills viewport vertically |
-| `ex` | `textarea { min-height: 6ex }` | Scales with font's x-height |
+| Unit  | Where used                                                                                            | Why                                                                              |
+| ----- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `rem` | Spacing tokens (`--sp-*`), font-size tokens (`--fs-*`), layout tokens                                 | Respects user's browser font-size setting; scales proportionally                 |
+| `em`  | `code/code.styles.css` only (font-size, padding on code/kbd)                                          | Scales relative to parent font, keeps code proportionally correct in any context |
+| `px`  | Border radii (`--radius-*`), shadow offsets, `outline`, single-pixel borders, `text-underline-offset` | Decorative/visual properties that shouldn't scale                                |
+| `vh`  | `body { min-height: 100vh }` (in reset-overrides)                                                     | Fills viewport vertically                                                        |
+| `ex`  | `textarea { min-height: 6ex }`                                                                        | Scales with font's x-height                                                      |
 
 ### Design tokens
 
@@ -185,6 +232,7 @@ All design decisions go through CSS custom properties — shared scales in
 value used in feature styles references a token — never hardcoded values.
 
 Naming patterns:
+
 - `--c-*` — colours (e.g. `--c-primary`, `--c-text`, `--c-bg`)
 - `--ff-*` — font families (`--ff-sans`, `--ff-mono`)
 - `--fs-*` — font sizes (`--fs-base`, `--fs-xl`)
@@ -194,6 +242,7 @@ Naming patterns:
 - `--radius-*` — border radii
 - `--shadow-*` — box shadows
 - `--transition-*` — easing durations
+- `--opacity-*` — opacity scales
 - `--max-width-*` — layout constraints
 
 ### Dark mode
@@ -221,7 +270,7 @@ npm run build-storybook    # Static build to storybook-static/
 ### Stories structure
 
 Feature stories are **colocated with their feature folder**
-(`src/styles/button/button.stories.ts`, `src/styles/form/form.stories.ts`,
+(`src/styles/basics/button/button.stories.ts`, `src/styles/basics/form/form.stories.ts`,
 etc. — see the tree in [Style architecture](#style-architecture)). The
 glob in `.storybook/main.ts` (`../src/**/*.stories.*`) is recursive, so
 no configuration change is needed when adding a colocated story.
@@ -242,12 +291,12 @@ of `src/styles/index.css` in `.storybook/preview.ts`.
 
 ```css
 /* In the project's global entry point: */
-@import 'css-starter';
+@import "css-starter";
 
 /* Override any token: */
 :root {
   --c-primary: #your-color;
-  --ff-sans: 'Your Font', sans-serif;
+  --ff-sans: "Your Font", sans-serif;
   --sp-4: 1.25rem;
 }
 ```
@@ -256,25 +305,26 @@ Cherry-picking individual files is also possible via deep imports
 (path-sensitive — follows the folder structure above):
 
 ```css
-@import 'css-starter/src/styles/tokens/color.css';
-@import 'css-starter/src/styles/button/button.styles.css';
+@import "css-starter/tokens/color.css";
+@import "css-starter/basics/button/button.styles.css";
 ```
 
 ## Naming
 
-| Token prefix | Category       | Examples                     |
-| ------------ | -------------- | ---------------------------- |
-| `--c-`       | Colour         | `--c-primary`, `--c-bg`      |
-| `--ff-`      | Font family    | `--ff-sans`, `--ff-mono`     |
-| `--fs-`      | Font size      | `--fs-base`, `--fs-xl`       |
-| `--fw-`      | Font weight    | `--fw-normal`, `--fw-bold`   |
-| `--lh-`      | Line height    | `--lh-tight`, `--lh-base`    |
-| `--sp-`      | Spacing        | `--sp-2`, `--sp-4`           |
-| `--radius-`  | Border radius  | `--radius-sm`, `--radius-lg` |
-| `--shadow-`  | Box shadow     | `--shadow-sm`, `--shadow-lg` |
-| `--transition-` | Transition | `--transition-fast`          |
-| `--max-width-`  | Layout     | `--max-width-wide`           |
-| `--btn-`       | Button     | `--btn-padding-x`, `--btn-disabled-opacity` |
+| Token prefix    | Category      | Examples                                    |
+| --------------- | ------------- | ------------------------------------------- |
+| `--c-`          | Colour        | `--c-primary`, `--c-bg`                     |
+| `--ff-`         | Font family   | `--ff-sans`, `--ff-mono`                    |
+| `--fs-`         | Font size     | `--fs-base`, `--fs-xl`                      |
+| `--fw-`         | Font weight   | `--fw-normal`, `--fw-bold`                  |
+| `--lh-`         | Line height   | `--lh-tight`, `--lh-base`                   |
+| `--sp-`         | Spacing       | `--sp-2`, `--sp-4`                          |
+| `--radius-`     | Border radius | `--radius-sm`, `--radius-lg`                |
+| `--shadow-`     | Box shadow    | `--shadow-sm`, `--shadow-lg`                |
+| `--transition-` | Transition    | `--transition-fast`                         |
+| `--opacity-`    | Opacity       | `--opacity-disabled`                        |
+| `--max-width-`  | Layout        | `--max-width-wide`                          |
+| `--btn-`        | Button        | `--btn-padding-x`, `--btn-disabled-opacity` |
 
 ### Responsive — mobile-first
 
@@ -286,19 +336,34 @@ All responsive styles follow a **mobile-first** approach:
 
 ```css
 /* ✅ Mobile-first — correct */
-:where(.sidebar) { display: none; }                        /* mobile: hidden */
-@media (--mq-lg) { :where(.sidebar) { display: block; } }  /* ≥1024px: visible */
+:where(.sidebar) {
+  display: none;
+} /* mobile: hidden */
+@media (--mq-lg) {
+  :where(.sidebar) {
+    display: block;
+  }
+} /* ≥1024px: visible */
 
 /* ❌ Desktop-first — avoid */
-@media (max-width: 1023px) { :where(.sidebar) { display: none; } }
+@media (max-width: 1023px) {
+  :where(.sidebar) {
+    display: none;
+  }
+}
 ```
 
 Breakpoints are defined in `breakpoints/breakpoints.tokens.css` via
 `@custom-media` and compiled by PostCSS. See the Breakpoints story
-(`src/styles/breakpoints/breakpoints.stories.ts`) for a visual demo.
+(`src/styles/tokens/breakpoints/breakpoints.stories.ts`) for a visual demo.
 
 ### Feature styles use `:where()` for low specificity
 
 All feature style rules use `:where()` wrappers (e.g. `:where(button)`,
 `:where(a)`) so specificity is always `(0,0,0)`. This makes it trivial for
 downstream component styles to override without fighting the cascade.
+
+When nesting (see [Nesting — parent with nested children only](#nesting--parent-with-nested-children-only)),
+wrap the parent reference **and** any pseudo-classes in `:where()` too — e.g.
+`&:where(:hover)` / `&:where(:has(input:checked))` — so the nested rule keeps
+`(0,0,0)` instead of inheriting `:hover` / `:has` specificity.

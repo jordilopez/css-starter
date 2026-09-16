@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html'
+import readme from './README.md?raw'
+import { componentDocs } from '../../../stories/readmeDocs'
 
 /**
  * Links — anchor elements styled via base/link.css.
@@ -7,8 +9,11 @@ import type { Meta, StoryObj } from '@storybook/html'
  * Transition uses `--transition-fast`.
  */
 const meta: Meta = {
-  title: 'Link',
+  title: 'Basics/Link',
   tags: ['autodocs'],
+  parameters: {
+    docs: { description: { component: componentDocs(readme) } },
+  },
 }
 
 export default meta

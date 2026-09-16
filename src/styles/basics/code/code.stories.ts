@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html'
+import readme from './README.md?raw'
+import { componentDocs } from '../../../stories/readmeDocs'
 
 /**
  * Code — &lt;code&gt;, &lt;pre&gt;, and &lt;kbd&gt; elements styled via base/code.css.
@@ -7,8 +9,11 @@ import type { Meta, StoryObj } from '@storybook/html'
  * while code blocks (pre) get padding and overflow-x scroll support.
  */
 const meta: Meta = {
-  title: 'Code',
+  title: 'Basics/Code',
   tags: ['autodocs'],
+  parameters: {
+    docs: { description: { component: componentDocs(readme) } },
+  },
 }
 
 export default meta

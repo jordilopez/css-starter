@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html'
+import readme from './README.md?raw'
+import { componentDocs } from '../../../stories/readmeDocs'
 
 /**
  * Buttons — the native &lt;button&gt; element styled via base/button.css.
@@ -7,8 +9,11 @@ import type { Meta, StoryObj } from '@storybook/html'
  * Interactive transitions use `--transition-base`.
  */
 const meta: Meta = {
-  title: 'Button',
+  title: 'Basics/Button',
   tags: ['autodocs'],
+  parameters: {
+    docs: { description: { component: componentDocs(readme) } },
+  },
 }
 
 export default meta

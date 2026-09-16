@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Picker
+   ========================================================================== */
+
+/* Segmented control built from native radios. Markup contract:
+
+     <fieldset class="picker">
+       <legend class="sr-only">…</legend>
+       <label class="picker__option">
+         <input type="radio" name="…" />
+         <span>Label</span>
+       </label>
+       …
+     </fieldset>
+
+   The radios stay in the DOM (keyboard + AT accessible) but are visually
+   hidden; the visible pill is the sibling <span>. State styling rides on
+   :has() so no JavaScript is required. */
+
+:where(.picker) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--picker-gap);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+:where(.picker__option) {
+  cursor: pointer;
+  position: relative;
+
+  /* Visually hidden radio — remains focusable and checked */
+  & > :where(input) {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* The visible pill */
+  & > :where(span) {
+    display: inline-block;
+    padding: var(--picker-option-padding-y) var(--picker-option-padding-x);
+    border: 1px solid var(--picker-border);
+    border-radius: var(--picker-radius);
+    font-size: var(--picker-font-size);
+    font-weight: var(--picker-font-weight);
+    color: var(--picker-color);
+    background-color: var(--picker-bg);
+    transition: var(--picker-transition);
+    transition-property: color, background-color, border-color;
+  }
+
+  /* Hover state on the pill */
+  &:where(:hover) > :where(span) {
+    border-color: var(--picker-border-hover);
+    color: var(--picker-color-hover);
+  }
+
+  /* Checked state rides on :has() — no JS required */
+  &:where(:has(input:checked)) > :where(span) {
+    background-color: var(--picker-bg-checked);
+    border-color: var(--picker-border-checked);
+    color: var(--picker-color-checked);
+  }
+
+  /* Disabled option */
+  &:where(:has(input:disabled)) {
+    cursor: not-allowed;
+    opacity: var(--picker-disabled-opacity);
+  }
+
+  /* Keyboard focus ring on the pill */
+  &:where(:has(input:focus-visible)) > :where(span) {
+    outline: 2px solid var(--picker-focus-ring);
+    outline-offset: 2px;
+  }
+}
