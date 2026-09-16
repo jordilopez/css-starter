@@ -14,7 +14,7 @@ Plan: `tasks/plan.md` · Branch: `basics-components-split` (pending open questio
 
 ## Phase 2: Components
 
-- [ ] Task 3: Move `card`, `picker` into `components/` and rewire
+- [x] Task 3: Move `card`, `picker` into `components/` and rewire
 
 ## Checkpoint: Components
 - [ ] Build + CDP docs render checks pass

@@ -39,8 +39,8 @@
 /* --- feature tokens --- */
 
 @import "./basics/button/button.tokens.css" layer(css-starter.tokens);
-@import "./card/card.tokens.css" layer(css-starter.tokens);
-@import "./picker/picker.tokens.css" layer(css-starter.tokens);
+@import "./components/card/card.tokens.css" layer(css-starter.tokens);
+@import "./components/picker/picker.tokens.css" layer(css-starter.tokens);
 @import "./breakpoints/breakpoints.tokens.css" layer(css-starter.tokens);
 
 /* --- reset --- */
@@ -57,8 +57,8 @@
 @import "./basics/code/code.styles.css" layer(css-starter.base);
 @import "./basics/form/form.styles.css" layer(css-starter.base);
 @import "./basics/table/table.styles.css" layer(css-starter.base);
-@import "./card/card.styles.css" layer(css-starter.base);
-@import "./picker/picker.styles.css" layer(css-starter.base);
+@import "./components/card/card.styles.css" layer(css-starter.base);
+@import "./components/picker/picker.styles.css" layer(css-starter.base);
 
 /* --- utilities --- */
 

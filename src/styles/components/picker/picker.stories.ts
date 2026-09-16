@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import readme from "./README.md?raw";
-import { componentDocs } from "../../stories/readmeDocs";
+import { componentDocs } from "../../../stories/readmeDocs";
 
 /**
  * Picker — a segmented control of native radios (`.picker` +

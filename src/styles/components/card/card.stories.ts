@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import readme from "./README.md?raw";
-import { componentDocs } from "../../stories/readmeDocs";
+import { componentDocs } from "../../../stories/readmeDocs";
 
 /**
  * Card — a generic `.card` surface component with optional media and
