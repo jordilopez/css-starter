@@ -41,7 +41,7 @@
 @import "./basics/button/button.tokens.css" layer(css-starter.tokens);
 @import "./components/card/card.tokens.css" layer(css-starter.tokens);
 @import "./components/picker/picker.tokens.css" layer(css-starter.tokens);
-@import "./breakpoints/breakpoints.tokens.css" layer(css-starter.tokens);
+@import "./tokens/breakpoints/breakpoints.tokens.css" layer(css-starter.tokens);
 
 /* --- reset --- */
 

@@ -22,7 +22,7 @@ Plan: `tasks/plan.md` · Branch: `basics-components-split` (pending open questio
 
 ## Phase 3: Breakpoints (open question A)
 
-- [ ] Task 4: Move `breakpoints/` → `tokens/breakpoints/` and rewire (skip if A = leave)
+- [x] Task 4: Move `breakpoints/` → `tokens/breakpoints/` and rewire (skip if A = leave)
 
 ## Phase 4: Docs, titles, verification
 

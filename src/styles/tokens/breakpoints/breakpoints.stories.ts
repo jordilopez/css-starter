@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/html'
 import './breakpoints-demo.css'
 import readme from './README.md?raw'
-import { componentDocs } from '../../stories/readmeDocs'
+import { componentDocs } from '../../../stories/readmeDocs'
 
 /**
  * Visual demo of viewport breakpoints.
