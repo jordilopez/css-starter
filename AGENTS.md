@@ -241,6 +241,7 @@ Naming patterns:
 - `--radius-*` — border radii
 - `--shadow-*` — box shadows
 - `--transition-*` — easing durations
+- `--opacity-*` — opacity scales
 - `--max-width-*` — layout constraints
 
 ### Dark mode
@@ -320,6 +321,7 @@ Cherry-picking individual files is also possible via deep imports
 | `--radius-`     | Border radius | `--radius-sm`, `--radius-lg`                |
 | `--shadow-`     | Box shadow    | `--shadow-sm`, `--shadow-lg`                |
 | `--transition-` | Transition    | `--transition-fast`                         |
+| `--opacity-`    | Opacity       | `--opacity-disabled`                        |
 | `--max-width-`  | Layout        | `--max-width-wide`                          |
 | `--btn-`        | Button        | `--btn-padding-x`, `--btn-disabled-opacity` |
 

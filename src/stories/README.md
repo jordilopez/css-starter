@@ -93,6 +93,12 @@ Shadows darken in dark mode.
 | `--transition-base` | 0.2s ease   |
 | `--transition-slow` | 0.3s ease   |
 
+## Opacity (`--opacity-*`)
+
+| Token                | Value |
+| -------------------- | ----- |
+| `--opacity-disabled` | 0.5   |
+
 ## Layout (`--max-width-*`)
 
 | Token                | Value   |

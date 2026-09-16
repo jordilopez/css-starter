@@ -26,5 +26,5 @@
   color: var(--c-text-muted);
   text-decoration: none;
   cursor: not-allowed;
-  opacity: var(--btn-disabled-opacity);
+  opacity: var(--opacity-disabled);
 }

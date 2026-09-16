@@ -24,7 +24,7 @@
   --btn-color-active: var(--c-text);
 
   /* Disabled */
-  --btn-disabled-opacity: 0.5;
+  --btn-disabled-opacity: var(--opacity-disabled);
 
   /* Focus */
   --btn-focus-ring: var(--c-focus-ring);

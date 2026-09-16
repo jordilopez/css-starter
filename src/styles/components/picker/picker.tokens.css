@@ -28,7 +28,7 @@
   --picker-color-checked: var(--c-text-inverse);
 
   /* Disabled */
-  --picker-disabled-opacity: 0.5;
+  --picker-disabled-opacity: var(--opacity-disabled);
 
   /* Focus */
   --picker-focus-ring: var(--c-focus-ring);

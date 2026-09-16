@@ -35,6 +35,7 @@
 @import "./tokens/shadow.css" layer(css-starter.tokens);
 @import "./tokens/easing.css" layer(css-starter.tokens);
 @import "./tokens/layout.css" layer(css-starter.tokens);
+@import "./tokens/opacity.css" layer(css-starter.tokens);
 
 /* --- feature tokens --- */
 
