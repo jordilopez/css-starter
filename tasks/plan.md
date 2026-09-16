@@ -1,97 +1,91 @@
-# Implementation Plan: Split `src/styles/` into Basics and Components
+# Implementation Plan: Release & Publish — Token Docs + Basics/Components Split
 
 ## Overview
 
-Reorganise the design system's feature folders into two explicit categories:
-**basics** (styles for native HTML elements) and **components** (styles bound
-to custom class selectors). Pure path churn — no CSS logic changes. All
-features move wholesale (`styles`, `tokens`, `stories`, `README` travel
-together per the feature-folder convention).
+Two feature branches are complete, verified, and unreviewed upstream. This plan
+takes them through PR review, merge, release (version bump + tag), and consumer
+updates (react-starter, vue-starter). No source changes except the optional
+polish slice.
+
+## Current state (verified)
+
+- `picker-card-and-readmes` @ `ca1b3a9` — token docs via READMEs, dark-mode
+  docs fix, card/picker nesting refactor. Not pushed.
+- `basics-components-split` @ `0e1a85a` — folder reorganisation, story title
+  grouping, review fixes (`--opacity-disabled` token, ArgsTable scoping).
+  Not pushed. Contains the other branch's commits.
+- Local `main` @ `6f3dd35` (tagged `v0.2.2`) — **ahead of origin/main by 1,
+  and tag `v0.2.2` is not on the remote** (remote has v0.2.0, v0.2.1).
+- Consumers (`react-starter`, `vue-starter`) import `css-starter` root-only;
+  both have local Toast components whose CSS comments say they should migrate
+  into css-starter (future `components/toast/`).
 
 ## Architecture Decisions
 
-- **Classification by selector, not by feel:** a feature is *basic* iff its
-  `.styles.css` targets only native elements via `:where(<element>)`;
-  *component* iff it targets custom classes (`.card`, `.picker`).
-- **Breakpoints → `tokens/breakpoints/`** (default): it is a tokens-only
-  feature (`@custom-media`, no styles), so it belongs with the shared scales.
-  *Open question — see below.*
-- **Storybook titles grouped** `Basics/…` and `Components/…` (default: yes) so
-  the sidebar mirrors the folder structure.
-- **Consumers unaffected:** react-starter / vue-starter import the package
-  root only (verified: no deep imports). The planned future `toast` component
-  would land in `components/toast/`.
-- **Docs deep-import examples fixed in the same pass:** current examples
-  (`css-starter/src/styles/…`) don't match the `exports: "./*" →
-  "./src/styles/*"` map; rewrite as `css-starter/basics/…`,
-  `css-starter/components/…`, `css-starter/tokens/…`.
-- **Mechanical moves use `git mv`** to preserve file history.
-
-## Classification (source of truth for all tasks)
-
-| Feature      | Category   | Move to                  |
-| ------------ | ---------- | ------------------------ |
-| body         | Basics     | `basics/body/`           |
-| typography   | Basics     | `basics/typography/`     |
-| link         | Basics     | `basics/link/`           |
-| button       | Basics     | `basics/button/`         |
-| code         | Basics     | `basics/code/`           |
-| form         | Basics     | `basics/form/`           |
-| table        | Basics     | `basics/table/`          |
-| card         | Components | `components/card/`       |
-| picker       | Components | `components/picker/`     |
-| breakpoints  | Tokens     | `tokens/breakpoints/` ⚠ open question |
+- **Single PR:** all work lands as one PR from `basics-components-split` →
+  `main` (it already contains the `picker-card-and-readmes` commits).
+- **Version = minor (`v0.3.0`)** (decision A): no known consumer uses the
+  moved deep-import paths, so the reorganisation ships as a minor.
+- **Polish slice included** (decision B), broken into Tasks 7a–7c below.
+- **Deep-import paths moved** (`css-starter/basics/…`, `css-starter/components/…`,
+  `css-starter/tokens/…`).
 
 ## Task List
 
-### Phase 1: Basics
+### Phase 1: Decisions (human gate)
 
-- [x] Task 1: Move `body`, `typography`, `link` into `basics/` and rewire
-- [x] Task 2: Move `button`, `code`, `form`, `table` into `basics/` and rewire
+- [x] Task 1: Release semantics — **minor**; **single PR** (decisions A, C)
 
-### Checkpoint: Basics
-- [x] `npm run build-storybook` succeeds
-- [x] All affected docs pages render their README token table (CDP check)
-- [x] `git status` clean after commit
+### Checkpoint: Decisions
+- [ ] Version number chosen; PR strategy confirmed
 
-### Phase 2: Components
+### Phase 2: Pull requests
 
-- [x] Task 3: Move `card`, `picker` into `components/` and rewire
+- [ ] Task 2: Push `basics-components-split`, create **one** PR → `main`
+      (needs explicit user confirmation of the push/gh block per
+      git-create-pr skill)
 
-### Checkpoint: Components
-- [x] Build + docs render checks pass
-- [x] Review with human before proceeding
+### Checkpoint: PRs open
+- [ ] Both PR URLs recorded; CI/storybook builds green
 
-### Phase 3: Breakpoints (pending open question A)
+### Phase 3: Merge & release
 
-- [x] Task 4: Move `breakpoints/` → `tokens/breakpoints/` and rewire
-  *(skip entirely if decision A = "leave as-is")*
+- [ ] Task 4: Merge PRs (human approval in GitHub), retarget/merge second
+- [ ] Task 5: On updated `main`: `npm version <major|minor per Task 1>`,
+      `git push origin --tags` (per AGENTS.md release flow). Note: also push
+      the stranded `v0.2.2` tag if not superseded.
 
-### Phase 4: Docs, titles, verification
+### Checkpoint: Released
+- [ ] New tag visible on remote; `npm view`/GitHub shows release
 
-- [x] Task 5: Update `AGENTS.md` + root `README.md` (trees, conventions, deep-import examples)
-- [x] Task 6: Group Storybook titles (`Basics/Button`, `Components/Card`, …)
-- [x] Task 7: Full verification sweep
+### Phase 4: Consumers
+
+- [ ] Task 6: Update `react-starter` and `vue-starter` to the new tag
+      (`npm install css-starter@github:jordilopez/css-starter#vX.Y.Z`),
+      build both, verify token overrides + dark mode still work
+- [x] Task 7a: **Token-doc guardrail** — `scripts/check-token-docs.mjs` +
+      `npm run check:tokens`
+- [x] Task 7b: **Canvas `pre` parity** — verified no change needed: the story
+      `<pre>` renders `--c-bg-muted` correctly; the `#242424` element was the
+      hidden "Show code" source, not a themed story block
+- [x] Task 7c: **`scope` on markdown `<th>`** — won't-fix: `markdown-to-jsx`
+      emits bare `<th>` and docs.css cannot add attributes; overriding the
+      docs markdown renderer is disproportionate. Simple 2–3 column tables
+      associate headers fine without it
 
 ### Checkpoint: Complete
-- [x] All acceptance criteria met
-- [x] Ready for review / commit-series handoff
+- [ ] Consumers build against the released tag
+- [ ] Ready to close out
 
 ## Risks and Mitigations
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Deep-import path breakage for external consumers | Med | Verified none exist today; changelog note + version bump (minor/major decision) at release time |
-| Missed relative import (story `?raw`, demo css, readmeDocs depth) | Med | Task-level grep: `rg "\.\./\.\./stories|styles/(body\|typography\|…)" src` must return zero stale refs |
-| `index.css` import order accidentally changed | High | Only paths may change; compare layer/order before & after with `git diff` |
-| Breakpoints decision flips late | Low | Isolated as Task 4; skipping it doesn't affect Tasks 1–3, 5–7 |
-| Docs tree drifts from reality | Low | Task 5 runs after all moves; verify every path mentioned in docs exists |
+| PRs include unrelated history (local `main` ahead of origin) | Med | PR base/diff verified before creation |
+| Stranded `v0.2.2` tag confuses release | Low | Task 5 explicitly handles it |
+| Consumer build breaks on new css-starter | Med | Task 6 builds both starters before close-out |
+| Toast CSS comments reference old path `css-starter/src/styles/toast/` | Low | Flag in Task 6; consumers update comments to `components/toast/` |
 
 ## Open Questions
 
-- **A. Breakpoints placement:** `tokens/breakpoints/` (default) vs leave at
-  `src/styles/breakpoints/`?
-- **B. Branch strategy:** new branch `basics-components-split` off current
-  `picker-card-and-readmes` HEAD (default), vs continue on the same branch?
-- **C. Release semantics:** this moves public deep-import paths — treat as
-  breaking (major) or minor? Decision needed only at release time.
+All resolved: A = minor, B = include polish, C = single PR.

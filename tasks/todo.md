@@ -1,35 +1,37 @@
-# Todo — Split `src/styles/` into Basics and Components
+# Todo — Release & Publish
 
-Plan: `tasks/plan.md` · Branch: `basics-components-split` (pending open question B)
+Plan: `tasks/plan.md`
 
-## Phase 1: Basics
+## Phase 1: Decisions (human gate)
 
-- [x] Task 1: Move `body`, `typography`, `link` into `basics/` and rewire
-- [x] Task 2: Move `button`, `code`, `form`, `table` into `basics/` and rewire
+- [ ] Task 1: Release semantics — major vs minor (open question A)
 
-## Checkpoint: Basics
-- [x] `npm run build-storybook` succeeds
-- [x] CDP: docs pages for the 7 basics render their token tables
-- [x] `git status` clean after commit
+## Checkpoint: Decisions
+- [ ] Version number chosen; PR strategy confirmed
 
-## Phase 2: Components
+## Phase 2: Pull requests
 
-- [x] Task 3: Move `card`, `picker` into `components/` and rewire
+- [ ] Task 2: Push `picker-card-and-readmes`, create PR → `main`
+- [ ] Task 3: Push `basics-components-split`, create PR → `picker-card-and-readmes`
 
-## Checkpoint: Components
-- [x] Build + CDP docs render checks pass
-- [x] Review with human before proceeding
+## Checkpoint: PRs open
+- [ ] Both PR URLs recorded; builds green
 
-## Phase 3: Breakpoints (open question A)
+## Phase 3: Merge & release
 
-- [x] Task 4: Move `breakpoints/` → `tokens/breakpoints/` and rewire (skip if A = leave)
+- [ ] Task 4: Merge PRs (human approval in GitHub)
+- [ ] Task 5: `npm version <per Task 1>`, `git push origin --tags` (incl. stranded `v0.2.2` if superseded)
 
-## Phase 4: Docs, titles, verification
+## Checkpoint: Released
+- [ ] New tag visible on remote
 
-- [x] Task 5: Update `AGENTS.md` + `README.md` (trees, conventions, deep-import examples)
-- [x] Task 6: Group Storybook titles (`Basics/…`, `Components/…`)
-- [x] Task 7: Full verification sweep
+## Phase 4: Consumers
+
+- [ ] Task 6: Update `react-starter` + `vue-starter` to new tag; build both; verify dark mode + token overrides
+- [x] Task 7a: token-doc guardrail (`npm run check:tokens`)
+- [x] Task 7b: canvas `pre` — verified no change needed
+- [x] Task 7c: `<th>` scope — won't-fix (documented)
 
 ## Checkpoint: Complete
-- [x] All acceptance criteria met
-- [x] Ready for review
+- [ ] Consumers build against the released tag
+- [ ] Ready to close out
