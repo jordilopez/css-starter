@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Callout tokens
+   ========================================================================== */
+
+:root {
+  /* Base (default tone is `info`) */
+  --callout-accent: var(--c-info);
+  --callout-border: var(--c-info);
+  --callout-color: var(--c-text);
+  --callout-bg: color-mix(in srgb, var(--callout-accent) 8%, var(--c-bg));
+
+  /* Layout */
+  --callout-gap: var(--sp-3);
+  --callout-padding-block: var(--sp-3);
+  --callout-padding-inline: var(--sp-4);
+  --callout-radius: var(--radius-lg);
+  --callout-border-width: 1px;
+
+  /* Icon */
+  --callout-icon-size: 1.25em;
+
+  /* Title */
+  --callout-title-font-weight: var(--fw-bold, 700);
+  --callout-title-color: var(--c-text);
+}
+
+/* Tone variants — override the accent + border so the bg tint and text
+   colour (which reference --callout-accent) follow automatically. */
+
+:where(.callout--info) {
+  --callout-accent: var(--c-info);
+  --callout-border: var(--c-info);
+}
+
+:where(.callout--success) {
+  --callout-accent: var(--c-success);
+  --callout-border: var(--c-success);
+}
+
+:where(.callout--warning) {
+  --callout-accent: var(--c-warning);
+  --callout-border: var(--c-warning);
+}
+
+:where(.callout--error) {
+  --callout-accent: var(--c-error);
+  --callout-border: var(--c-error);
+}

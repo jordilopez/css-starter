@@ -42,6 +42,7 @@
 @import "./basics/button/button.tokens.css" layer(css-starter.tokens);
 @import "./components/card/card.tokens.css" layer(css-starter.tokens);
 @import "./components/picker/picker.tokens.css" layer(css-starter.tokens);
+@import "./components/callout/callout.tokens.css" layer(css-starter.tokens);
 @import "./tokens/breakpoints/breakpoints.tokens.css" layer(css-starter.tokens);
 
 /* --- reset --- */
@@ -60,6 +61,7 @@
 @import "./basics/table/table.styles.css" layer(css-starter.base);
 @import "./components/card/card.styles.css" layer(css-starter.base);
 @import "./components/picker/picker.styles.css" layer(css-starter.base);
+@import "./components/callout/callout.styles.css" layer(css-starter.base);
 
 /* --- utilities --- */
 
