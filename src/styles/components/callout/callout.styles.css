@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Callout
+   ========================================================================== */
+
+/* A generic status / advisory block: an icon + optional title + body, tinted
+   by a tone (info / success / warning / error). Class-based, so consumers
+   opt in with `.callout`. Renders well on <div> / <aside> / <section>.
+
+   Markup contract:
+
+     <div class="callout callout--warning" role="status">
+       <span class="callout__icon" aria-hidden="true">…svg…</span>
+       <div class="callout__content">
+         <p class="callout__title">Safari only.</p>
+         <p class="callout__body">…message…</p>
+       </div>
+     </div>
+
+   The icon is component-owned but consumer-supplied (the design system styles
+   the slot; the framework wrapper renders its own glyph so css-starter stays
+   free of any icon-library dependency). Token-driven via `--callout-*`. */
+
+:where(.callout) {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--callout-gap);
+  margin-block: var(--sp-4);
+  padding: var(--callout-padding-block) var(--callout-padding-inline);
+  border: var(--callout-border-width) solid var(--callout-border);
+  border-radius: var(--callout-radius);
+  background-color: var(--callout-bg);
+  color: var(--callout-color);
+
+  /* Icon sits in its own column, vertically aligned with the title. */
+  & > :where(.callout__icon) {
+    flex: none;
+    display: inline-flex;
+    font-size: var(--callout-icon-size);
+    line-height: 1;
+    color: var(--callout-accent);
+
+    & > :where(svg) {
+      display: block;
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  /* Text column (title + body). */
+  & > :where(.callout__content) {
+    min-width: 0; /* allow wrapping in flex */
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+
+  & > :where(.callout__content) > :where(.callout__title) {
+    margin: 0;
+    font-weight: var(--callout-title-font-weight);
+    color: var(--callout-title-color);
+  }
+
+  & > :where(.callout__content) > :where(.callout__body) {
+    margin: 0;
+    color: var(--c-text-secondary);
+  }
+
+  /* If a bare `.callout__title` / `.callout__body` is used without the
+     `.callout__content` wrapper, keep them laid out as a column anyway. */
+  & > :where(.callout__title, .callout__body) {
+    margin: 0;
+  }
+}
