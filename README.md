@@ -187,6 +187,9 @@ them without specificity battles.
 
 ## Storybook
 
+The deployed Storybook is available at
+[https://jordilopez.github.io/css-starter/](https://jordilopez.github.io/css-starter/).
+
 Preview all styled native elements in a component explorer:
 
 ```bash
