@@ -1,7 +1,7 @@
 # Typography
 
 Styles headings (`h1`–`h6`), paragraphs, inline text (`strong`, `em`,
-`small`), lists, and horizontal rules. There are no `--type-*`
+`small`), and horizontal rules. There are no `--type-*`
 tokens of its own — the feature styles the native elements directly with the
 shared type, colour, and spacing scales.
 
