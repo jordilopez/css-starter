@@ -55,6 +55,7 @@
 @import "./basics/body/body.styles.css" layer(css-starter.base);
 @import "./basics/typography/typography.styles.css" layer(css-starter.base);
 @import "./basics/list/list.styles.css" layer(css-starter.base);
+@import "./basics/hr/hr.styles.css" layer(css-starter.base);
 @import "./basics/blockquote/blockquote.styles.css" layer(css-starter.base);
 @import "./basics/link/link.styles.css" layer(css-starter.base);
 @import "./basics/button/button.styles.css" layer(css-starter.base);
