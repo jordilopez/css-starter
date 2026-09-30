@@ -3,7 +3,7 @@ import readme from './README.md?raw'
 import { componentDocs } from '../../../stories/readmeDocs'
 
 /**
- * Typography — headings, paragraphs, inline text, blockquotes, lists, and rules.
+ * Typography — headings, paragraphs, inline text, lists, and rules.
  * All sizes reference `--fs-*` and `--lh-*` tokens.
  */
 const meta: Meta = {
@@ -40,14 +40,6 @@ export const InlineText: StoryObj = {
     `<p>This text contains <strong>bold text</strong> (using &lt;strong&gt;, weight <strong>--fw-semibold</strong>),
        <em>italicised text</em> (using &lt;em&gt;), and <small>small text</small>
        (using &lt;small&gt;, coloured with <strong>--c-text-muted</strong>).</p>`,
-}
-
-export const Blockquote: StoryObj = {
-  render: () =>
-    `<blockquote>
-       <p>This is a blockquote. It has a left border coloured with --c-primary,
-          left padding via --sp-4, and secondary text colour.</p>
-     </blockquote>`,
 }
 
 export const Lists: StoryObj = {

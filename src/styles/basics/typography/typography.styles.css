@@ -53,15 +53,6 @@
   color: var(--c-text-muted);
 }
 
-/* ----- blockquote ----- */
-
-:where(blockquote) {
-  margin: var(--sp-4) 0;
-  padding-left: var(--sp-4);
-  border-left: 3px solid var(--c-primary);
-  color: var(--c-text-secondary);
-}
-
 /* ----- lists ----- */
 
 :where(ul, ol) {
