@@ -1,0 +1,20 @@
+/* ==========================================================================
+   List — the native <ul>, <ol>, and <li> elements
+   ========================================================================== */
+
+:where(ul) {
+  list-style: disc;
+}
+
+:where(ol) {
+  list-style: decimal;
+}
+
+:where(ul, ol) {
+  padding-left: var(--sp-5);
+  margin-bottom: var(--sp-4);
+}
+
+:where(li) {
+  margin-bottom: var(--sp-1);
+}

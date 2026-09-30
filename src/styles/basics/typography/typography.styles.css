@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Typography — headings, paragraphs, inline text, quotes, lists, rules
+   Typography — headings, paragraphs, inline text, rules
    ========================================================================== */
 
 /* ----- headings ----- */
@@ -51,17 +51,6 @@
 :where(small) {
   font-size: 0.85em;
   color: var(--c-text-muted);
-}
-
-/* ----- lists ----- */
-
-:where(ul, ol) {
-  padding-left: var(--sp-5);
-  margin-bottom: var(--sp-4);
-}
-
-:where(li) {
-  margin-bottom: var(--sp-1);
 }
 
 /* ----- horizontal rule ----- */
