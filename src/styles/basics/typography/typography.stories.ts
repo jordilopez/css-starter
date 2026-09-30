@@ -3,7 +3,7 @@ import readme from './README.md?raw'
 import { componentDocs } from '../../../stories/readmeDocs'
 
 /**
- * Typography — headings, paragraphs, inline text, and rules.
+ * Typography — headings, paragraphs, and inline text.
  * All sizes reference `--fs-*` and `--lh-*` tokens.
  */
 const meta: Meta = {
@@ -40,11 +40,4 @@ export const InlineText: StoryObj = {
     `<p>This text contains <strong>bold text</strong> (using &lt;strong&gt;, weight <strong>--fw-semibold</strong>),
        <em>italicised text</em> (using &lt;em&gt;), and <small>small text</small>
        (using &lt;small&gt;, coloured with <strong>--c-text-muted</strong>).</p>`,
-}
-
-export const HorizontalRule: StoryObj = {
-  render: () =>
-    `<p>Content before the rule</p>
-     <hr>
-     <p>Content after the rule</p>`,
 }
