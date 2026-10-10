@@ -14,5 +14,5 @@ directly:
 | Token used            | Purpose                |
 | --------------------- | ---------------------- |
 | `--sp-4`              | Vertical margin, left padding |
-| `--c-primary`         | Left border accent colour |
-| `--c-text-secondary`  | Quote text colour      |
+| `--brand-border-strong`         | Left border accent colour |
+| `--text-medium`  | Quote text colour      |

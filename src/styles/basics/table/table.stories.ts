@@ -5,8 +5,8 @@ import { componentDocs } from '../../../stories/readmeDocs'
 /**
  * Tables — &lt;table&gt;, &lt;th&gt;, and &lt;td&gt; styled via base/table.css.
  *
- * Header cells use `--fw-semibold` weight and `--c-bg-subtle` background.
- * Borders use `--c-border-light`.
+ * Header cells use `--fw-semibold` weight and `--background-weak` background.
+ * Borders use `--border-weak`.
  */
 const meta: Meta = {
   title: 'Basics/Table',

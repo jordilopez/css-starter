@@ -5,7 +5,7 @@ import { componentDocs } from '../../../stories/readmeDocs'
 /**
  * Links — anchor elements styled via base/link.css.
  *
- * Colours reference `--c-primary`, `--c-primary-hover`, and `--c-primary-active` tokens.
+ * Colours reference `--brand-text-strong`, `--brand-text-strong-hover`, and `--brand-text-strong-active` tokens.
  * Transition uses `--transition-fast`.
  */
 const meta: Meta = {
@@ -21,7 +21,7 @@ export default meta
 export const Default: StoryObj = {
   render: () =>
     `<p>This is a paragraph with <a href="#">a sample link</a> inside it.
-       Links use <strong>--c-primary</strong> colour, underline decoration,
+       Links use <strong>--brand-text-strong</strong> colour, underline decoration,
        and a <strong>2px text-underline-offset</strong>.</p>`,
 }
 

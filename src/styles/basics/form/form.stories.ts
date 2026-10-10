@@ -6,7 +6,7 @@ import { componentDocs } from '../../../stories/readmeDocs'
  * Forms — labels, inputs, textareas, selects, checkboxes, and radios
  * styled via base/form.css.
  *
- * Inputs reference `--c-border`, `--c-primary`, and `--c-focus-ring` tokens.
+ * Inputs reference `--border`, `--brand-border-strong`, and `--focus-ring` tokens.
  * Focus uses a 3px box-shadow ring for a visible, accessible focus indicator.
  *
  * Checkboxes and radios are custom-styled with `appearance: none` and CSS

@@ -18,22 +18,22 @@
   gap: var(--sp-3);
   margin-bottom: var(--sp-6);
   padding: var(--sp-3) var(--sp-4);
-  background: var(--c-bg-subtle);
+  background: var(--background-weak);
   border-radius: var(--radius-md);
-  border: 1px solid var(--c-border);
+  border: 1px solid var(--border);
   font-size: var(--fs-sm);
 }
 
 .bp-demo__current {
   font-weight: var(--fw-bold);
   font-family: var(--ff-mono);
-  color: var(--c-primary);
+  color: var(--brand-text-strong);
 }
 
 .bp-demo__width {
   margin-left: auto;
   font-family: var(--ff-mono);
-  color: var(--c-text-secondary);
+  color: var(--text-medium);
   font-size: var(--fs-xs);
 }
 

@@ -9,14 +9,14 @@
 
 :where(code) {
   padding: 0.15em 0.3em;
-  background-color: var(--c-bg-subtle);
+  background-color: var(--background-weak);
   border-radius: var(--radius-sm);
 }
 
 :where(pre) {
   padding: var(--sp-4);
   overflow-x: auto;
-  background-color: var(--c-bg-subtle);
+  background-color: var(--background-weak);
   border-radius: var(--radius-md);
   line-height: var(--lh-tight);
 }
@@ -29,8 +29,8 @@
 :where(kbd) {
   padding: 0.1em 0.35em;
   font-size: 0.85em;
-  background-color: var(--c-bg-muted);
-  border: 1px solid var(--c-border);
+  background-color: var(--background-medium);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  box-shadow: 0 1px 0 var(--c-border);
+  box-shadow: 0 1px 0 var(--border);
 }

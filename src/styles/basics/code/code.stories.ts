@@ -21,7 +21,7 @@ export default meta
 export const InlineCode: StoryObj = {
   render: () =>
     `<p>To install the package, run <code>npm install</code> in your terminal.
-       Inline code uses <code>--c-bg-subtle</code> background and
+       Inline code uses <code>--background-weak</code> background and
        <code>--radius-sm</code> border-radius.</p>`,
 }
 
@@ -40,6 +40,6 @@ export const Keyboard: StoryObj = {
   render: () =>
     `<p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy, or
        <kbd>Ctrl</kbd> + <kbd>V</kbd> to paste.
-       The &lt;kbd&gt; element uses <code>--c-bg-muted</code> background,
+       The &lt;kbd&gt; element uses <code>--background-medium</code> background,
        a border, and a subtle box-shadow.</p>`,
 }

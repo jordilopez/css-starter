@@ -4,10 +4,10 @@
 
 :root {
   /* Base (default tone is `info`) */
-  --callout-accent: var(--c-info);
-  --callout-border: var(--c-info);
-  --callout-color: var(--c-text);
-  --callout-bg: color-mix(in srgb, var(--callout-accent) 8%, var(--c-bg));
+  --callout-accent: var(--info-icon);
+  --callout-border: var(--info-border);
+  --callout-color: var(--text);
+  --callout-bg: color-mix(in srgb, var(--callout-accent) 8%, var(--background));
 
   /* Layout */
   --callout-gap: var(--sp-3);
@@ -21,28 +21,28 @@
 
   /* Title */
   --callout-title-font-weight: var(--fw-bold, 700);
-  --callout-title-color: var(--c-text);
+  --callout-title-color: var(--text);
 }
 
 /* Tone variants — override the accent + border so the bg tint and text
    colour (which reference --callout-accent) follow automatically. */
 
 :where(.callout--info) {
-  --callout-accent: var(--c-info);
-  --callout-border: var(--c-info);
+  --callout-accent: var(--info-icon);
+  --callout-border: var(--info-border);
 }
 
 :where(.callout--success) {
-  --callout-accent: var(--c-success);
-  --callout-border: var(--c-success);
+  --callout-accent: var(--success-icon);
+  --callout-border: var(--success-border);
 }
 
 :where(.callout--warning) {
-  --callout-accent: var(--c-warning);
-  --callout-border: var(--c-warning);
+  --callout-accent: var(--warning-icon);
+  --callout-border: var(--warning-border);
 }
 
 :where(.callout--error) {
-  --callout-accent: var(--c-error);
-  --callout-border: var(--c-error);
+  --callout-accent: var(--danger-icon);
+  --callout-border: var(--danger-border);
 }

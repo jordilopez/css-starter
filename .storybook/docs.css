@@ -18,30 +18,30 @@
 @media (prefers-color-scheme: dark) {
   body .sbdocs,
   body .sbdocs-preview {
-    background-color: var(--c-bg);
+    background-color: var(--background);
   }
 
   body .sbdocs {
-    color: var(--c-text);
+    color: var(--text);
   }
 
   body .sbdocs :is(h1, h2, h3, h4, h5, h6, p, li, ul, ol, blockquote, caption, figcaption) {
-    color: var(--c-text);
+    color: var(--text);
   }
 
   body .sbdocs :is(h2, h3, h4, h5, h6) {
-    color: var(--c-text-secondary);
+    color: var(--text-medium);
   }
 
   body .sbdocs a {
-    color: var(--c-primary);
+    color: var(--brand-text-strong);
   }
 
   /* Use a different surface for inline code / code blocks than the table
      stripe below, so chips stay visible on striped rows. */
   body .sbdocs :is(code, pre) {
-    color: var(--c-text);
-    background-color: var(--c-bg-muted);
+    color: var(--text);
+    background-color: var(--background-medium);
   }
 
   /*
@@ -53,11 +53,11 @@
    * (`.sb-argstableBlock`) keeps its built-in theming.
    */
   body .sbdocs table:not(.sb-argstableBlock, .sb-argstableBlock *) :is(td, th) {
-    color: var(--c-text);
-    border-color: var(--c-border);
+    color: var(--text);
+    border-color: var(--border);
   }
 
   body .sbdocs table:not(.sb-argstableBlock) tr:nth-of-type(2n) {
-    background-color: var(--c-bg-subtle);
+    background-color: var(--background-weak);
   }
 }

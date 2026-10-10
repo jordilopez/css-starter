@@ -19,7 +19,7 @@ export default meta
 export const Default: StoryObj = {
   render: () =>
     `<blockquote>
-       <p>This is a blockquote. It has a left border coloured with --c-primary,
+       <p>This is a blockquote. It has a left border coloured with --brand-border-strong,
           left padding via --sp-4, and secondary text colour.</p>
      </blockquote>`,
 }
@@ -27,8 +27,8 @@ export const Default: StoryObj = {
 export const MultiParagraph: StoryObj = {
   render: () =>
     `<blockquote>
-       <p>The blockquote uses --c-primary for the left border accent and
-          --c-text-secondary for the text colour, keeping it visually distinct
+       <p>The blockquote uses --brand-border-strong for the left border accent and
+          --text-medium for the text colour, keeping it visually distinct
           from regular paragraphs.</p>
        <p>Multiple paragraphs inside a blockquote render naturally.</p>
      </blockquote>`,

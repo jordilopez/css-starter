@@ -62,7 +62,7 @@
 
   & > :where(.callout__content) > :where(.callout__body) {
     margin: 0;
-    color: var(--c-text-secondary);
+    color: var(--text-medium);
   }
 
   /* If a bare `.callout__title` / `.callout__body` is used without the

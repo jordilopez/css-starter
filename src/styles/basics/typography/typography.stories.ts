@@ -29,8 +29,8 @@ export const Headings: StoryObj = {
 export const Paragraphs: StoryObj = {
   render: () =>
     `<p>This is a standard paragraph. It uses <strong>--fs-base</strong> for size,
-       <strong>--c-text</strong> for colour, and <strong>--lh-base</strong> for line-height.
-       The colour is set to <strong>--c-text-secondary</strong> to distinguish it from headings.</p>
+       <strong>--text</strong> for colour, and <strong>--lh-base</strong> for line-height.
+       The colour is set to <strong>--text-medium</strong> to distinguish it from headings.</p>
      <p>This is a second paragraph. When a paragraph is the last child of its parent,
        its bottom margin is removed so it doesn't add extra space at the end of the container.</p>`,
 }
@@ -39,5 +39,5 @@ export const InlineText: StoryObj = {
   render: () =>
     `<p>This text contains <strong>bold text</strong> (using &lt;strong&gt;, weight <strong>--fw-semibold</strong>),
        <em>italicised text</em> (using &lt;em&gt;), and <small>small text</small>
-       (using &lt;small&gt;, coloured with <strong>--c-text-muted</strong>).</p>`,
+       (using &lt;small&gt;, coloured with <strong>--text-weak</strong>).</p>`,
 }

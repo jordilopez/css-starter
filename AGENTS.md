@@ -119,7 +119,7 @@ Rules:
   live once in `src/styles/tokens/`. Only tokens owned by a single feature
   go in that feature's folder.
 - **Feature styles may reference shared tokens directly** — CSS custom
-  properties are global, so `form.styles.css` using `--c-*`/`--sp-*` is
+  properties are global, so `form.styles.css` using `--text`/`--sp-*` is
   expected; no duplication or re-export needed.
 - **Global overview stories stay in `src/stories/`** — cross-feature pages
   (kitchen-sink, token reference) are not owned by any single feature.
@@ -160,8 +160,8 @@ Key implications:
   declarations, regardless of specificity. Any rule a consumer writes
   outside a layer wins — this is intentional and makes the design system
   trivially overrideable without specificity wars.
-- **Consumer `:root` token overrides remain valid**: `:root { --c-primary: … }`
-  in an unlayered consumer stylesheet overrides `--c-*` values declared in
+- **Consumer `:root` token overrides remain valid**: `:root { --brand-text-strong: … }`
+  in an unlayered consumer stylesheet overrides colour token values declared in
   `css-starter.tokens`.
 - **`reset-overrides.css` stays in its own layer** (`css-starter.reset-overrides`),
   separate from `css-starter.reset`, so it can override the reset without
@@ -233,7 +233,7 @@ value used in feature styles references a token — never hardcoded values.
 
 Naming patterns:
 
-- `--c-*` — colours (e.g. `--c-primary`, `--c-text`, `--c-bg`)
+- Colour tokens — `<sentiment>-<usage>-<prominence>[-<interaction>]`, with `default` omitted (see docs/colour-token-naming.md)
 - `--ff-*` — font families (`--ff-sans`, `--ff-mono`)
 - `--fs-*` — font sizes (`--fs-base`, `--fs-xl`)
 - `--fw-*` — font weights (`--fw-normal`, `--fw-bold`)
@@ -295,7 +295,7 @@ of `src/styles/index.css` in `.storybook/preview.ts`.
 
 /* Override any token: */
 :root {
-  --c-primary: #your-color;
+  --brand-text-strong: #your-color;
   --ff-sans: "Your Font", sans-serif;
   --sp-4: 1.25rem;
 }
@@ -313,7 +313,7 @@ Cherry-picking individual files is also possible via deep imports
 
 | Token prefix    | Category      | Examples                                    |
 | --------------- | ------------- | ------------------------------------------- |
-| `--c-`          | Colour        | `--c-primary`, `--c-bg`                     |
+| `--text`, `--background`, `--brand-*` | Colour (usage-scoped) | `--text-weak`, `--brand-text-strong-hover`                   |
 | `--ff-`         | Font family   | `--ff-sans`, `--ff-mono`                    |
 | `--fs-`         | Font size     | `--fs-base`, `--fs-xl`                      |
 | `--fw-`         | Font weight   | `--fw-normal`, `--fw-bold`                  |
