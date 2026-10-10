@@ -5,6 +5,6 @@
 :where(hr) {
   height: 1px;
   border: none;
-  background-color: var(--c-border);
+  background-color: var(--border);
   margin: var(--sp-6) 0;
 }

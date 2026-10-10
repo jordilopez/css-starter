@@ -13,21 +13,21 @@
   --btn-line-height: var(--lh-tight);
 
   /* Colours — neutral default */
-  --btn-bg: var(--c-bg-subtle);
-  --btn-bg-hover: var(--c-bg-muted);
-  --btn-bg-active: var(--c-border-light);
-  --btn-border: var(--c-border);
-  --btn-border-hover: var(--c-text-muted);
-  --btn-border-active: var(--c-text-secondary);
-  --btn-color: var(--c-text);
-  --btn-color-hover: var(--c-text);
-  --btn-color-active: var(--c-text);
+  --btn-bg: var(--background-weak);
+  --btn-bg-hover: var(--background-medium);
+  --btn-bg-active: var(--border-weak);
+  --btn-border: var(--border);
+  --btn-border-hover: var(--text-weak);
+  --btn-border-active: var(--text-medium);
+  --btn-color: var(--text);
+  --btn-color-hover: var(--text);
+  --btn-color-active: var(--text);
 
   /* Disabled */
   --btn-disabled-opacity: var(--opacity-disabled);
 
   /* Focus */
-  --btn-focus-ring: var(--c-focus-ring);
+  --btn-focus-ring: var(--focus-ring);
 
   /* Transition */
   --btn-transition: var(--transition-base);

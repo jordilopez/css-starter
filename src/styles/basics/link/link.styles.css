@@ -3,18 +3,18 @@
    ========================================================================== */
 
 :where(a) {
-  color: var(--c-primary);
+  color: var(--brand-text-strong);
   text-decoration: underline;
   text-underline-offset: 2px;
   transition: color var(--transition-fast);
 }
 
 :where(a:hover) {
-  color: var(--c-primary-hover);
+  color: var(--brand-text-strong-hover);
 }
 
 :where(a:active) {
-  color: var(--c-primary-active);
+  color: var(--brand-text-strong-active);
 }
 
 /* Disabled links — keyed off aria-disabled="true" so consumers emit the
@@ -23,7 +23,7 @@
 :where(a)[aria-disabled='true'],
 :where(a)[aria-disabled='true']:hover,
 :where(a)[aria-disabled='true']:active {
-  color: var(--c-text-muted);
+  color: var(--text-weak);
   text-decoration: none;
   cursor: not-allowed;
   opacity: var(--opacity-disabled);

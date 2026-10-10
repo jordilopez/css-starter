@@ -14,7 +14,9 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint:css": "node scripts/lint-css.mjs",
-    "check:tokens": "node scripts/check-token-docs.mjs"
+    "check:tokens": "node scripts/check-token-docs.mjs",
+    "check:token-names": "node scripts/check-token-names.mjs",
+    "check": "npm run lint:css && npm run check:tokens && npm run check:token-names"
   },
   "lint-staged": {
     "*.{ts,css,json,md}": "npx prettier --write"

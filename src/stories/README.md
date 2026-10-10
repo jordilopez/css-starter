@@ -5,32 +5,43 @@ base styles references a token — no hardcoded values.
 
 Toggle dark/light mode in the toolbar to see tokens adapt.
 
-## Color (`--c-*`)
+## Color
+
+Colour tokens are composed as `<sentiment>-<usage>-<prominence>[-<interaction>]`
+with `default` omitted from every segment, so `--text-weak` is the weak
+prominence of the text usage and `--brand-text-strong-hover` is brand text,
+strong prominence, hovered. See `docs/colour-token-naming.md`.
 
 All colour tokens adapt in dark mode via `@media (prefers-color-scheme: dark)`.
 No `data-theme` attribute needed — the browser honours the user's OS setting
 automatically.
 
-| Token                  | Purpose                      | Light default          |
-| ---------------------- | ---------------------------- | ---------------------- |
-| `--c-primary`          | Brand colour                 | `#42b883`              |
-| `--c-primary-hover`    | Hover state                  | `#38a070`              |
-| `--c-primary-active`   | Active state                 | `#2e8c5e`              |
-| `--c-primary-subtle`   | Subtle brand bg              | `rgba(66,184,131,0.08)`|
-| `--c-text`             | Body text                    | `#1a1a1a`              |
-| `--c-text-secondary`   | Muted text                   | `#555`                 |
-| `--c-text-muted`       | Even quieter                 | `#888`                 |
-| `--c-text-inverse`     | On-dark text                 | `#fff`                 |
-| `--c-bg`               | Page background              | `#fff`                 |
-| `--c-bg-subtle`        | Subtle bg                    | `#f8f9fa`              |
-| `--c-bg-muted`         | Muted bg                     | `#e9ecef`              |
-| `--c-border`           | Borders                      | `#dee2e6`              |
-| `--c-border-light`     | Lighter borders              | `#e9ecef`              |
-| `--c-focus-ring`       | Focus indicator              | `rgba(66,184,131,0.35)`|
-| `--c-info`             | Informational status         | `#2563eb`              |
-| `--c-success`          | Success / positive status    | `#15803d`              |
-| `--c-warning`          | Warning / cautionary status  | `#b45309`              |
-| `--c-error`            | Error / danger status        | `#dc2626`              |
+| Token                        | Purpose                       | Light default           |
+| ---------------------------- | ----------------------------- | ----------------------- |
+| `--text`                     | Body text                     | `#1a1a1a`               |
+| `--text-medium`              | Secondary text                | `#555`                  |
+| `--text-weak`                | Muted text                    | `#888`                  |
+| `--text-inverse`             | On-dark text                  | `#fff`                  |
+| `--background`               | Page background               | `#fff`                  |
+| `--background-weak`          | Subtle background             | `#f8f9fa`               |
+| `--background-medium`        | Muted background              | `#e9ecef`               |
+| `--border`                   | Borders                       | `#dee2e6`               |
+| `--border-weak`              | Lighter borders               | `#e9ecef`               |
+| `--brand-text-strong`        | Brand text / link             | `#42b883`               |
+| `--brand-text-strong-hover`  | Brand text, hover             | `#38a070`               |
+| `--brand-text-strong-active` | Brand text, active            | `#2e8c5e`               |
+| `--brand-border-strong`      | Brand border                  | `#42b883`               |
+| `--brand-background-strong`  | Brand fill (checked controls) | `#42b883`               |
+| `--brand-background-weak`    | Subtle brand background       | `rgba(66,184,131,0.08)` |
+| `--info-icon`                | Info icon / accent            | `#2563eb`               |
+| `--info-border`              | Info border                   | `#2563eb`               |
+| `--success-icon`             | Success icon / accent         | `#15803d`               |
+| `--success-border`           | Success border                | `#15803d`               |
+| `--warning-icon`             | Warning icon / accent         | `#b45309`               |
+| `--warning-border`           | Warning border                | `#b45309`               |
+| `--danger-icon`              | Danger icon / accent          | `#dc2626`               |
+| `--danger-border`            | Danger border                 | `#dc2626`               |
+| `--focus-ring`               | Focus indicator               | `rgba(66,184,131,0.35)` |
 
 ## Typography (`--ff-*`, `--fs-*`, `--fw-*`, `--lh-*`)
 

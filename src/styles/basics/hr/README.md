@@ -13,7 +13,7 @@ directly:
 
 | Token used      | Purpose                       |
 | --------------- | ----------------------------- |
-| `--c-border`    | Rule background colour        |
+| `--border`    | Rule background colour        |
 | `--sp-6`        | Vertical margin above/below   |
 
 > The 1px `height` and `border: none` are fixed values (not tokens): the rule

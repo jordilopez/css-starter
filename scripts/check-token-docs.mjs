@@ -1,7 +1,7 @@
 /**
  * Guardrail: keeps the Tokens README colour table in sync with the CSS.
  *
- * `src/stories/README.md` lists each `--c-*` token with its light-mode
+ * `src/stories/README.md` lists each colour token with its light-mode
  * default. Those values are hand-written duplicates of the declarations in
  * `src/styles/tokens/color.css`, so they can silently drift. This script
  * parses both and fails when a documented value no longer matches the CSS,

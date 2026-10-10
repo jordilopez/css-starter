@@ -14,24 +14,24 @@
   --picker-font-weight: var(--fw-medium);
 
   /* Colours — idle */
-  --picker-bg: var(--c-bg);
-  --picker-border: var(--c-border);
-  --picker-color: var(--c-text-secondary);
+  --picker-bg: var(--background);
+  --picker-border: var(--border);
+  --picker-color: var(--text-medium);
 
   /* Colours — hover */
-  --picker-border-hover: var(--c-primary);
-  --picker-color-hover: var(--c-text);
+  --picker-border-hover: var(--brand-border-strong);
+  --picker-color-hover: var(--text);
 
   /* Colours — checked */
-  --picker-bg-checked: var(--c-primary);
-  --picker-border-checked: var(--c-primary);
-  --picker-color-checked: var(--c-text-inverse);
+  --picker-bg-checked: var(--brand-background-strong);
+  --picker-border-checked: var(--brand-border-strong);
+  --picker-color-checked: var(--text-inverse);
 
   /* Disabled */
   --picker-disabled-opacity: var(--opacity-disabled);
 
   /* Focus */
-  --picker-focus-ring: var(--c-focus-ring);
+  --picker-focus-ring: var(--focus-ring);
 
   /* Transition */
   --picker-transition: var(--transition-fast);

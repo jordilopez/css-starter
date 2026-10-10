@@ -124,10 +124,10 @@ Override any token in your own `:root`:
 
 ```css
 :root {
-  --c-primary: #6366f1;
-  --c-primary-hover: #4f46e5;
+  --brand-text-strong: #6366f1;
+  --brand-text-strong-hover: #4f46e5;
   --ff-sans: "Inter", system-ui, sans-serif;
-  --btn-bg: var(--c-primary);
+  --btn-bg: var(--brand-background-strong);
   --btn-color: #fff;
   --btn-radius: 9999px;
 }
@@ -153,8 +153,8 @@ dark/light and the design system follows suit.
 ```css
 @media (prefers-color-scheme: dark) {
   :root {
-    --c-primary: #818cf8;
-    --c-bg: #0f172a;
+    --brand-text-strong: #818cf8;
+    --background: #0f172a;
   }
 }
 ```
@@ -167,18 +167,18 @@ primary / secondary / ghost variants, add them in your own project:
 ```css
 /* Your project's component styles */
 .btn-primary {
-  --btn-bg: var(--c-primary);
-  --btn-bg-hover: var(--c-primary-hover);
-  --btn-bg-active: var(--c-primary-active);
-  --btn-border: var(--c-primary);
-  --btn-color: var(--c-text-inverse);
+  --btn-bg: var(--brand-background-strong);
+  --btn-bg-hover: var(--brand-text-strong-hover);
+  --btn-bg-active: var(--brand-text-strong-active);
+  --btn-border: var(--brand-border-strong);
+  --btn-color: var(--text-inverse);
 }
 
 .btn-ghost {
   --btn-bg: transparent;
-  --btn-bg-hover: var(--c-primary-subtle);
+  --btn-bg-hover: var(--brand-background-weak);
   --btn-border: transparent;
-  --btn-color: var(--c-primary);
+  --btn-color: var(--brand-text-strong);
 }
 ```
 

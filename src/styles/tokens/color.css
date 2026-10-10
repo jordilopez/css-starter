@@ -1,73 +1,96 @@
 /* ==========================================================================
-   Color tokens
-   ========================================================================== */
+   Color tokens — Asana-style 4-axis naming
+   ==========================================================================
 
-/*
- * Dark mode is driven entirely by the user's system preference via
- * `@media (prefers-color-scheme: dark)`.
- *
- * - Light values are the default :root — no special selector needed.
- * - Dark values live under a single @media rule — no duplication.
- *
- * No data-theme attribute is needed. The browser handles it automatically.
+   Name shape:  <sentiment>-<usage>-<prominence>[-<interaction>]
+   `default` is omitted from every segment, so names only carry the
+   non-default parts (e.g. `--text`, `--text-weak`, `--text-hover`).
+
+   - sentiment : default | success | warning | danger | info | brand | ...
+   - usage     : background | text | icon | border
+   - prominence: default | weak | medium | strong | inverse
+   - interaction: default | hover | active | disabled
+
+   See docs/colour-token-naming.md for the convention and mapping.
+
+   Dark mode is driven entirely by the user's system preference via
+   `@media (prefers-color-scheme: dark)`.
  */
 
 :root {
-  /* Brand */
-  --c-primary: #42b883;
-  --c-primary-hover: #38a070;
-  --c-primary-active: #2e8c5e;
-  --c-primary-subtle: rgba(66, 184, 131, 0.08);
+  /* Neutral — text */
+  --text: #1a1a1a;
+  --text-medium: #555;
+  --text-weak: #888;
+  --text-inverse: #fff;
 
-  /* Text */
-  --c-text: #1a1a1a;
-  --c-text-secondary: #555;
-  --c-text-muted: #888;
-  --c-text-inverse: #fff;
+  /* Neutral — background */
+  --background: #fff;
+  --background-weak: #f8f9fa;
+  --background-medium: #e9ecef;
 
-  /* Background */
-  --c-bg: #fff;
-  --c-bg-subtle: #f8f9fa;
-  --c-bg-muted: #e9ecef;
+  /* Neutral — border */
+  --border: #dee2e6;
+  --border-weak: #e9ecef;
 
-  /* Border */
-  --c-border: #dee2e6;
-  --c-border-light: #e9ecef;
+  /* Brand (extension sentiment) — usage-scoped */
+  --brand-text-strong: #42b883;
+  --brand-text-strong-hover: #38a070;
+  --brand-text-strong-active: #2e8c5e;
+  --brand-border-strong: #42b883;
+  --brand-background-strong: #42b883;
+  --brand-background-weak: rgba(66, 184, 131, 0.08);
 
-  /* Interactive */
-  --c-focus-ring: rgba(66, 184, 131, 0.35);
+  /* Status — icon + border usages */
+  --info-icon: #2563eb;
+  --info-border: #2563eb;
+  --success-icon: #15803d;
+  --success-border: #15803d;
+  --warning-icon: #b45309;
+  --warning-border: #b45309;
+  --danger-icon: #dc2626;
+  --danger-border: #dc2626;
 
-  /* State / Status */
-  --c-info: #2563eb;
-  --c-success: #15803d;
-  --c-warning: #b45309;
-  --c-error: #dc2626;
+  /* Focus — interaction-level escape hatch (not a usage) */
+  --focus-ring: rgba(66, 184, 131, 0.35);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --c-primary: #5cdba0;
-    --c-primary-hover: #46c98a;
-    --c-primary-active: #3bb37a;
-    --c-primary-subtle: rgba(92, 219, 160, 0.12);
+    /* Neutral — text */
+    --text: #e4e4e4;
+    --text-medium: #a0a0a0;
+    --text-weak: #6b6b6b;
+    --text-inverse: #1a1a1a;
 
-    --c-text: #e4e4e4;
-    --c-text-secondary: #a0a0a0;
-    --c-text-muted: #6b6b6b;
-    --c-text-inverse: #1a1a1a;
+    /* Neutral — background */
+    --background: #1a1b1e;
+    --background-weak: #25262a;
+    --background-medium: #2e2f34;
 
-    --c-bg: #1a1b1e;
-    --c-bg-subtle: #25262a;
-    --c-bg-muted: #2e2f34;
+    /* Neutral — border */
+    --border: #3a3b40;
+    --border-weak: #333438;
 
-    --c-border: #3a3b40;
-    --c-border-light: #333438;
+    /* Brand */
+    --brand-text-strong: #5cdba0;
+    --brand-text-strong-hover: #46c98a;
+    --brand-text-strong-active: #3bb37a;
+    --brand-border-strong: #5cdba0;
+    --brand-background-strong: #5cdba0;
+    --brand-background-weak: rgba(92, 219, 160, 0.12);
 
-    --c-focus-ring: rgba(92, 219, 160, 0.4);
+    /* Status */
+    --info-icon: #60a5fa;
+    --info-border: #60a5fa;
+    --success-icon: #4ade80;
+    --success-border: #4ade80;
+    --warning-icon: #fbbf24;
+    --warning-border: #fbbf24;
+    --danger-icon: #f87171;
+    --danger-border: #f87171;
 
-    --c-info: #60a5fa;
-    --c-success: #4ade80;
-    --c-warning: #fbbf24;
-    --c-error: #f87171;
+    /* Focus */
+    --focus-ring: rgba(92, 219, 160, 0.4);
   }
 }

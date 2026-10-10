@@ -9,10 +9,10 @@ caption row. Token-driven via `--card-*`.
 
 | Token                      | Default                  | Description        |
 | -------------------------- | ------------------------ | ------------------ |
-| `--card-bg`                | `var(--c-bg)`            | Surface background |
-| `--card-border`            | `var(--c-border)`        | Border colour      |
+| `--card-bg`                | `var(--background)`            | Surface background |
+| `--card-border`            | `var(--border)`        | Border colour      |
 | `--card-radius`            | `var(--radius-lg)`       | Corner radius      |
 | `--card-shadow`            | `var(--shadow-sm)`       | Box shadow         |
-| `--card-caption-color`     | `var(--c-text-secondary)`| Caption text colour|
+| `--card-caption-color`     | `var(--text-medium)`| Caption text colour|
 | `--card-caption-font-size` | `var(--fs-sm)`           | Caption font size  |
 | `--card-caption-padding`   | `var(--sp-2) var(--sp-3)`| Caption padding    |
