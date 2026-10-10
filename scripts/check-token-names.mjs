@@ -30,12 +30,12 @@ const INTERACTIONS = ['hover', 'active', 'disabled'];
 const EXCEPTIONS = new Set(['focus-ring']);
 
 /** Every name the grammar can produce. */
-const valid = new Set();
+const validNames = new Set();
 for (const sentiment of ['', ...SENTIMENTS]) {
   for (const usage of USAGES) {
     for (const prominence of ['', ...PROMINENCES]) {
       for (const interaction of ['', ...INTERACTIONS]) {
-        valid.add([sentiment, usage, prominence, interaction].filter(Boolean).join('-'));
+        validNames.add([sentiment, usage, prominence, interaction].filter(Boolean).join('-'));
       }
     }
   }
@@ -45,11 +45,9 @@ const css = readFileSync(COLOR_CSS, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
 
 /** Extract the token names declared in each `:root` block, in order. */
 function rootBlocks(source) {
-  return [...source.matchAll(/:root\s*\{([\s\S]*?)\}/g)].map(([, body]) => {
-    const tokens = [];
-    for (const [, name] of body.matchAll(/(--[\w-]+)\s*:/g)) tokens.push(name);
-    return tokens;
-  });
+  return [...source.matchAll(/:root\s*\{([\s\S]*?)\}/g)].map(([, body]) =>
+    [...body.matchAll(/(--[\w-]+)\s*:/g)].map(([, name]) => name),
+  );
 }
 
 const blocks = rootBlocks(css);
@@ -63,7 +61,7 @@ const errors = [];
 
 for (const token of light) {
   const name = token.slice(2);
-  if (!valid.has(name) && !EXCEPTIONS.has(name)) {
+  if (!validNames.has(name) && !EXCEPTIONS.has(name)) {
     errors.push(
       `off-convention: ${token} — expected <sentiment>-<usage>-<prominence>[-<interaction>] with default omitted`,
     );
