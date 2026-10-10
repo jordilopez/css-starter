@@ -64,15 +64,28 @@ exception is declared in `scripts/check-token-names.mjs`.
 
 ## Role of the `usage` axis
 
-`usage` describes the colour's **semantic role**, not necessarily the CSS
-property it is applied to. Two deliberate compromises:
+`usage` describes the colour's **semantic role**, not the CSS property it is
+applied to. `hr` sets `background-color: var(--border)` because the rule *is* a
+border — that is the principle working, not an exception.
 
-- Disabled checkbox/radio fills reference `--border`, even though they set
-  `background-color`, because the fill is literally the border colour.
-- The disabled control mark references `--text-weak`.
+Where the palette has no dedicated colour for a slot, a component token reuses
+the nearest one, so some call sites reference a token whose `usage` segment
+differs from the slot:
 
-When a single colour serves several roles, it becomes several tokens that
-happen to share a value (`--brand-text-strong`, `--brand-border-strong`,
+| Call site | References | Slot |
+| --- | --- | --- |
+| disabled checkbox/radio fill | `--border` | background |
+| disabled control mark | `--text-weak` | border / background |
+| `--btn-bg-active` | `--border-weak` | background |
+| `--btn-border-hover` | `--text-weak` | border |
+| `--btn-border-active` | `--text-medium` | border |
+
+These create couplings: overriding `--text-weak` also moves button borders and
+disabled marks. They are deliberate — the alternative is near-duplicate colour
+tokens, one per slot.
+
+When a single colour serves several **brand** roles, it becomes several tokens
+that happen to share a value (`--brand-text-strong`, `--brand-border-strong`,
 `--brand-background-strong`) so each role can be overridden independently.
 
 ## Consumer overrides
