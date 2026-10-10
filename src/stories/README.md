@@ -5,7 +5,12 @@ base styles references a token — no hardcoded values.
 
 Toggle dark/light mode in the toolbar to see tokens adapt.
 
-## Color (`--text*`, `--background*`, `--border*`, `--brand-*`, `--info-*`, `--success-*`, `--warning-*`, `--danger-*`, `--focus-ring`)
+## Color
+
+Colour tokens are composed as `<sentiment>-<usage>-<prominence>[-<interaction>]`
+with `default` omitted from every segment, so `--text-weak` is the weak
+prominence of the text usage and `--brand-text-strong-hover` is brand text,
+strong prominence, hovered. See `docs/colour-token-naming.md`.
 
 All colour tokens adapt in dark mode via `@media (prefers-color-scheme: dark)`.
 No `data-theme` attribute needed — the browser honours the user's OS setting

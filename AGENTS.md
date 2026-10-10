@@ -233,7 +233,10 @@ value used in feature styles references a token — never hardcoded values.
 
 Naming patterns:
 
-- Colour tokens — `<sentiment>-<usage>-<prominence>[-<interaction>]`, with `default` omitted (see docs/colour-token-naming.md)
+- Colour tokens — composed as `<sentiment>-<usage>-<prominence>[-<interaction>]`
+  with `default` omitted from every segment (e.g. `--text`, `--text-weak`,
+  `--text-hover`). See **docs/colour-token-naming.md**; enforced by
+  `npm run check:token-names`.
 - `--ff-*` — font families (`--ff-sans`, `--ff-mono`)
 - `--fs-*` — font sizes (`--fs-base`, `--fs-xl`)
 - `--fw-*` — font weights (`--fw-normal`, `--fw-bold`)
@@ -313,7 +316,6 @@ Cherry-picking individual files is also possible via deep imports
 
 | Token prefix    | Category      | Examples                                    |
 | --------------- | ------------- | ------------------------------------------- |
-| `--text`, `--background`, `--brand-*` | Colour (usage-scoped) | `--text-weak`, `--brand-text-strong-hover`                   |
 | `--ff-`         | Font family   | `--ff-sans`, `--ff-mono`                    |
 | `--fs-`         | Font size     | `--fs-base`, `--fs-xl`                      |
 | `--fw-`         | Font weight   | `--fw-normal`, `--fw-bold`                  |
@@ -325,6 +327,19 @@ Cherry-picking individual files is also possible via deep imports
 | `--opacity-`    | Opacity       | `--opacity-disabled`                        |
 | `--max-width-`  | Layout        | `--max-width-wide`                          |
 | `--btn-`        | Button        | `--btn-padding-x`, `--btn-disabled-opacity` |
+
+### Colour tokens
+
+Colour tokens do not take a fixed prefix — they are composed from four axes.
+`default` is omitted from every segment, so a name only carries its non-default
+parts (`--text`, `--text-weak`, `--text-hover`, `--brand-text-strong-hover`).
+Extensions beyond the base axes are the `brand` and `info` sentiments and the
+`inverse` prominence; `--focus-ring` is a declared exception.
+
+All colour tokens live in `src/styles/tokens/color.css`, with matching light
+and dark `:root` blocks, and are validated by `npm run check:token-names`. The
+full vocabulary and the add-a-token steps are in
+**docs/colour-token-naming.md**.
 
 ### Responsive — mobile-first
 

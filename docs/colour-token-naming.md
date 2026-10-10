@@ -1,90 +1,95 @@
-# Colour token naming — Asana-style 4-axis convention
+# Colour token naming
 
-**Status:** Implemented on `refactor/colour-token-naming` (css-starter).
-Consumers not yet migrated.
-
-## The convention
+Every colour token in `src/styles/tokens/color.css` is named by composing four
+orthogonal axes. The name reads as a sentence, so a token says *which* semantic
+role it plays, not just *what* it is.
 
 ```
-<sentiment>-<usage>-<prominence>-<interaction>
+<sentiment>-<usage>-<prominence>[-<interaction>]
 ```
 
-| Axis | Values |
-| --- | --- |
-| sentiment | `default`, `success`, `warning`, `danger`, `info`*, `brand`*, `selected`, `upsell`, `beta` |
-| usage | `background`, `text`, `icon`, `border` |
-| prominence | `default`, `weak`, `medium`, `strong`, `inverse`* |
-| interaction | `default`, `hover`, `active`, `disabled` |
+| Axis | Presence | Values |
+| --- | --- | --- |
+| sentiment | optional | `success`, `warning`, `danger`, `info`\*, `brand`\*, `selected`, `upsell`, `beta` |
+| usage | required | `background`, `text`, `icon`, `border` |
+| prominence | optional | `weak`, `medium`, `strong`, `inverse`\* |
+| interaction | optional | `hover`, `active`, `disabled` |
 
-\* extension beyond the Asana slide.
+\* Extension beyond the Asana slide. The slide's sentiment set is
+`default`, `success`, `warning`, `danger`, `upsell`, `selected`, `beta`; its
+prominence set is `default`, `weak`, `medium`, `strong`.
 
 **`default` is omitted from every segment.** Only non-default parts appear in
-the name, so:
+the name:
 
 | Full form | Token |
 | --- | --- |
 | default-text-default-default | `--text` |
 | default-text-weak-default | `--text-weak` |
 | default-text-default-hover | `--text-hover` |
-| brand-text-strong-default | `--brand-text-strong` |
+| success-text-default-default | `--success-text` |
 | brand-text-strong-hover | `--brand-text-strong-hover` |
 
-Usage is always present; the sentiment prefix appears only when it is not
+A name therefore ends at its last non-default segment. Usage is always
+present; sentiment, prominence and interaction only appear when they are not
 `default`.
 
-## Extensions
+## Exceptions
 
-| Gap in the slide | Decision |
+`--focus-ring` is deliberately outside the grid: `focus` is not a usage. The
+exception is declared in `scripts/check-token-names.mjs`.
+
+## Adding a new token
+
+1. Decide the axes. Start from the role, not the CSS property:
+   *sentiment* (is it neutral, brand, or a status?), *usage* (background, text,
+   icon, border?), *prominence* (default, weak, medium, strong?), *interaction*
+   (default, hover, active, disabled?).
+2. Compose the name and drop every `default` segment. `brand` + `background` +
+   `strong` + `default` → `--brand-background-strong`.
+3. Declare it in **both** `:root` blocks in `color.css` (light and dark). The
+   guardrail fails if they diverge.
+4. Add it to the colour table in `src/stories/README.md` with its light value —
+   `npm run check:tokens` compares the two.
+5. Run `npm run check`.
+
+## Guardrails
+
+| Command | Enforces |
 | --- | --- |
-| No brand/primary sentiment | `brand` sentiment. |
-| No info sentiment | `info` sentiment. |
-| No `inverse` prominence | `--text-inverse` uses `inverse` prominence. |
-| `focus-ring` is not a usage | `--focus-ring` is a standalone interaction-level token. |
+| `npm run lint:css` | no `!important` under `src/styles/` |
+| `npm run check:tokens` | `stories/README.md` colour table matches `color.css` |
+| `npm run check:token-names` | every token follows this convention, and light/dark agree |
+| `npm run check` | all of the above (run in CI on every PR) |
 
-## Token set (24 tokens)
+## Role of the `usage` axis
 
-| Token | Replaces | Usage in components |
-| --- | --- | --- |
-| `--text` | `--c-text` | body text, headings, legend |
-| `--text-medium` | `--c-text-secondary` | blockquote, card caption, typography secondary |
-| `--text-weak` | `--c-text-muted` | disabled links, disabled controls, `<small>` |
-| `--text-inverse` | `--c-text-inverse` | checkmark, checked picker label |
-| `--background` | `--c-bg` | page, inputs, cards, pills |
-| `--background-weak` | `--c-bg-subtle` | code, table header, button idle |
-| `--background-medium` | `--c-bg-muted` | kbd, button hover |
-| `--border` | `--c-border` | inputs, cards, code, fieldset, hr |
-| `--border-weak` | `--c-border-light` | table rules, button active |
-| `--brand-text-strong` | `--c-primary` (text) | link colour |
-| `--brand-text-strong-hover` | `--c-primary-hover` | link hover |
-| `--brand-text-strong-active` | `--c-primary-active` | link active |
-| `--brand-border-strong` | `--c-primary` (border) | blockquote, focused inputs, picker hover/checked |
-| `--brand-background-strong` | `--c-primary` (background) | checked checkbox/radio, picker checked |
-| `--brand-background-weak` | `--c-primary-subtle` | (unused, retained) |
-| `--info-icon`, `--info-border` | `--c-info` | callout info |
-| `--success-icon`, `--success-border` | `--c-success` | callout success |
-| `--warning-icon`, `--warning-border` | `--c-warning` | callout warning |
-| `--danger-icon`, `--danger-border` | `--c-error` | callout danger |
-| `--focus-ring` | `--c-focus-ring` | focus outlines |
+`usage` describes the colour's **semantic role**, not necessarily the CSS
+property it is applied to. Two deliberate compromises:
 
-## Known compromises
+- Disabled checkbox/radio fills reference `--border`, even though they set
+  `background-color`, because the fill is literally the border colour.
+- The disabled control mark references `--text-weak`.
 
-- **Cross-usage reuse.** Some sites use a token for a different CSS property
-  than its usage name. Disabled checkbox/radio fills use `--border` and the
-  disabled mark uses `--text-weak`. The token name describes the colour's
-  role, not every property it touches.
-- **Brand overrides touch several tokens.** A brand is six tokens instead of
-  one. Consumers that override `--c-primary` must set the brand tokens they
-  use, or add a shared base layer later.
-- **Duplicated values.** `*-icon` and `*-border` share a value per status, and
-  brand usages share one hex value. This keeps each usage independently
-  overridable.
+When a single colour serves several roles, it becomes several tokens that
+happen to share a value (`--brand-text-strong`, `--brand-border-strong`,
+`--brand-background-strong`) so each role can be overridden independently.
 
-## Migration for consumers
+## Consumer overrides
 
-| Old | New |
-| --- | --- |
-| `--c-primary` | `--brand-text-strong`, `--brand-border-strong`, `--brand-background-strong` |
-| `--c-text` | `--text` |
-| `--c-bg` | `--background` |
-| `--c-error` | `--danger-icon` / `--danger-border` |
-| other `--c-*` | see table above |
+Because brand is usage-scoped, overriding a brand means setting the brand
+tokens a consumer actually uses:
+
+```css
+:root {
+  --brand-text-strong: #6366f1;
+  --brand-text-strong-hover: #4f52d6;
+  --brand-text-strong-active: #4346b8;
+  --brand-border-strong: #6366f1;
+  --brand-background-strong: #6366f1;
+  --brand-background-weak: rgba(99, 102, 241, 0.08);
+}
+```
+
+If that becomes onerous, a shared base layer referenced by the usage tokens
+would restore a single override point; it is intentionally not added yet.
